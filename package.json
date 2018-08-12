@@ -1,0 +1,23 @@
+{
+  "name": "express-mongo-docker",
+  "version": "1.0.0",
+  "description": "Express app with MongoDB and Docker",
+  "main": "app.js",
+  "scripts": {
+    "lint": "npx eslint ./**/*.js",
+    "start": "node app.js",
+    "start-dev": "nodemon -L app.js"
+  },
+  "author": "Arpad Toth",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.18.3"
+  }
+}
