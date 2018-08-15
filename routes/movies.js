@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).send('Movie not found.');
     }
 
-    res.send({ movie });
+    res.send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
@@ -84,7 +84,7 @@ router.patch('/:id', async (req, res) => {
       return res.status(404).send('Movie not found.');
     }
 
-    res.send({ movie });
+    res.send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }

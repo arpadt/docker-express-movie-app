@@ -100,4 +100,79 @@ describe('#movies', () => {
       expect(response.body).to.have.property('title', 'The SpongeBob SquarePants Movie');
     });
   });
+
+  describe('DELETE /movies/:id', () => {
+    it('returns error if id is not valid', async () => {
+      const response = await request(app)
+        .delete('/movies/123');
+
+      expect(response.status).to.equal(404);
+      expect(response.text).to.equal('Invalid id!');
+    });
+
+    it('should return 404 if no movie is found', async () => {
+      const newId = new ObjectId();
+
+      const response = await request(app)
+        .delete(`/movies/${ newId }`);
+
+      expect(response.status).to.equal(404);
+      expect(response.text).to.equal('Movie not found.');
+    });
+
+    it('deletes the relevant movie', async () => {
+      const response = await request(app)
+        .delete(`/movies/${ id1 }`);
+
+      const movies = await Movie.find({});
+      const [movie] = movies;
+
+      expect(response.status).to.equal(200);
+      expect(response.body).to.have.property('title', 'The SpongeBob SquarePants Movie');
+      expect(movies).to.have.lengthOf(1);
+      expect(movie).to.not.have.property('title', 'The SpongeBob SquarePants Movie');
+      expect(movie).to.have.property('title', 'The Notebook');
+    });
+  });
+
+  describe('PATCH /movies/:id', () => {
+    it('returns error if id is not valid', async () => {
+      const response = await request(app)
+        .patch('/movies/123');
+
+      expect(response.status).to.equal(404);
+      expect(response.text).to.equal('Invalid id!');
+    });
+
+    it('should return 404 if no movie is found', async () => {
+      const newId = new ObjectId();
+
+      const response = await request(app)
+        .patch(`/movies/${ newId }`);
+
+      expect(response.status).to.equal(404);
+      expect(response.text).to.equal('Movie not found.');
+    });
+
+    it('returns the updated movies as liked', async () => {
+      const newLike = { isLiked: true };
+      const expectedResponse = {
+        title: 'The Notebook',
+        genre: 'drama',
+        isLiked: true
+      };
+
+      const response = await request(app)
+        .patch(`/movies/${ id2 }`)
+        .send(newLike);
+
+      const modifiedMovieInDB = await Movie.findById(id2);
+
+      expect(response.status).to.equal(200);
+      expect(response.body.title).to.equal('The Notebook');
+      expect(response.body.isLiked).to.be.true;
+      expect(modifiedMovieInDB).to.have.property('title', 'The Notebook');
+      expect(modifiedMovieInDB).to.have.property('isLiked', true);
+    });
+  });
 });

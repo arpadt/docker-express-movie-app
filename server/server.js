@@ -3,15 +3,13 @@ const express = require('express');
 
 require('../db/config/connect');
 const { router: moviesRoutes } = require('../routes/movies');
+const { router: landingPageRoute } = require('../routes/base');
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('It works!');
-});
-
+app.use('/', landingPageRoute);
 app.use('/movies', moviesRoutes);
 
 const PORT = process.env.PORT || 8080;
