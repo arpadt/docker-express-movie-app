@@ -8,8 +8,8 @@ const Movie = mongoose.model('Movie', {
   genre: {
     type: String
   },
-  rating: {
-    type: Number
+  isLiked: {
+    type: Boolean
   }
 });
 

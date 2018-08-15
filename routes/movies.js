@@ -1,5 +1,5 @@
 const express = require('express');
-const { ObjectId } = require('mongoose').Types;
+const { Types: { ObjectId } } = require('mongoose');
 
 const { Movie } = require('../db/models/movie');
 
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).send('Movie not found.');
     }
 
-    res.send({ movie });
+    res.send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
@@ -38,12 +38,12 @@ router.post('/', async (req, res) => {
   const newMovie = new Movie({
     title: req.body.title,
     genre: req.body.genre,
-    rating: req.body.rating
+    isLiked: req.body.isLiked
   });
 
   try {
     const movie = await newMovie.save();
-    res.send({ movie })
+    res.send(movie)
   } catch (error) {
     res.status(400).send('An error occured.')
   }
