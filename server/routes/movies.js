@@ -49,6 +49,15 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/', async (req, res) => {
+  try {
+    await Movie.remove({});
+    res.send('Deleted all movies.');
+  } catch (error) {
+    res.status(400).send('Error');
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   const id = req.params.id;
 

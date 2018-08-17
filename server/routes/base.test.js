@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const { app } = require('../server/server');
+const { app } = require('../server');
 
 const { expect, request } = chai.use(chaiHttp);
 

@@ -1,9 +1,11 @@
+require('./config/config');
+
 const bodyParser = require('body-parser');
 const express = require('express');
 
-require('../db/config/connect');
-const { router: moviesRoutes } = require('../routes/movies');
-const { router: landingPageRoute } = require('../routes/base');
+require('./db/connect');
+const { router: moviesRoutes } = require('./routes/movies');
+const { router: landingPageRoute } = require('./routes/base');
 
 const app = express();
 

@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { Types: { ObjectId } } = require('mongoose');
 
-const { app } = require('../server/server');
+const { app } = require('../server');
 const { Movie } = require('../db/models/movie');
 
 const { expect, request } = chai.use(chaiHttp);
@@ -101,7 +101,18 @@ describe('#movies', () => {
     });
   });
 
-  describe('DELETE /movies/:id', () => {
+  describe('DELETE /movies', () => {
+    it('deletes all movies', async () => {
+      const response = await request(app)
+        .delete('/movies');
+
+      const movies = await Movie.find({});
+
+      expect(response.status).to.equal(200);
+      expect(response.text).to.equal('Deleted all movies.');
+      expect(movies).to.have.lengthOf(0);
+    });
+
     it('returns error if id is not valid', async () => {
       const response = await request(app)
         .delete('/movies/123');
