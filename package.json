@@ -12,7 +12,6 @@
   "author": "Arpad Toth",
   "license": "ISC",
   "dependencies": {
-    "@nativescript/schematics": "^0.2.5",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.2.7"
