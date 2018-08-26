@@ -1,5 +1,4 @@
 .wrapper {
-  border: 2px solid blueviolet;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,9 +11,14 @@
 }
 
 .sidebar {
-  background-color: orangered;
+  background-color: var(--primary);
 
   flex: 0 0 20%;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
 }
 
 .content {
