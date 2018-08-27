@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'scss/web/abstract/variables';
 
-// Import common styles
-@import 'app-common';
+@import 'scss/web/base/base';
+
+@import 'scss/web/layout/layout';

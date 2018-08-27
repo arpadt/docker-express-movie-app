@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  background-color: var(--color-primary);
+
+  flex: 0 1 20%;
+}
+
+.content {
+  background-color: orange;
+
+  flex: 1;
+}
+
+.footer {
+  background-color: violet;
+
+  display: flex;
+  justify-content: center;
+}
