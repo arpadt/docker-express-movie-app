@@ -1,0 +1,49 @@
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 2.5rem;
+
+  &__item {
+    height: 3rem;
+  }
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  align-self: strech;
+
+  margin-top: 8rem;
+}
+
+.sidebar-nav {
+  font-size: 1.4rem;
+  list-style: none;
+
+  &__link:visited,
+  &__link:link {
+    align-self: stretch;
+    color: var(--color-grey-light);
+    display: block;
+    padding: 1.5rem 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    fill: currentColor;
+    height: 2rem;
+    width: 2rem;
+
+    margin-right: 2rem;
+  }
+}
