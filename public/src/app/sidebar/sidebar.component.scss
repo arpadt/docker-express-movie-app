@@ -1,36 +1,34 @@
-.sidebar-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .logo {
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
+  text-align: center;
 
-  &__item {
-    height: 3rem;
+  &__img {
+    width: 4.5rem;
   }
 }
 
 .nav-container {
+  margin-top: 15rem;
+}
+
+.sidebar-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  align-self: strech;
-
-  margin-top: 8rem;
-}
-
-.sidebar-nav {
-  font-size: 1.4rem;
   list-style: none;
 
-  &__link:visited,
-  &__link:link {
+  &__item {
     align-self: stretch;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link:link,
+  &__link:active, {
     color: var(--color-grey-light);
-    display: block;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
     padding: 1.5rem 3rem;
     text-decoration: none;
     text-transform: uppercase;

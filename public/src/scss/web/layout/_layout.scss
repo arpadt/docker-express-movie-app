@@ -6,11 +6,18 @@
 .sidebar {
   background-color: var(--color-primary);
   flex: 0 1 20%;
+<<<<<<< HEAD
+=======
+  min-height: 100vh;
+>>>>>>> front-end-app
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+<<<<<<< HEAD
   align-items: center;
+=======
+>>>>>>> front-end-app
 }
 
 .content {
