@@ -1,5 +1,5 @@
-:root {
   // COLORS
+:root {
   --color-primary: #0b1124;
   --color-primary-dark: #06091a;
   --color-primary-light-1: #132133;
@@ -12,8 +12,8 @@
   --color-tertiary: #e59f2b;
   --color-grey-dark: #828282;
   --color-grey-light: #fafafa;
-
-  // FONTS
-  --font-primary: 'Roboto';
-  --font-secondary: 'M PLUS Rounded 1c';
 }
+
+// FONTS
+$font-primary: 'Roboto';
+$font-secondary: 'M PLUS Rounded 1c';
