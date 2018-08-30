@@ -1,0 +1,11 @@
+.search {
+  border-bottom: 1px solid var(--color-secondary-light-2);
+  margin-bottom: 3rem;
+
+  &__input {
+    background-color: var(--color-primary-dark);
+    border: 0;
+    border-radius: 100px;
+  }
+
+}

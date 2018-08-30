@@ -51,3 +51,14 @@
     margin-right: 2rem;
   }
 }
+
+.slogan {
+  color: var(--color-secondary-light-2);
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  &__highlight {
+    text-transform: uppercase;
+  }
+}
