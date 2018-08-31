@@ -1,11 +1,26 @@
 .search {
+  background-color: var(--color-primary-dark);
   border-bottom: 1px solid var(--color-secondary-light-2);
+  height: 8vh;
   margin-bottom: 3rem;
 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__icon {
+    fill: var(--color-primary-light-2);
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
   &__input {
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-primary);
     border: 0;
     border-radius: 100px;
+    color: var(--color-primary-light-2);
+    flex: 0 0 40%;
+    height: 4vh;
   }
 
 }
