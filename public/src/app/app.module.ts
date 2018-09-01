@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     HomeComponent,
     SidebarComponent,
     SearchBarComponent,
+    MovieSnippetsComponent,
   ],
   imports: [
     BrowserModule,
