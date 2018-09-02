@@ -1,10 +1,68 @@
 .snippet {
-  background-image: url('../../assets/img/poster.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 27rem;
   width: 27rem;
 
   margin-top: 2rem;
+  position: relative;
+
+  &__poster {
+    filter: brightness(0.25);
+    width: 100%;
+  }
+
+  &__data {
+    color: var(--color-secondary-light-2);
+    left: 5%;
+    position: absolute;
+    top: 10%;
+  }
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__meta {
+    color: var(--color-grey-dark);
+    margin-top: 1.5rem;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 3rem;
+
+    &-button:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__info {
+    color: var(--color-grey-dark);
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__plot {
+    hyphens: auto;
+  }
+
+  &__rating {
+    align-self: flex-end;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--color-tertiary);
+    text-transform: uppercase;
+    margin-top: 1rem;
+
+    &--big {
+      font-size: 1.6rem;
+      margin-left: 0.5rem;
+    }
+  }
 }

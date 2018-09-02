@@ -1,0 +1,20 @@
+.btn {
+  height: 3rem;
+  width: 8rem;
+
+  border-radius: 3px;
+  font-size: 1rem;
+  text-transform: uppercase;
+
+  &--ghost {
+    background-color: transparent;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+  }
+
+  &--dark {
+    background-color: var(--color-secondary);
+    border: 2px solid transparent;
+    color: var(--color-grey-light);
+  }
+}
