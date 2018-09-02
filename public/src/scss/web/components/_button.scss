@@ -3,18 +3,36 @@
   width: 8rem;
 
   border-radius: 3px;
+  box-shadow: var(--shadow-small);
   font-size: 1rem;
   text-transform: uppercase;
+  transition: all .2s ease-in;
 
   &--ghost {
     background-color: transparent;
     border: 2px solid var(--color-secondary);
     color: var(--color-secondary);
+    transition: all .2s ease-in;
+
+    &:hover {
+      border: 2px solid var(--color-secondary-dark-1);
+    }
   }
 
   &--dark {
     background-color: var(--color-secondary);
     border: 2px solid transparent;
     color: var(--color-grey-light);
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--color-secondary-dark-1);
+    border: 2px solid var(--color-secondary-dark-1);
+    color: var(--color-grey-light);
+  }
+
+  &:active {
+    box-shadow: none;
   }
 }
