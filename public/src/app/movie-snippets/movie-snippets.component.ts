@@ -39,6 +39,17 @@ export class MovieSnippetsComponent implements OnInit {
       plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
       imdbRating: '8.0',
       poster: '../../assets/img/poster.jpg'
+    },
+    {
+      title: 'Jason Bourne',
+      year: '2016',
+      rating: '12A',
+      length: '123',
+      actors: 'Matt Damon, Tommy Lee Jones, Alicia Vikander',
+      // tslint:disable-next-line:max-line-length
+      plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
+      imdbRating: '6.6',
+      poster: '../../assets/img/poster.jpg'
     }
   ];
 

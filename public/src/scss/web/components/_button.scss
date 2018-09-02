@@ -4,7 +4,9 @@
 
   border-radius: 3px;
   box-shadow: var(--shadow-small);
+  font-family: var(--font-secondary);
   font-size: 1rem;
+  padding: 5px;
   text-transform: uppercase;
   transition: all .2s ease-in;
 
@@ -12,7 +14,6 @@
     background-color: transparent;
     border: 2px solid var(--color-secondary);
     color: var(--color-secondary);
-    transition: all .2s ease-in;
 
     &:hover {
       border: 2px solid var(--color-secondary-dark-1);
@@ -30,6 +31,10 @@
     background-color: var(--color-secondary-dark-1);
     border: 2px solid var(--color-secondary-dark-1);
     color: var(--color-grey-light);
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &:active {
