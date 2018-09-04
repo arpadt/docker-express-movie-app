@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.component';
+import { MyListComponent } from './my-list/my-list.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.componen
     SidebarComponent,
     SearchBarComponent,
     MovieSnippetsComponent,
+    MyListComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

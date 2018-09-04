@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-movie-snippets',
-  templateUrl: './movie-snippets.component.html',
-  styleUrls: ['./movie-snippets.component.scss']
+  selector: 'app-my-list',
+  templateUrl: './my-list.component.html',
+  styleUrls: ['./my-list.component.scss']
 })
-export class MovieSnippetsComponent implements OnInit {
+export class MyListComponent implements OnInit {
   movieData = [
     {
       title: 'The Bourne Identity',

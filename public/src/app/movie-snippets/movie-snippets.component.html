@@ -1,30 +1,3 @@
-<div class="snippet-wrapper" *ngFor="let movie of movieData">
-  <div class="snippet">
-    <img [src]="movie.poster" alt="Poster" class="snippet__poster">
-    <div class="snippet__data">
-      <p class="snippet__title">
-        {{ movie.title }}
-      </p>
-      <div class="snippet__meta">
-        {{ movie.year }} | {{ movie.rating }} | {{ movie.length }} min
-        <span>&middot;</span>
-        {{ movie.actors }}
-      </div>
-      <div class="snippet__action">
-        <div class="snippet__buttons">
-          <button class="btn btn--ghost snippet__action-button">More</button>
-          <button class="btn btn--dark snippet__action-button">Add to List</button>
-        </div>
-        <div class="snippet__info">
-          <p class="snippet__plot">
-            {{ movie.plot }}
-          </p>
-          <div class="snippet__rating">
-            Imdb:
-            <span class="snippet__rating--big">{{ movie.imdbRating }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" *ngFor="let film of movieData">
+  <app-card [movie]="film"></app-card>
 </div>
