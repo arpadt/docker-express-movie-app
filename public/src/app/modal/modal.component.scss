@@ -1,0 +1,36 @@
+.modal {
+  display: flex;
+  background-color: var(--color-primary-dark);
+  height: 40rem;
+  width: 60rem;
+
+  &__data {
+    flex: 1;
+  }
+
+  &__poster {
+    width: 45%;
+  }
+
+  &__movie-img {
+    flex: 1;
+    height: 100%;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height:100%;
+      width: 100%;
+      background: radial-gradient(ellipse at center, transparent 0%,var(--color-primary-dark) 70%);
+    }
+
+    &-item {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.component';
 import { MyListComponent } from './my-list/my-list.component';
 import { CardComponent } from './card/card.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CardComponent } from './card/card.component';
     MovieSnippetsComponent,
     MyListComponent,
     CardComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
