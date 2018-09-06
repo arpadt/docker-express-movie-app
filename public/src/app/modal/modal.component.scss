@@ -4,8 +4,13 @@
   background-color: var(--color-primary-dark);
   box-shadow: var(--shadow-large);
   height: 45rem;
+  position: relative;
   width: 65rem;
-  z-index: 5;
+  z-index: 3;
+
+  &-container {
+    position: relative;
+  }
 
   &__poster {
     position: relative;
@@ -38,12 +43,12 @@
   }
 
   &-overlay {
-    // background-color: transparent;
+    background-color: #fff;
     bottom: 0;
-    filter: blur(5px);
+    filter: blur(10px);
     height: 100%;
     left: 0;
-    // opacity: 0;
+    opacity: 0.8;
     position: fixed;
     right: 0;
     top: 0;
