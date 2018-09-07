@@ -4,6 +4,7 @@
   background-color: var(--color-primary-dark);
   box-shadow: var(--shadow-large);
   height: 45rem;
+  margin: 0 auto;
   position: relative;
   width: 65rem;
   z-index: 3;
@@ -43,9 +44,8 @@
   }
 
   &-overlay {
-    background-color: #fff;
+    background-color: var(--color-primary-dark);
     bottom: 0;
-    filter: blur(10px);
     height: 100%;
     left: 0;
     opacity: 0.8;
