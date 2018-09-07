@@ -1,0 +1,35 @@
+<div class="card">
+  <img [src]="movie.poster" alt="Poster" class="card__poster">
+  <div class="card__data">
+    <p class="card__title">
+      {{ movie.title }}
+    </p>
+    <div class="card__meta">
+      {{ movie.year }}
+      <span>&middot;</span>
+      {{ movie.rated }}
+      <span>&middot;</span>
+      {{ movie.length }} min
+      <span>&middot;</span>
+      {{ movie.language }}
+    </div>
+    <div class="card__actors">
+      {{ movie.actors }}
+    </div>
+    <div class="card__action">
+      <div class="card__buttons">
+        <button class="btn btn--ghost card__action-button">More</button>
+        <button class="btn btn--dark card__action-button">Add to List</button>
+      </div>
+      <div class="card__info">
+        <p class="card__plot">
+          {{ movie.plot }}
+        </p>
+        <div class="card__rating">
+          Imdb:
+          <span class="card__rating--big">{{ movie.imdbRating }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

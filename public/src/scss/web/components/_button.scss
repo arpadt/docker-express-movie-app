@@ -1,0 +1,43 @@
+.btn {
+  height: 3rem;
+  width: 8rem;
+
+  border-radius: 3px;
+  box-shadow: var(--shadow-small);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  padding: 5px;
+  text-transform: uppercase;
+  transition: all .2s ease-in;
+
+  &--ghost {
+    background-color: transparent;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+
+    &:hover {
+      border: 2px solid var(--color-secondary-dark-1);
+    }
+  }
+
+  &--dark {
+    background-color: var(--color-secondary);
+    border: 2px solid transparent;
+    color: var(--color-grey-light);
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--color-secondary-dark-1);
+    border: 2px solid var(--color-secondary-dark-1);
+    color: var(--color-grey-light);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}

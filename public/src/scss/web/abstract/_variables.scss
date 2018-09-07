@@ -6,14 +6,17 @@
   --color-primary-dark: #06091a;
   --color-primary-light-1: #132133;
   --color-primary-light-2: #18293b;
-  --color-secondray: #5d9dd6;
+  --color-secondary: #5d9dd6;
   --color-secondary-dark-1: #125692;
   --color-secondary-dark-2: #023d71;
   --color-secondary-light-1: #6ab2de;
   --color-secondary-light-2: #c0cad8;
   --color-tertiary: #e59f2b;
-  --color-grey-dark: #828282;
+  --color-grey-dark: #7e8085;
   --color-grey-light: #fafafa;
+
+  --shadow-small: 0 3px 5px var(--color-primary-dark);
+  --shadow-large: 0 2rem 3rem var(--color-primary-dark);
 
   // FONTS
   --font-primary: 'Roboto';

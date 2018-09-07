@@ -1,1 +1,9 @@
+.search-container {
+  background-color: var(--color-primary-dark);
+  height: 12vh;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
