@@ -34,4 +34,17 @@
     }
   }
 
+  &__button {
+    border: none;
+    background-color: var(--color-secondary-light-2);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
 }
