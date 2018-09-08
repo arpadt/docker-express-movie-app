@@ -1,6 +1,14 @@
-<form action="#" class="search" #movieSearch>
-  <input type="text" class="search__input" placeholder="Search movies">
-  <button class="search__button">
+<form class="search" #f="ngForm" (ngSubmit)=onSubmit(box.value)>
+  <input
+    type="text"
+    class="search__input"
+    placeholder="Search movies"
+    #box
+    >
+  <button
+    class="search__button"
+    type="submit"
+    >
     <svg class="search__icon">
       <use xlink:href="../../assets/img/symbol-defs.svg#icon-magnifying-glass"></use>
     </svg>
