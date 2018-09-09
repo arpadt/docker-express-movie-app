@@ -15,7 +15,7 @@
 
   &__input {
     background-color: var(--color-primary);
-    border: 0;
+    border: 2px solid transparent;
     border-radius: 100px;
     color: var(--color-secondary-light-2);
     flex: 0 0 90%;
@@ -47,4 +47,8 @@
     }
   }
 
+}
+
+.ng-invalid.ng-touched:not(form) {
+  border: 2px solid var(--color-secondary-light-2);
 }
