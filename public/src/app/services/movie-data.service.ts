@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieDataService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getMovieData(url: string) {
-    return this.http.get(url)
-      .pipe(map((res: Response) => res.json()));
+    return this.http.get(url, {observe: 'response'});
   }
 }
