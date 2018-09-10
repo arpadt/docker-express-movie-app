@@ -2,6 +2,7 @@ require('./config/config');
 
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
 const rp = require('request-promise-native');
 
 require('./db/connect');
@@ -34,6 +35,8 @@ app.get('/search/:title', async (req, res) => {
   }
 });
 app.use('/movies', moviesRoutes);
+
+app.use(express.static(path.join(__dirname, '../dist/public')))
 
 const PORT = process.env.PORT || 8080;
 
