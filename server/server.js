@@ -12,6 +12,7 @@ const { router: landingPageRoute } = require('./routes/base');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/../dist/public')));
 
 app.use('/', landingPageRoute);
 app.get('/search/:title', async (req, res) => {
@@ -35,8 +36,6 @@ app.get('/search/:title', async (req, res) => {
   }
 });
 app.use('/movies', moviesRoutes);
-
-app.use(express.static(path.join(__dirname, '../dist/public')))
 
 const PORT = process.env.PORT || 8080;
 
