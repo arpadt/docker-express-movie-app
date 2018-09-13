@@ -17,3 +17,10 @@ export interface Movies {
   BoxOffice?: string;
   Website?: string;
 }
+
+export interface MovieResponse {
+  Search?: Movies[];
+  Response: string;
+  Error?: string;
+  totalResults?: string;
+}
