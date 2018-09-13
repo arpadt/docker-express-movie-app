@@ -1,32 +1,13 @@
+import { Movies } from './../interface';
 import { Component, OnInit } from '@angular/core';
 import { MovieDataService } from './../services/movie-data.service';
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
-interface Movies {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-  Rated?: string;
-  Released?: string;
-  Runtime?: string;
-  Genre?: string;
-  Director?: string;
-  Actors?: string;
-  Plot?: string;
-  Language?: string;
-  Awards?: string;
-  imdbRating?: string;
-  BoxOffice?: string;
-  Website?: string;
-}
-
-interface TitleResults {
-  results: Movies[];
-}
+// interface TitleResults {
+//   results: Movies[];
+// }
 
 @Component({
   selector: 'app-home',
@@ -60,7 +41,9 @@ export class HomeComponent implements OnInit {
       imdbID: 'tt0372183',
       Type: 'movie',
       // tslint:disable-next-line:max-line-length
-      Poster: 'https://m.media-amazon.com/images/M/MV5BYTIyMDFmMmItMWQzYy00MjBiLTg2M2UtM2JiNDRhOWE4NjBhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg'
+  // tslint:disable-next-line:max-line-length
+  //     Poster: 'https://m.media-amazon.com/images/M/MV5BYTIyMDFmMmItMWQzYy00MjBiLTg2M2UtM2JiNDRhOWE4NjBhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg'
+  Poster: 'N/A'
     }
   ];
 
