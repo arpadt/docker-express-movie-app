@@ -30,6 +30,10 @@
     background-color: var(--color-primary-light-1);
   }
 
+  &__link {
+    width: 100%;
+  }
+
   &__link:link,
   &__link:visited {
     color: var(--color-secondary-light-2);
