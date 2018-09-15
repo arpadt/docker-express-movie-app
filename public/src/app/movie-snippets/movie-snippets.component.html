@@ -4,6 +4,6 @@
 </h2>
 <div class="card-container">
   <div *ngFor="let film of movies">
-    <app-card [movie]="film"></app-card>
+    <app-card [isList]="isList" [movie]="film"></app-card>
   </div>
 </div>
