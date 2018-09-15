@@ -24,4 +24,12 @@ export class CardComponent implements OnInit {
     console.log('Remove from list');
   }
 
+  getMoreInfo(movieId: string) {
+    // get the id of the movie, emit event
+    // make detailed request to the API - service
+    // add response to movie details object - in modal
+    // set class to is-visible - in modal
+    console.log(movieId);
+  }
+
 }

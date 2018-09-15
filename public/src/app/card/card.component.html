@@ -22,7 +22,10 @@
       </div>
     </div>
     <div class="card__buttons">
-      <button class="btn btn--ghost card__button">More</button>
+      <button
+        class="btn btn--ghost card__button"
+        (click)="getMoreInfo(movie.imdbID)"
+      >More</button>
       <button
         class="btn btn--dark card__button"
         (click)="isList ? removeFromList() : addToList()"
