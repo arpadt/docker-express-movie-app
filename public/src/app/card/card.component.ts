@@ -1,3 +1,4 @@
+import { Movies } from './../interface';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -7,7 +8,8 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent implements OnInit {
-  @Input() movie;
+  @Input() movie: Movies;
+  @Input() isList: boolean;
 
   constructor() { }
 

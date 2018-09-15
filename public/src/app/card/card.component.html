@@ -1,35 +1,29 @@
 <div class="card">
-  <img [src]="movie.poster" alt="Poster" class="card__poster">
-  <div class="card__data">
-    <p class="card__title">
-      {{ movie.title }}
-    </p>
-    <div class="card__meta">
-      {{ movie.year }}
-      <span>&middot;</span>
-      {{ movie.rated }}
-      <span>&middot;</span>
-      {{ movie.length }} min
-      <span>&middot;</span>
-      {{ movie.language }}
+  <ng-template [ngIf]="movie.Poster!=='N/A'" [ngIfElse]="noPoster">
+    <figure class="card__poster">
+      <img [src]="movie.Poster" alt="Poster" class="card__poster-item">
+    </figure>
+  </ng-template>
+  <ng-template #noPoster>
+    <div class="card__no-poster">
+      <svg class="card__no-poster-icon">
+        <use xlink:href="../../assets/img/symbol-defs.svg#icon-video-camera"></use>
+      </svg>
     </div>
-    <div class="card__actors">
-      {{ movie.actors }}
+  </ng-template>
+  <div class="card__data-wrapper">
+    <div class="card__data">
+      <p class="card__title">
+        {{ movie.Title }}
+      </p>
+      <div class="card__meta">
+        <div class="card__meta-data card__meta-data--year">{{ movie.Year }}</div>
+        <div class="card__meta-data card__meta-data--type">{{ movie.Type }}</div>
+      </div>
     </div>
-    <div class="card__action">
-      <div class="card__buttons">
-        <button class="btn btn--ghost card__action-button">More</button>
-        <button class="btn btn--dark card__action-button">Add to List</button>
-      </div>
-      <div class="card__info">
-        <p class="card__plot">
-          {{ movie.plot }}
-        </p>
-        <div class="card__rating">
-          Imdb:
-          <span class="card__rating--big">{{ movie.imdbRating }}</span>
-        </div>
-      </div>
+    <div class="card__buttons">
+      <button class="btn btn--ghost card__button">More</button>
+      <button class="btn btn--dark card__button">{{ isList ? 'Remove' : 'Add' }}</button>
     </div>
   </div>
 </div>

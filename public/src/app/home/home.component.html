@@ -1,4 +1,4 @@
 <div class="content-wrapper">
-  <search-bar class="search-container"></search-bar>
-  <app-movie-snippets class="card-container"></app-movie-snippets>
+  <app-search-bar (findMovieRequest)="getMovies($event)" class="search-container"></app-search-bar>
+  <app-movie-cards [movies]="movies" class="results-container"></app-movie-cards>
 </div>

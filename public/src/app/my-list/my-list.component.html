@@ -4,7 +4,7 @@
   </header>
   <div class="card-container">
     <div class="card-wrapper" *ngFor="let film of movieData">
-      <app-card [movie]="film"></app-card>
+      <app-card [isList]="isList" [movie]="film"></app-card>
     </div>
   </div>
 </div>

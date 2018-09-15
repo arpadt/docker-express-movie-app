@@ -6,54 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit {
+  isList = true;
   movieData = [
     {
-      title: 'The Bourne Identity',
-      year: '2002',
-      rated: '14',
-      length: '119',
-      language: 'English',
-      actors: 'Matt Damon, Franka Potente, Chris Cooper, Clive Owen',
+      Title: 'The Bourne Ultimatum',
+      Year: '2007',
+      imdbID: 'tt0440963',
+      Type: 'movie',
       // tslint:disable-next-line:max-line-length
-      plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
-      imdbRating: '7.9',
-      poster: '../../assets/img/poster.jpg'
+      // tslint:disable-next-line:max-line-length
+      Poster: 'https://m.media-amazon.com/images/M/MV5BNGNiNmU2YTMtZmU4OS00MjM0LTlmYWUtMjVlYjAzYjE2N2RjXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'
     },
     {
-      title: 'The Bourne Supremacy',
-      year: '2004',
-      rated: 'M',
-      length: '108',
-      language: 'English',
-      actors: 'Matt Damon, Franka Potente, Joan Allen',
+      Title: 'The Bourne Identity',
+      Year: '2002',
+      imdbID: 'tt0258463',
+      Type: 'movie',
       // tslint:disable-next-line:max-line-length
-      plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
-      imdbRating: '7.8',
-      poster: '../../assets/img/poster.jpg'
+      // tslint:disable-next-line:max-line-length
+      Poster: 'https://m.media-amazon.com/images/M/MV5BM2JkNGU0ZGMtZjVjNS00NjgyLWEyOWYtZmRmZGQyN2IxZjA2XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
     },
     {
-      title: 'The Bourne Ultimatum',
-      year: '2007',
-      rated: '16',
-      length: '115',
-      language: 'English',
-      actors: 'Matt Damon, Edgar Ramirez, Joan Allen',
-      // tslint:disable-next-line:max-line-length
-      plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
-      imdbRating: '8.0',
-      poster: '../../assets/img/poster.jpg'
-    },
-    {
-      title: 'Jason Bourne',
-      year: '2016',
-      rated: '12A',
-      length: '123',
-      language: 'English',
-      actors: 'Matt Damon, Tommy Lee Jones, Alicia Vikander',
-      // tslint:disable-next-line:max-line-length
-      plot: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in lobortis tell et feugiat purus.Suspendisse convallis malesuada ultricies.',
-      imdbRating: '6.6',
-      poster: '../../assets/img/poster.jpg'
+      Title: 'The Bourne Supremacy',
+      Year: '2004',
+      imdbID: 'tt0372183',
+      Type: 'movie',
+      Poster: 'N/A'
     }
   ];
 
