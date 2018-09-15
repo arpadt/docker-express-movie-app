@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.componen
 import { MyListComponent } from './my-list/my-list.component';
 import { CardComponent } from './card/card.component';
 import { ModalComponent } from './modal/modal.component';
+
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ModalComponent } from './modal/modal.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
