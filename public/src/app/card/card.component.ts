@@ -16,4 +16,12 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
+  addToList() {
+    console.log('Added to list');
+  }
+
+  removeFromList() {
+    console.log('Remove from list');
+  }
+
 }
