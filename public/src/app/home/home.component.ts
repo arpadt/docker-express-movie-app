@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
   getMovies(title) {
     this.movieDataService
-      .getMovieData(`${ this.url }/search/${ title }`)
+      .getMovieData(`${ this.url }/api/search/${ title }`)
       .subscribe((res: HttpResponse<MovieResponse>) => {
         const response: MovieResponse = res.body;
         this.movies = response.Search;

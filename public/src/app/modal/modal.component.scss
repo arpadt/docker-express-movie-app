@@ -11,6 +11,9 @@
 
   &-container {
     position: relative;
+
+    opacity: 0;
+    visibility: hidden;
   }
 
   &__poster {
