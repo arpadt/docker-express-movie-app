@@ -1,4 +1,4 @@
-import { MovieResponse } from './../interface';
+import { MovieResponse, Movie } from './../interface';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -11,7 +11,7 @@ export class MovieDataService {
 
   constructor(private http: HttpClient) { }
 
-  getMovieData(url: string): Observable<HttpResponse<MovieResponse>> {
+  getMovieData(url: string): Observable<HttpResponse<MovieResponse | Movie>> {
     return this.http
       .get<MovieResponse>(url, { observe: 'response' })
       .pipe(

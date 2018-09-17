@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Movies, MovieResponse } from './../interface';
+import { Movie, MovieResponse } from './../interface';
 import { Component, OnInit } from '@angular/core';
 import { MovieDataService } from './../services/movie-data.service';
 import { environment } from './../../environments/environment';

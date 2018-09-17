@@ -2,29 +2,28 @@
   <main class="modal">
     <section class="movie">
       <h2 class="heading-secondary movie__title">
-        The Bourne Identity
+        {{ movie.Title }}
       </h2>
       <div class="movie__meta">
         <span class="movie__meta-common">
-          English | Action | 118 min
+          {{ movie.Language }} |
+          {{ movie.Genre }} |
+          {{ movie.Runtime }}
         </span>
-        <span class="movie__meta-year">2002</span>
-        <span class="movie__meta-rated">12</span>
+        <span class="movie__meta-year">{{ movie.Year }}</span>
+        <span class="movie__meta-rated">{{ movie.Rated }}</span>
       </div>
       <div class="movie__data">
         <h3 class="heading-tertiary movie__data-title">Plot</h3>
-        <p class="movie__data-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel faucibus eros.
-          Mauris ullamcorper auctor dui, sit amet ullamcorper orci vestibulum in. In quis nibh sodales, tempor urna eu, iaculis
-          leo.
-        </p>
+        <p class="movie__data-text">{{ movie.Plot }}</p>
       </div>
       <div class="movie__data">
         <h3 class="heading-tertiary movie__data-title">Actors</h3>
-        <p class="movie__data-text">Matt Damon, Franka Potente, Chris Cooper, Clive Owen</p>
+        <p class="movie__data-text">{{ movie.Actors }}</p>
       </div>
       <div class="movie__data">
         <h3 class="heading-tertiary movie__data-title">Director</h3>
-        <p class="movie__data-text">Doug Liman</p>
+        <p class="movie__data-text">{{ movie.Director }}</p>
       </div>
     </section>
     <section class="modal__poster">
@@ -35,16 +34,20 @@
         <span class="modal-close__text">Close</span>
       </a>
       <figure class="movie-img">
-        <img src="../../assets/img/poster.jpg" alt="Movie poster" class="movie-img__item">
+        <img [src]="movie.Poster" alt="Movie poster" class="movie-img__item">
       </figure>
       <div class="movie-additional">
         <div class="movie-additional__data">
           <span class="movie-additional__title">Box Office</span>
-          <span class="movie-additional__text">$214 000 000</span>
+          <span class="movie-additional__text">{{ movie.BoxOffice }}</span>
         </div>
         <div class="movie-additional__data">
           <span class="movie-additional__title">Website</span>
-          <span class="movie-additional__text">http://example.com</span>
+          <span class="movie-additional__text">{{ movie.Website }}</span>
+        </div>
+        <div class="movie-additional__data">
+          <span class="movie-additional__title">Production</span>
+          <span class="movie-additional__text">{{ movie.Production }}</span>
         </div>
       </div>
     </section>

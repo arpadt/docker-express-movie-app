@@ -1,4 +1,4 @@
-import { Movies } from './../interface';
+import { Movie } from './../interface';
 import {
   Component,
   EventEmitter,
@@ -15,7 +15,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent implements OnInit {
-  @Input() movie: Movies;
+  @Input() movie: Movie;
   @Input() isList: boolean;
   @Output() movieDetailsRequest = new EventEmitter<string>();
 
