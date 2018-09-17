@@ -7,4 +7,4 @@
     <app-card (movieDetailsRequest)="getMovieDetails($event)" [isList]="isList" [movie]="film"></app-card>
   </div>
 </div>
-<app-modal #modalComponent [selectedMovie]="selectedMovieDetails" ></app-modal>
+<app-modal [isDisplayed]="isModalDisplayed" [selectedMovie]="selectedMovieDetails"></app-modal>

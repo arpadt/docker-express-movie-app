@@ -1,4 +1,3 @@
-import { ModalComponent } from './../modal/modal.component';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Movie } from './../interface';
@@ -6,9 +5,6 @@ import { MovieDataService } from './../services/movie-data.service';
 import {
   Component,
   Input,
-  ViewChild,
-  AfterViewInit,
-  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -16,20 +12,14 @@ import {
   templateUrl: './movie-snippets.component.html',
   styleUrls: ['./movie-snippets.component.scss']
 })
-export class MovieSnippetsComponent implements AfterViewInit {
+export class MovieSnippetsComponent {
   isList = false;
   @Input() movies;
   url = environment.apiUrl;
   selectedMovieDetails: Movie;
-  // @ViewChild('modal') modal: ElementRef;
-  @ViewChild('modalComponent', {read: ElementRef}) modal: ElementRef;
-
+  isModalDisplayed: boolean;
 
   constructor(private movieDataService: MovieDataService) { }
-
-  ngAfterViewInit() {
-    // console.log('modal: ', this.modalComponent);
-  }
 
   getMovieDetails(movieId: string) {
     // this.movieDataService
@@ -40,6 +30,7 @@ export class MovieSnippetsComponent implements AfterViewInit {
     //     this.selectedMovieDetails = response;
     //     console.log(this.selectedMovieDetails);
     //   });
-    console.log('modal: ', this.modal.nativeElement);
+    // console.log('modal: ', this.modal.nativeElement);
+    this.isModalDisplayed = true;
   }
 }

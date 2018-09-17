@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
   @Input('selectedMovie') selectedMovie: Movie;
+  @Input() isDisplayed: false;
 
   movie = {
     Title: 'The Bourne Ultimatum',
