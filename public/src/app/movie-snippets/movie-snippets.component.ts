@@ -33,4 +33,5 @@ export class MovieSnippetsComponent {
     // console.log('modal: ', this.modal.nativeElement);
     this.isModalDisplayed = true;
   }
+
 }

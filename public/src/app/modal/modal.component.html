@@ -27,11 +27,10 @@
       </div>
     </section>
     <section class="modal__poster">
-      <a class="modal-close">
+      <a class="modal-close" (click)="closeModal()">
         <svg class="modal-close__icon">
-          <use xlink:href="../../assets/img/symbol-defs.svg#icon-cross"></use>
+          <use xlink:href="../../assets/img/symbol-defs.svg#icon-cancel-circle"></use>
         </svg>
-        <span class="modal-close__text">Close</span>
       </a>
       <figure class="movie-img">
         <img [src]="movie.Poster" alt="Movie poster" class="movie-img__item">
