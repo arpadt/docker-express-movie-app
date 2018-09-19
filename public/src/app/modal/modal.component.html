@@ -1,5 +1,5 @@
-<div class="modal-container" [className]="isDisplayed ? 'is-visible' : 'is-hidden'">
-  <main class="modal">
+<div class="modal-container">
+  <main class="modal" [ngClass]="{'is-visible': isDisplayed}">
     <section class="movie">
       <h2 class="heading-secondary movie__title">
         {{ movie.Title }}
@@ -52,5 +52,5 @@
       </div>
     </section>
   </main>
-  <div class="modal-overlay"></div>
+  <div class="modal-overlay" [ngClass]="{'is-visible': isDisplayed}"></div>
 </div>
