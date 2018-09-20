@@ -33,7 +33,7 @@
         </svg>
       </a>
       <figure class="movie-img">
-        <img [src]="movie.Poster" alt="Movie poster" class="movie-img__item">
+        <img [src]="movie.Poster || ''" alt="Movie poster" class="movie-img__item">
       </figure>
       <div class="movie-additional">
         <div class="movie-additional__titles">
@@ -46,18 +46,6 @@
           <span class="movie-additional__text">{{ movie.Website }}</span>
           <span class="movie-additional__text">{{ movie.Production }}</span>
         </div>
-        <!-- <div class="movie-additional__data">
-          <span class="movie-additional__title">Box Office</span>
-          <span class="movie-additional__text">{{ addCurrencyToBoxOffice(movie.BoxOffice) }}</span>
-        </div>
-        <div class="movie-additional__data">
-          <span class="movie-additional__title">Website</span>
-          <span class="movie-additional__text">{{ movie.Website }}</span>
-        </div>
-        <div class="movie-additional__data">
-          <span class="movie-additional__title">Production</span>
-          <span class="movie-additional__text">{{ movie.Production }}</span>
-        </div> -->
       </div>
     </section>
   </main>

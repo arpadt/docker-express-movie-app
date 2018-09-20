@@ -1,3 +1,4 @@
+import { Movie } from './../interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyListComponent implements OnInit {
   isList = true;
+  selectedMovieDetails: Movie;
+  isModalDisplayed: boolean;
   movieData = [
     {
       Title: 'The Bourne Ultimatum',
@@ -38,6 +41,15 @@ export class MyListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getMovieDetails(movieId: string) {
+    // db query here
+    this.isModalDisplayed = true;
+  }
+
+  modalClosed() {
+    this.isModalDisplayed = false;
   }
 
 }

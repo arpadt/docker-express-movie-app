@@ -16,21 +16,20 @@ export class MovieSnippetsComponent {
   isList = false;
   @Input() movies;
   url = environment.apiUrl;
-  selectedMovieDetails: Movie;
+  selectedMovieDetails: Movie | any = {};
   isModalDisplayed: boolean;
 
   constructor(private movieDataService: MovieDataService) { }
 
   getMovieDetails(movieId: string) {
-    // this.movieDataService
-    //   .getMovieData(`${ this.url }/api/details/${ movieId }`)
-    //   .subscribe((res: HttpResponse<Movie>) => {
-    //     // console.log(res);
-    //     const response: Movie = res.body;
-    //     this.selectedMovieDetails = response;
-    //     console.log(this.selectedMovieDetails);
-    //   });
-    // console.log('modal: ', this.modal.nativeElement);
+    this.movieDataService
+      .getMovieData(`${ this.url }/api/details/${ movieId }`)
+      .subscribe((res: HttpResponse<Movie>) => {
+        // console.log(res);
+        const response: Movie = res.body;
+        this.selectedMovieDetails = response;
+        // console.log(this.selectedMovieDetails);
+      });
     this.isModalDisplayed = true;
   }
 
