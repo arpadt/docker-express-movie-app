@@ -1,4 +1,3 @@
-{{isModalDisplayed}}
 <h2 class="heading-secondary hits">
   <span *ngIf="movies.length; else noMovies">We have found {{ movies.length }} movies.</span>
   <ng-template #noMovies>Start searching for movies!</ng-template>
@@ -8,4 +7,8 @@
     <app-card (movieDetailsRequest)="getMovieDetails($event)" [isList]="isList" [movie]="film"></app-card>
   </div>
 </div>
-<app-modal [selectedMovie]="selectedMovieDetails" [isDisplayed]="isModalDisplayed"></app-modal>
+<app-modal
+  [selectedMovie]="selectedMovieDetails"
+  [isDisplayed]="isModalDisplayed"
+  (closeModalEvent)="modalClosed()"
+></app-modal>

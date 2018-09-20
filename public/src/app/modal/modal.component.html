@@ -6,8 +6,8 @@
       </h2>
       <div class="movie__meta">
         <span class="movie__meta-common">
-          {{ movie.Language }} |
-          {{ movie.Genre }} |
+          {{ getFirstEntry(movie.Language) }} |
+          {{ getFirstEntry(movie.Genre) }} |
           {{ movie.Runtime }}
         </span>
         <span class="movie__meta-year">{{ movie.Year }}</span>
@@ -36,9 +36,19 @@
         <img [src]="movie.Poster" alt="Movie poster" class="movie-img__item">
       </figure>
       <div class="movie-additional">
-        <div class="movie-additional__data">
+        <div class="movie-additional__titles">
           <span class="movie-additional__title">Box Office</span>
-          <span class="movie-additional__text">{{ movie.BoxOffice }}</span>
+          <span class="movie-additional__title">Website</span>
+          <span class="movie-additional__title">Production</span>
+        </div>
+        <div class="movie-additional__data">
+          <span class="movie-additional__text">{{ addCurrencyToBoxOffice(movie.BoxOffice) }}</span>
+          <span class="movie-additional__text">{{ movie.Website }}</span>
+          <span class="movie-additional__text">{{ movie.Production }}</span>
+        </div>
+        <!-- <div class="movie-additional__data">
+          <span class="movie-additional__title">Box Office</span>
+          <span class="movie-additional__text">{{ addCurrencyToBoxOffice(movie.BoxOffice) }}</span>
         </div>
         <div class="movie-additional__data">
           <span class="movie-additional__title">Website</span>
@@ -47,9 +57,13 @@
         <div class="movie-additional__data">
           <span class="movie-additional__title">Production</span>
           <span class="movie-additional__text">{{ movie.Production }}</span>
-        </div>
+        </div> -->
       </div>
     </section>
   </main>
-  <div class="modal-overlay" [ngClass]="{'is-visible': isDisplayed}"></div>
+  <div
+    class="modal-overlay"
+    [ngClass]="{'is-visible': isDisplayed}"
+    (click)="closeModal()"
+  ></div>
 </div>

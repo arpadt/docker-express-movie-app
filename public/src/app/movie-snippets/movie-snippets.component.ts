@@ -34,4 +34,8 @@ export class MovieSnippetsComponent {
     this.isModalDisplayed = true;
   }
 
+  modalClosed() {
+    this.isModalDisplayed = false;
+  }
+
 }

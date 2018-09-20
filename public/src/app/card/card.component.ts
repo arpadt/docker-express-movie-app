@@ -33,12 +33,7 @@ export class CardComponent implements OnInit {
   }
 
   getMoreInfo(movieId: string) {
-    // get the id of the movie, emit event
     this.movieDetailsRequest.emit(movieId);
-    // make detailed request to the API - service
-    // add response to movie details object - in modal
-    // set class to is-visible - in modal
-    // console.log(movieId);
   }
 
 }

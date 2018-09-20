@@ -8,7 +8,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
   @Input('selectedMovie') selectedMovie: Movie;
-  @Input() isDisplayed: false;
+  @Input() isDisplayed: boolean;
+  @Output() closeModalEvent = new EventEmitter();
 
   movie = {
     Title: 'The Bourne Ultimatum',
@@ -60,7 +61,16 @@ export class ModalComponent implements OnInit {
   }
 
   closeModal() {
-    this.isDisplayed = false;
+    this.closeModalEvent.emit();
+  }
+
+  getFirstEntry(items: string) {
+    return items.split(',')[0];
+  }
+
+  addCurrencyToBoxOffice(income: string) {
+    const dollars = income.split(';')[1];
+    return `$${ dollars }`;
   }
 
 }
