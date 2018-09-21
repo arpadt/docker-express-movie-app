@@ -16,7 +16,7 @@ export class MovieSnippetsComponent {
   isList = false;
   @Input() movies;
   url = environment.apiUrl;
-  selectedMovieDetails: Movie | any = {};
+  selectedMovieDetails:  Movie | any = {};
   isModalDisplayed: boolean;
 
   constructor(private movieDataService: MovieDataService) { }

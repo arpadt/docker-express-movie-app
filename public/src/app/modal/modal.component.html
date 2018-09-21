@@ -43,8 +43,8 @@
         </div>
         <div class="movie-additional__data">
           <span class="movie-additional__text">{{ addCurrencyToBoxOffice(movie.BoxOffice) }}</span>
-          <span class="movie-additional__text">{{ movie.Website }}</span>
-          <span class="movie-additional__text">{{ movie.Production }}</span>
+          <span class="movie-additional__text">{{ movie.Website || 'N/A' }}</span>
+          <span class="movie-additional__text">{{ movie.Production || 'N/A' }}</span>
         </div>
       </div>
     </section>

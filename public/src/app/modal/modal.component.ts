@@ -66,14 +66,26 @@ export class ModalComponent implements OnInit {
 
   closeModal() {
     this.closeModalEvent.emit();
+    this.movie = {};
   }
 
   getFirstEntry(items: string = '') {
+    if (!items) {
+      return 'N/A';
+    }
     return items.split(',')[0];
   }
 
   addCurrencyToBoxOffice(income: string = '') {
+    if (!income) {
+      return 'N/A';
+    }
+
     const dollars = income.split(';')[1];
+    if (!dollars) {
+      return 'N/A';
+    }
+
     return `$${ dollars }`;
   }
 
