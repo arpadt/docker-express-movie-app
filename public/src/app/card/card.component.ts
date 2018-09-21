@@ -1,3 +1,4 @@
+import { DatabaseService } from '../services/database.service';
 import { Movie } from './../interface';
 import {
   Component,
@@ -19,13 +20,19 @@ export class CardComponent implements OnInit {
   @Input() isList: boolean;
   @Output() movieDetailsRequest = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
   }
 
   addToList() {
-    console.log('Added to list');
+    this.databaseService
+      .addMovie(this.movie)
+      .subscribe((res) => {
+        console.log(res);
+      },
+      error => console.error(error)
+      );
   }
 
   removeFromList() {
