@@ -26,10 +26,10 @@
         class="btn btn--ghost card__button"
         (click)="getMoreInfo(movie.imdbID)"
       >More</button>
-      <button
+      <button *ngIf="isList"
         class="btn btn--dark card__button"
-        (click)="isList ? removeFromList() : addToList()"
-      >{{ isList ? 'Remove' : 'Add' }}</button>
+        (click)="removeFromList()"
+      >Remove</button>
     </div>
   </div>
 </div>

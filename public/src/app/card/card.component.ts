@@ -25,20 +25,6 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  addToList() {
-    this.databaseService
-      .addMovie(this.movie)
-      .subscribe((res) => {
-        console.log(res);
-      },
-      error => console.error(error)
-      );
-  }
-
-  removeFromList() {
-    console.log('Remove from list');
-  }
-
   getMoreInfo(movieId: string) {
     this.movieDetailsRequest.emit(movieId);
   }

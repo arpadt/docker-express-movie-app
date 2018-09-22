@@ -25,6 +25,12 @@
         <h3 class="heading-tertiary movie__data-title">Director</h3>
         <p class="movie__data-text">{{ movie.Director }}</p>
       </div>
+      <div class="movie-button">
+        <button class="btn btn--dark card__button" (click)="isList ? removeFromList() : addToList()"
+        >
+          {{isList ? 'Remove' : 'Add'}}
+        </button>
+      </div>
     </section>
     <section class="modal__poster">
       <a class="modal-close" (click)="closeModal()">

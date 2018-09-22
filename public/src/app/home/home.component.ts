@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   //     Type: 'movie',
   //     // tslint:disable-next-line:max-line-length
   // // tslint:disable-next-line:max-line-length
+  // // tslint:disable-next-line:max-line-length
   // tslint:disable-next-line:max-line-length
   //     Poster: 'https://m.media-amazon.com/images/M/MV5BNGNiNmU2YTMtZmU4OS00MjM0LTlmYWUtMjVlYjAzYjE2N2RjXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'
   //   },
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   //     imdbID: 'tt0258463',
   //     Type: 'movie',
   //     // tslint:disable-next-line:max-line-length
+  // // tslint:disable-next-line:max-line-length
   // // tslint:disable-next-line:max-line-length
   // tslint:disable-next-line:max-line-length
   //     Poster: 'https://m.media-amazon.com/images/M/MV5BM2JkNGU0ZGMtZjVjNS00NjgyLWEyOWYtZmRmZGQyN2IxZjA2XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'

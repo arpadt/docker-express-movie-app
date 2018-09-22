@@ -1,3 +1,4 @@
+import { DatabaseService } from './../services/database.service';
 import { Movie } from './../interface';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -11,7 +12,7 @@ export class ModalComponent implements OnInit {
   @Input('selectedMovie') movie: Movie | any = {};
   @Input() isDisplayed: boolean;
   @Output() closeModalEvent = new EventEmitter();
-
+  isList = false;
   // movie = {
   //   Title: 'The Bourne Ultimatum',
   //   Year: '2007',
@@ -59,7 +60,7 @@ export class ModalComponent implements OnInit {
   //   imdbVotes: '566,257'
   // };
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
   }
@@ -87,6 +88,22 @@ export class ModalComponent implements OnInit {
     }
 
     return `$${ dollars }`;
+  }
+
+  addToList() {
+    this.databaseService
+      .addMovie(this.movie)
+      .subscribe((res) => {
+        console.log(res);
+      },
+        error => console.error(error)
+    );
+
+    this.isList = true;
+  }
+
+  removeFromList() {
+    console.log('Remove from list');
   }
 
 }
