@@ -36,9 +36,23 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const newMovie = new Movie({
-    title: req.body.title,
-    genre: req.body.genre,
-    isLiked: req.body.isLiked
+    Title: req.body.Title,
+    Language: req.body.Language,
+    Genre: req.body.Genre,
+    Runtime: req.body.Runtime,
+    Year: req.body.Year,
+    Rated: req.body.Rated,
+    Actors: req.body.Actors,
+    Plot: req.body.Plot,
+    imdbID: req.body.imdbID,
+    Director: req.body.Director,
+    BoxOffice: req.body.BoxOffice,
+    Website: req.body.Website,
+    Type: req.body.Type,
+    Poster: req.body.Poster,
+    Production: req.body.Production,
+    Awards: req.body.Awards,
+    imdbRating: req.body.imdbRating
   });
 
   try {

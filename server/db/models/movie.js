@@ -5,7 +5,11 @@ const Movie = mongoose.model('Movie', {
     type: String,
     required: true
   },
+  Language: String,
   Genre: String,
+  Runtime: String,
+  Rated: String,
+  Actors: String,
   Year: {
     type: String,
     required: true
@@ -22,30 +26,13 @@ const Movie = mongoose.model('Movie', {
     type: String,
     required: true
   },
-  Rated: String,
-  Released: String,
-  Runtime: String,
-  Director: String,
-  Actors: String,
   Plot: String,
-  Language: String,
-  Awards: String,
-  imdbRating: String,
   BoxOffice: String,
   Website: String,
-  Country: String,
-  DVD: String,
-  Metascore: String,
   Production: String,
-  Ratings: [
-    {
-      Source: String,
-      Value: String
-    }
-  ],
-  Response: String,
-  Writer: String,
-  imdbVotes: String
+  imdbRating: String,
+  Director: String,
+  Awards: String,
 });
 
 module.exports = { Movie };
