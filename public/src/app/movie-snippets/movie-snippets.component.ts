@@ -15,7 +15,7 @@ import {
 export class MovieSnippetsComponent {
   isList = false;
   @Input() movies;
-  url = environment.apiUrl;
+  url = environment.hostUrl;
   selectedMovieDetails:  Movie | any = {};
   isModalDisplayed: boolean;
 

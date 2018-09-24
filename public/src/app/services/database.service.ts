@@ -2,7 +2,7 @@ import { ErrorHandlingService } from './error-handling.service';
 import { catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { Movie } from './../interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DatabaseService {
-  databaseUrl = environment.databaseUrl;
+  url = environment.hostUrl;
 
   constructor(
     private http: HttpClient,
@@ -18,8 +18,15 @@ export class DatabaseService {
   ) { }
 
   addMovie(movie: Movie): Observable<Movie> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      })
+    };
+
     return this.http
-      .post<Movie>(`${this.databaseUrl}/movies/`, movie)
+      .post<Movie>(`${this.url}/movies`, movie, httpOptions)
       .pipe(
         catchError(this.errorHandlingService.handleError)
       );

@@ -10,7 +10,7 @@ import { environment } from './../../environments/environment';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  url = environment.apiUrl;
+  url = environment.hostUrl;
   // TODO: uncomment
   movies: Movie[];
   // movies = [

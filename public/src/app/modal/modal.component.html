@@ -25,12 +25,18 @@
         <h3 class="heading-tertiary movie__data-title">Director</h3>
         <p class="movie__data-text">{{ movie.Director }}</p>
       </div>
-      <div class="movie-button">
-        <button class="btn btn--dark card__button" (click)="isList ? removeFromList() : addToList()"
-        >
-          {{isList ? 'Remove' : 'Add'}}
-        </button>
-      </div>
+      <footer class="movie__footer">
+        <div class="movie-button">
+          <button class="btn btn--dark card__button" (click)="isList ? removeFromList() : addToList()"
+          >
+            {{isList ? 'Remove' : 'Add'}}
+          </button>
+        </div>
+        <div class="movie__rating">
+          <span class="movie__rating-imdb">Imdb: </span>
+          <span class="movie__rating-value">{{ movie.imdbRating }}</span>
+        </div>
+      </footer>
     </section>
     <section class="modal__poster">
       <a class="modal-close" (click)="closeModal()">
@@ -55,9 +61,5 @@
       </div>
     </section>
   </main>
-  <div
-    class="modal-overlay"
-    [ngClass]="{'is-visible': isDisplayed}"
-    (click)="closeModal()"
-  ></div>
+  <div class="modal-overlay" [ngClass]="{'is-visible': isDisplayed}" (click)="closeModal()"></div>
 </div>

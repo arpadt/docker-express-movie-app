@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
-  databaseUrl: 'mongodb://192.168.99.100:27017/ExpressMovieApp'
+  hostUrl: 'http://localhost:3000',
 };
 
 /*
