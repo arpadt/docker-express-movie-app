@@ -18,9 +18,6 @@ app.use(express.static(path.join(__dirname, '/../dist/public')));
 app.use('/', landingPageRoute);
 app.use('/movies', moviesRoutes);
 app.use('/api', apiRoutes);
-app.get('/home', (req, res) => {
-  res.redirect('/');
-});
 
 const PORT = process.env.PORT || 8080;
 

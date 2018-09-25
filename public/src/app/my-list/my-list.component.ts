@@ -1,5 +1,9 @@
+import { environment } from './../../environments/environment';
+import { HttpResponse } from '@angular/common/http';
+import { DatabaseService } from './../services/database.service';
 import { Movie } from './../interface';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-my-list',
@@ -7,45 +11,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit {
-  isList = true;
   selectedMovieDetails: Movie;
   isModalDisplayed: boolean;
-  movieData = [
-    {
-      Title: 'The Bourne Ultimatum',
-      Year: '2007',
-      imdbID: 'tt0440963',
-      Type: 'movie',
-      // tslint:disable-next-line:max-line-length
-      // tslint:disable-next-line:max-line-length
-      Poster: 'https://m.media-amazon.com/images/M/MV5BNGNiNmU2YTMtZmU4OS00MjM0LTlmYWUtMjVlYjAzYjE2N2RjXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'
-    },
-    {
-      Title: 'The Bourne Identity',
-      Year: '2002',
-      imdbID: 'tt0258463',
-      Type: 'movie',
-      // tslint:disable-next-line:max-line-length
-      // tslint:disable-next-line:max-line-length
-      Poster: 'https://m.media-amazon.com/images/M/MV5BM2JkNGU0ZGMtZjVjNS00NjgyLWEyOWYtZmRmZGQyN2IxZjA2XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
-    },
-    {
-      Title: 'The Bourne Supremacy',
-      Year: '2004',
-      imdbID: 'tt0372183',
-      Type: 'movie',
-      Poster: 'N/A'
-    }
-  ];
+  movieData: Movie[];
+  url = environment.hostUrl;
 
-  constructor() { }
+  constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    this.databaseService
+      .getAllMovies(`${this.url}/movies`)
+      .subscribe((res: HttpResponse<Movie[]>) => {
+        const response: Movie[] = res.body;
+        this.movieData = response;
+      });
   }
 
-  getMovieDetails(movieId: string) {
-    // db query here
-    this.isModalDisplayed = true;
+  getMovieDetailsFromDB(event) {
+    this.isModalDisplayed = event.isOnlist;
+    this.databaseService
+      .getSelectedMovie(`${ this.url }/movies/${ event.movieId }`)
+      .subscribe((res: HttpResponse<Movie>) => {
+        const response: Movie = res.body;
+        this.selectedMovieDetails = response;
+      });
   }
 
   modalClosed() {

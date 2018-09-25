@@ -25,10 +25,8 @@ export class MovieSnippetsComponent {
     this.movieDataService
       .getMovieData(`${ this.url }/api/details/${ movieId }`)
       .subscribe((res: HttpResponse<Movie>) => {
-        // console.log(res);
         const response: Movie = res.body;
         this.selectedMovieDetails = response;
-        // console.log(this.selectedMovieDetails);
       });
     this.isModalDisplayed = true;
   }

@@ -3,8 +3,8 @@
     <h1 class="heading-primary">My List</h1>
   </header>
   <div class="card-container">
-    <div class="card-wrapper" *ngFor="let film of movieData">
-      <app-card [isList]="isList" [movie]="film"></app-card>
+    <div class="card-wrapper" *ngFor="let film of movieData | async">
+      <app-card (movieDetailsRequest)="getMovieDetailsFromDB($event)" [movie]="film"></app-card>
     </div>
   </div>
 </div>

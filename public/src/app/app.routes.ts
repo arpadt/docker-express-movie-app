@@ -6,15 +6,14 @@ import { MyListComponent } from './my-list/my-list.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'my-list',
+    path: 'movies',
     component: MyListComponent,
+  },
+  {
+    path: '**',
+    component: HomeComponent,
   }
 ];

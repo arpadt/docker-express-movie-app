@@ -18,15 +18,14 @@ import {
 export class CardComponent implements OnInit {
   @Input() movie: Movie;
   @Input() isList: boolean;
-  @Output() movieDetailsRequest = new EventEmitter<string>();
+  @Output() movieDetailsRequest = new EventEmitter<any>();
 
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
   }
 
-  getMoreInfo(movieId: string) {
-    this.movieDetailsRequest.emit(movieId);
+  getMovieDetails(isOnList = false, movieId: string) {
+    this.movieDetailsRequest.emit({ isOnList, movieId });
   }
-
 }
