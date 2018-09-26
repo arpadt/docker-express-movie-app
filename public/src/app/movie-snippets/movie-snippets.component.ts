@@ -15,7 +15,9 @@ import {
 export class MovieSnippetsComponent {
   isList = false;
   @Input() movies;
-  url = environment.hostUrl;
+  // TODO: uncomment
+  // url = environment.hostUrl/api/details/;
+  url = '../../assets/data/api-details.json'
   selectedMovieDetails:  Movie | any = {};
   isModalDisplayed: boolean;
 
@@ -23,7 +25,8 @@ export class MovieSnippetsComponent {
 
   getMovieDetails(movieId: string) {
     this.movieDataService
-      .getMovieData(`${ this.url }/api/details/${ movieId }`)
+      .getMovieData(this.url)
+      // .getMovieData(`${ this.url }/${ movieId }`)
       .subscribe((res: HttpResponse<Movie>) => {
         const response: Movie = res.body;
         this.selectedMovieDetails = response;

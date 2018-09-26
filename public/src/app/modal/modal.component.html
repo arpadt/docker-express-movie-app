@@ -27,7 +27,9 @@
       </div>
       <footer class="movie__footer">
         <div class="movie-button">
-          <p [ngIf]="addedToList" [ngIfElse]="addButton">Movie added to the list!</p>
+          <ng-template [ngIf]="addedToList" [ngIfElse]="addButton">
+            <p>Movie added to the list!</p>
+          </ng-template>
           <ng-template #addButton>
             <button class="btn btn--dark card__button" (click)="addToList()">
               Add

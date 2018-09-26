@@ -3,9 +3,9 @@
     <h1 class="heading-primary">My List</h1>
   </header>
   <div class="card-container">
-    <div class="card-wrapper" *ngFor="let film of movieData | async">
+    <div class="card-wrapper" *ngFor="let film of movieData">
       <app-card (movieDetailsRequest)="getMovieDetailsFromDB($event)" [movie]="film"></app-card>
     </div>
   </div>
 </div>
-<app-modal [selectedMovie]="selectedMovieDetails" [isDisplayed]="isModalDisplayed" (closeModalEvent)="modalClosed()"></app-modal>
+<!-- <app-modal [selectedMovie]="selectedMovieDetails" [isDisplayed]="isModalDisplayed" (closeModalEvent)="modalClosed()"></app-modal> -->
