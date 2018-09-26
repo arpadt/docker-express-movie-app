@@ -27,10 +27,12 @@ export class ModalComponent implements OnInit, OnDestroy {
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
+    console.log('on init');
   }
 
   ngOnDestroy() {
     this.isAddedToList = false;
+    console.log('on destroy');
   }
 
   closeModal() {

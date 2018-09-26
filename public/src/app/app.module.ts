@@ -12,6 +12,7 @@ import { MovieSnippetsComponent } from './movie-snippets/movie-snippets.componen
 import { MyListComponent } from './my-list/my-list.component';
 import { CardComponent } from './card/card.component';
 import { ModalComponent } from './modal/modal.component';
+import { ModalDirective } from './modal.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ModalComponent } from './modal/modal.component';
     MyListComponent,
     CardComponent,
     ModalComponent,
+    ModalDirective,
   ],
   imports: [
     BrowserModule,

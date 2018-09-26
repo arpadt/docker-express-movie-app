@@ -13,11 +13,11 @@ import {
   styleUrls: ['./movie-snippets.component.scss']
 })
 export class MovieSnippetsComponent {
-  isList = false;
+  isOnList = false;
   @Input() movies;
   // TODO: uncomment
   // url = environment.hostUrl/api/details/;
-  url = '../../assets/data/api-details.json'
+  url = '../../assets/data/api-details.json';
   selectedMovieDetails:  Movie | any = {};
   isModalDisplayed: boolean;
 
