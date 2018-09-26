@@ -91,9 +91,9 @@
     margin-bottom: 3rem;
     text-transform: uppercase;
 
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 
     &-rated {
       background-color: var(--color-secondary);
@@ -131,15 +131,24 @@
       color: var(--color-grey-dark);
     }
 
-    &:not(:last-child) {
+    &:not(:last-of-type) {
       margin-bottom: 2.5rem;
     }
   }
 
   &__footer {
-    display: flex;
-    justify-content: space-around;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 1.5rem;
+  }
+
+  &__added {
+    color: var(--color-grey-light);
+    font-size: 1.6rem;
+    font-weight: 100;
+    text-transform: uppercase;
   }
 
   &-img {

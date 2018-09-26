@@ -59,14 +59,15 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   addToList() {
-    const movieToSave = { ...this.movie, isOnList: true };
-    this.databaseService
-      .addMovie(`${this.url}/movies`, movieToSave)
-      .subscribe((res) => {
-        console.log(res);
-      },
-        error => console.error(error)
-    );
+    // TODO: uncomment
+    // const movieToSave = { ...this.movie, isOnList: true };
+    // this.databaseService
+    //   .addMovie(`${this.url}/movies`, movieToSave)
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //   },
+    //     error => console.error(error)
+    // );
     this.isAddedToList = true;
   }
 
