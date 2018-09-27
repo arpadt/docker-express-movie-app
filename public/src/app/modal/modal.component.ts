@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { DatabaseService } from './../services/database.service';
-import { Movie } from './../interface';
+import { Movie, Modal } from './../interface';
 import {
   Component,
   Input,
@@ -16,7 +16,7 @@ import {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements OnInit, OnDestroy, Modal {
   // tslint:disable-next-line:no-input-rename
   @Input('selectedMovie') movie: Movie | any = {};
   @Input() isDisplayed: boolean;

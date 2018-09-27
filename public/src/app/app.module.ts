@@ -34,6 +34,9 @@ import { ModalDirective } from './modal.directive';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalComponent
+  ]
 })
 export class AppModule { }

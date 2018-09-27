@@ -38,3 +38,10 @@ export interface MovieResponse {
   Error?: string;
   totalResults?: string;
 }
+
+export interface Modal {
+  movie: Movie;
+  // isDisplayed: boolean;
+  // isAddedToList: boolean;
+  // url: string;
+}

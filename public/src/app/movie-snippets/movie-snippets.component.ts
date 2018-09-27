@@ -1,10 +1,16 @@
+import { ModalItem } from './../modal/modal-item';
+import { ModalComponent } from './../modal/modal.component';
+import { ModalDirective } from './../modal.directive';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { Movie } from './../interface';
+import { Movie, Modal } from './../interface';
 import { MovieDataService } from './../services/movie-data.service';
 import {
   Component,
   Input,
+  ViewChild,
+  ComponentFactoryResolver,
+  AfterViewInit
 } from '@angular/core';
 
 @Component({
@@ -12,16 +18,36 @@ import {
   templateUrl: './movie-snippets.component.html',
   styleUrls: ['./movie-snippets.component.scss']
 })
-export class MovieSnippetsComponent {
+export class MovieSnippetsComponent implements AfterViewInit {
   isOnList = false;
   @Input() movies;
+  @ViewChild(ModalDirective) modalHost: ModalDirective;
+  // @ViewChild(ModalComponent) modalComponent: ModalComponent;
+  modalComponent: ModalItem;
   // TODO: uncomment
   // url = environment.hostUrl/api/details/;
   url = '../../assets/data/api-details.json';
   selectedMovieDetails:  Movie | any = {};
   isModalDisplayed: boolean;
 
-  constructor(private movieDataService: MovieDataService) { }
+  constructor(
+    private movieDataService: MovieDataService,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) { }
+
+  ngAfterViewInit() {
+    console.log('modalComponent', this.modalComponent);
+  }
+
+  loadModalComponent() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.modalComponent.component);
+
+    const viewContainerRef = this.modalHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+    // (<Modal>componentRef.instance).movie = this.selectedMovieDetails;
+  }
 
   getMovieDetails(movieId: string) {
     this.movieDataService
@@ -29,13 +55,15 @@ export class MovieSnippetsComponent {
       // .getMovieData(`${ this.url }/${ movieId }`)
       .subscribe((res: HttpResponse<Movie>) => {
         const response: Movie = res.body;
-        this.selectedMovieDetails = response;
+        // this.selectedMovieDetails = response;
+        this.modalComponent = new ModalItem(ModalComponent, {movie: response});
       });
-    this.isModalDisplayed = true;
+    // this.isModalDisplayed = true;
+    this.loadModalComponent();
   }
 
   modalClosed() {
-    this.isModalDisplayed = false;
+    // this.isModalDisplayed = false;
   }
 
 }
