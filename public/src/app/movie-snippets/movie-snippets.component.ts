@@ -10,7 +10,7 @@ import {
   Input,
   ViewChild,
   ComponentFactoryResolver,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 
 @Component({
@@ -22,13 +22,10 @@ export class MovieSnippetsComponent implements AfterViewInit {
   isOnList = false;
   @Input() movies;
   @ViewChild(ModalDirective) modalHost: ModalDirective;
-  // @ViewChild(ModalComponent) modalComponent: ModalComponent;
   modalComponent: ModalItem;
   // TODO: uncomment
   // url = environment.hostUrl/api/details/;
   url = '../../assets/data/api-details.json';
-  selectedMovieDetails:  Movie | any = {};
-  isModalDisplayed: boolean;
 
   constructor(
     private movieDataService: MovieDataService,
@@ -46,7 +43,7 @@ export class MovieSnippetsComponent implements AfterViewInit {
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    // (<Modal>componentRef.instance).movie = this.selectedMovieDetails;
+    (<Modal>componentRef.instance).movie = this.modalComponent.movieData;
   }
 
   getMovieDetails(movieId: string) {
@@ -55,15 +52,9 @@ export class MovieSnippetsComponent implements AfterViewInit {
       // .getMovieData(`${ this.url }/${ movieId }`)
       .subscribe((res: HttpResponse<Movie>) => {
         const response: Movie = res.body;
-        // this.selectedMovieDetails = response;
-        this.modalComponent = new ModalItem(ModalComponent, {movie: response});
+        this.modalComponent = new ModalItem(ModalComponent, response);
+        this.loadModalComponent();
       });
-    // this.isModalDisplayed = true;
-    this.loadModalComponent();
-  }
-
-  modalClosed() {
-    // this.isModalDisplayed = false;
   }
 
 }

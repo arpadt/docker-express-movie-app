@@ -41,7 +41,4 @@ export interface MovieResponse {
 
 export interface Modal {
   movie: Movie;
-  // isDisplayed: boolean;
-  // isAddedToList: boolean;
-  // url: string;
 }

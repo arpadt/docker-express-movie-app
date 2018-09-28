@@ -5,11 +5,6 @@
 <div class="card-container">
   <div *ngFor="let film of movies">
     <app-card (movieDetailsRequest)="getMovieDetails($event)" [isList]="isList" [movie]="film"></app-card>
-    <!-- <app-modal
-      [selectedMovie]="selectedMovieDetails"
-      [isDisplayed]="isModalDisplayed"
-      (closeModalEvent)="modalClosed()"
-    ></app-modal> -->
   </div>
 </div>
 <ng-template modalHost></ng-template>

@@ -6,8 +6,6 @@ import {
   Component,
   Input,
   OnInit,
-  Output,
-  EventEmitter,
   OnDestroy
 } from '@angular/core';
 
@@ -17,27 +15,29 @@ import {
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
-  // tslint:disable-next-line:no-input-rename
-  @Input('selectedMovie') movie: Movie | any = {};
-  @Input() isDisplayed: boolean;
-  @Output() closeModalEvent = new EventEmitter();
-  isAddedToList = false;
-  url = environment.hostUrl;
+  @Input() movie: Movie | any = {};
+  isDisplayed = false;
+  // isAddedToList = false;
+  // url = environment.hostUrl;
 
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
-    console.log('on init');
+    if (!this.isDisplayed) {
+      setTimeout(() => {
+        // for the animation to work
+        this.isDisplayed = true;
+      });
+    }
   }
 
   ngOnDestroy() {
-    this.isAddedToList = false;
-    console.log('on destroy');
+    // this.isAddedToList = false;
+    this.isDisplayed = false;
   }
 
   closeModal() {
-    this.closeModalEvent.emit();
-    this.movie = {};
+    this.ngOnDestroy();
   }
 
   getFirstEntry(items: string = '') {
@@ -60,7 +60,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     return `$${ dollars }`;
   }
 
-  addToList() {
+  // addToList() {
     // TODO: uncomment
     // const movieToSave = { ...this.movie, isOnList: true };
     // this.databaseService
@@ -70,18 +70,18 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     //   },
     //     error => console.error(error)
     // );
-    this.isAddedToList = true;
-  }
+    // this.isAddedToList = true;
+  // }
 
-  removeFromList() {
-    this.databaseService
-      .deleteSelectedMovie(`${ this.url }/movies/${ this.movie.imdbID }`)
-      .subscribe((res) => {
-        const response = res.body;
-        console.log('Movie deleted!', response);
-      },
-        error => console.error(error)
-      );
-  }
+  // removeFromList() {
+  //   this.databaseService
+  //     .deleteSelectedMovie(`${ this.url }/movies/${ this.movie.imdbID }`)
+  //     .subscribe((res) => {
+  //       const response = res.body;
+  //       console.log('Movie deleted!', response);
+  //     },
+  //       error => console.error(error)
+  //     );
+  // }
 
 }
