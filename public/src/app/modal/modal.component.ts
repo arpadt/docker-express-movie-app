@@ -1,7 +1,12 @@
 import { HttpResponse } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { DatabaseService } from './../services/database.service';
-import { Movie, Modal } from './../interface';
+import { Movie, Modal, MovieIdState } from './../interface';
+import { Observable } from 'rxjs';
+
+import { Store, select } from '@ngrx/store';
+import { AddToList } from './../store/movies';
+
 import {
   Component,
   Input,
@@ -15,12 +20,18 @@ import {
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
+  savedMovieIds$: Observable<string[]>;
   @Input() movie: Movie | any = {};
   isDisplayed = false;
-  // isAddedToList = false;
+  isAddedToList = false;
   // url = environment.hostUrl;
 
-  constructor(private databaseService: DatabaseService) { }
+  constructor(
+    private databaseService: DatabaseService,
+    private store: Store<MovieIdState>,
+    ) {
+    this.savedMovieIds$ = store.pipe(select('savedMovieIds'));
+    }
 
   ngOnInit() {
     if (!this.isDisplayed) {
@@ -29,10 +40,16 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
         this.isDisplayed = true;
       });
     }
+
+    this.savedMovieIds$.subscribe((ids => {
+      if (ids.findIndex(id => id === this.movie.imdbID) !== -1) {
+        this.isAddedToList = true;
+      }
+    }));
   }
 
   ngOnDestroy() {
-    // this.isAddedToList = false;
+    this.isAddedToList = false;
     this.isDisplayed = false;
   }
 
@@ -60,7 +77,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     return `$${ dollars }`;
   }
 
-  // addToList() {
+  addToList() {
     // TODO: uncomment
     // const movieToSave = { ...this.movie, isOnList: true };
     // this.databaseService
@@ -70,8 +87,11 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     //   },
     //     error => console.error(error)
     // );
-    // this.isAddedToList = true;
-  // }
+    this.store.dispatch(
+      AddToList(this.movie.imdbID)
+    );
+    this.isAddedToList = true;
+  }
 
   // removeFromList() {
   //   this.databaseService

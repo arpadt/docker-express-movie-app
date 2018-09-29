@@ -29,11 +29,10 @@ export class MovieSnippetsComponent implements AfterViewInit {
 
   constructor(
     private movieDataService: MovieDataService,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+    private componentFactoryResolver: ComponentFactoryResolver,
+   ) {}
 
   ngAfterViewInit() {
-    console.log('modalComponent', this.modalComponent);
   }
 
   loadModalComponent() {

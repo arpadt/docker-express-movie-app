@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { MyListComponent } from './my-list/my-list.component';
 import { CardComponent } from './card/card.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalDirective } from './modal.directive';
+
+import { savedMovieIdsReducer } from './store/movies';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { ModalDirective } from './modal.directive';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({savedMovieIds: savedMovieIdsReducer})
   ],
   providers: [],
   bootstrap: [AppComponent],

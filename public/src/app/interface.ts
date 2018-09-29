@@ -42,3 +42,7 @@ export interface MovieResponse {
 export interface Modal {
   movie: Movie;
 }
+
+export interface MovieIdState {
+  savedMovieIds: string[];
+}
