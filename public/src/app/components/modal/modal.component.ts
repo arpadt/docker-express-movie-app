@@ -30,12 +30,13 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     private databaseService: DatabaseService,
     private store: Store<MovieIdState>,
     ) {
-      this.savedMovieIds$ = store.pipe(
-        select('savedMovieIds')
-      );
     }
 
   ngOnInit() {
+    this.savedMovieIds$ = this.store.pipe(
+      select('savedMovieIds')
+    );
+
     if (!this.isDisplayed) {
       setTimeout(() => {
         // for the animation to work
@@ -51,8 +52,10 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   }
 
   ngOnDestroy() {
-    this.isAddedToList = false;
     this.isDisplayed = false;
+    setTimeout(() => {
+      this.isAddedToList = false;
+    }, 500);
   }
 
   closeModal() {

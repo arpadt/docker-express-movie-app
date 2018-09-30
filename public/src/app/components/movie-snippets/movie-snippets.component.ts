@@ -1,4 +1,4 @@
-import { ModalItem } from '@definitions';
+import { ModalItem } from '@models';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { HttpResponse } from '@angular/common/http';

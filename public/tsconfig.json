@@ -46,8 +46,8 @@
       "@environments/*": [
         "./src/environments/*"
       ],
-      "@definitions": [
-        "./src/app/definitions"
+      "@models": [
+        "./src/app/models"
       ]
     }
   }
