@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
   @Input() movie: Movie;
   @Input() isList: boolean;
   @Output() movieDetailsRequest = new EventEmitter<any>();
+  @Output() removeFromListEvent = new EventEmitter<any>();
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -28,4 +29,10 @@ export class CardComponent implements OnInit {
   getMovieDetails(isOnList = false, movieId: string) {
     this.movieDetailsRequest.emit({ isOnList, movieId });
   }
+
+  removeFromList(movieId: string) {
+    this.removeFromListEvent.emit(movieId);
+  }
+
+
 }

@@ -4,7 +4,7 @@ import { ModalDirective } from '@directives/modal.directive';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Movie, Modal } from '@types';
-import { MovieDataService } from '@services';
+import { MovieDataService, LoadComponentService } from '@services';
 import {
   Component,
   Input,
@@ -29,20 +29,10 @@ export class MovieSnippetsComponent implements AfterViewInit {
 
   constructor(
     private movieDataService: MovieDataService,
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private loadComponentService: LoadComponentService
    ) {}
 
   ngAfterViewInit() {
-  }
-
-  loadModalComponent() {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.modalComponent.component);
-
-    const viewContainerRef = this.modalHost.viewContainerRef;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<Modal>componentRef.instance).movie = this.modalComponent.movieData;
   }
 
   getMovieDetails(movieId: string) {
@@ -52,7 +42,10 @@ export class MovieSnippetsComponent implements AfterViewInit {
       .subscribe((res: HttpResponse<Movie>) => {
         const response: Movie = res.body;
         this.modalComponent = new ModalItem(ModalComponent, response);
-        this.loadModalComponent();
+        this.loadComponentService.loadComponent(
+          this.modalComponent,
+          this.modalHost
+        );
       });
   }
 

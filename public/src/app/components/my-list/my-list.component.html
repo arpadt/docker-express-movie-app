@@ -4,8 +4,12 @@
   </header>
   <div class="card-container">
     <div class="card-wrapper" *ngFor="let film of movieData">
-      <app-card (movieDetailsRequest)="getMovieDetailsFromDB($event)" [movie]="film"></app-card>
+      <app-card
+        (movieDetailsRequest)="getMovieDetailsFromDB($event)"
+        [movie]="film"
+      ></app-card>
     </div>
   </div>
 </div>
 <!-- <app-modal [selectedMovie]="selectedMovieDetails" [isDisplayed]="isModalDisplayed" (closeModalEvent)="modalClosed()"></app-modal> -->
+<ng-template modalHost></ng-template>
