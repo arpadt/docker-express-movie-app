@@ -30,7 +30,9 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     private databaseService: DatabaseService,
     private store: Store<MovieIdState>,
     ) {
-    this.savedMovieIds$ = store.pipe(select('savedMovieIds'));
+      this.savedMovieIds$ = store.pipe(
+        select('savedMovieIds')
+      );
     }
 
   ngOnInit() {
@@ -88,7 +90,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     //     error => console.error(error)
     // );
     this.store.dispatch(
-      AddToList(this.movie.imdbID)
+      new AddToList(this.movie.imdbID)
     );
     this.isAddedToList = true;
   }
