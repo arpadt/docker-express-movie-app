@@ -1,7 +1,7 @@
-import { environment } from './../../environments/environment';
+import { environment } from '@environments/environment';
 import { HttpResponse } from '@angular/common/http';
-import { DatabaseService } from './../services/database.service';
-import { Movie } from './../interface';
+import { DatabaseService } from '@services';
+import { Movie } from '@types';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 

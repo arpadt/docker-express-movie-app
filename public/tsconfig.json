@@ -1,30 +1,54 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "outDir": "./dist/out-tsc",
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "target": "es5",
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "lib": [
-            "es2017",
-            "dom",
-            "es6",
-            "es2015.iterable"
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "~/*": [
-                "src/*"
-            ],
-            "*": [
-                "./node_modules/tns-core-modules/*",
-                "./node_modules/*"
-            ]
-        }
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom",
+      "es6",
+      "es2015.iterable"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ],
+      "*": [
+        "./node_modules/tns-core-modules/*",
+        "./node_modules/*"
+      ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
+      "@services": [
+        "./src/app/services"
+      ],
+      "@directives/*": [
+        "./src/app/directives/*"
+      ],
+      "@types": [
+        "./src/app/types"
+      ],
+      "@actions": [
+        "./src/app/store/actions"
+      ],
+      "@reducers": [
+        "./src/app/store/reducers"
+      ],
+      "@environments/*": [
+        "./src/environments/*"
+      ],
+      "@definitions": [
+        "./src/app/definitions"
+      ]
     }
+  }
 }

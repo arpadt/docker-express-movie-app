@@ -1,5 +1,5 @@
-import { DatabaseService } from '../services/database.service';
-import { Movie } from './../interface';
+import { DatabaseService } from '@services';
+import { Movie } from '@types';
 import {
   Component,
   EventEmitter,

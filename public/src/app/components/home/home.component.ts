@@ -1,8 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
-import { Movie, MovieResponse } from './../interface';
+import { Movie, MovieResponse } from '@types';
 import { Component, OnInit } from '@angular/core';
-import { MovieDataService } from './../services/movie-data.service';
-import { environment } from './../../environments/environment';
+import { MovieDataService } from '@services';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-home',

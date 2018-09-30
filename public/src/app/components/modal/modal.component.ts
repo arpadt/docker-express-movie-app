@@ -1,11 +1,11 @@
 import { HttpResponse } from '@angular/common/http';
-import { environment } from './../../environments/environment';
-import { DatabaseService } from './../services/database.service';
-import { Movie, Modal, MovieIdState } from './../interface';
+import { environment } from '@environments/environment';
+import { DatabaseService } from '@services';
+import { Movie, Modal, MovieIdState } from '@types';
 import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
-import { AddToList } from './../store/movies';
+import { AddToList } from '@actions';
 
 import {
   Component,

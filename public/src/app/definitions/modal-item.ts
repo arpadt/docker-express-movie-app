@@ -1,4 +1,4 @@
-import { Movie } from './../interface';
+import { Movie } from '@types';
 import {Type} from '@angular/core';
 
 export class ModalItem {

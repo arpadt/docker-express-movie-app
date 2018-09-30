@@ -1,10 +1,10 @@
-import { ModalItem } from './../modal/modal-item';
-import { ModalComponent } from './../modal/modal.component';
-import { ModalDirective } from './../modal.directive';
+import { ModalItem } from '@definitions';
+import { ModalComponent } from '@components/modal/modal.component';
+import { ModalDirective } from '@directives/modal.directive';
 import { HttpResponse } from '@angular/common/http';
-import { environment } from './../../environments/environment';
-import { Movie, Modal } from './../interface';
-import { MovieDataService } from './../services/movie-data.service';
+import { environment } from '@environments/environment';
+import { Movie, Modal } from '@types';
+import { MovieDataService } from '@services';
 import {
   Component,
   Input,

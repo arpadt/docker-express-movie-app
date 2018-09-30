@@ -1,5 +1,5 @@
 import { ErrorHandlingService } from './error-handling.service';
-import { MovieResponse, Movie } from './../interface';
+import { MovieResponse, Movie } from '@types';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
