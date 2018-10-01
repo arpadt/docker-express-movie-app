@@ -30,9 +30,4 @@ export class CardComponent implements OnInit {
     this.movieDetailsRequest.emit({ isOnList, movieId });
   }
 
-  removeFromList(movieId: string) {
-    this.removeFromListEvent.emit(movieId);
-  }
-
-
 }

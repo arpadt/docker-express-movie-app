@@ -34,15 +34,12 @@ export class MyListComponent implements OnInit {
       .getAllMovies(this.dbDetailsUrl)
       .subscribe((res: HttpResponse<Movie[]>) => {
         const response: Movie[] = res.body;
-        console.log(response);
         this.movieData = response;
       });
   }
 
   getMovieDetailsFromDB(event) {
     // this.isModalDisplayed = event.isOnlist;
-    console.log(event);
-    console.log('movies in db', this.movieData);
     const selectedMovie = this.movieData.find(({ imdbID }) => event.movieId === imdbID);
     this.modalComponent = new ModalItem(ModalComponent, selectedMovie);
     this.loadComponentService.loadComponent(

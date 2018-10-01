@@ -5,7 +5,7 @@ import { Movie, Modal, MovieIdState } from '@types';
 import { Observable } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
-import { AddToList } from '@actions';
+import { AddToList, RemoveFromList } from '@actions';
 
 import {
   Component,
@@ -82,7 +82,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     return `$${ dollars }`;
   }
 
-  addToList() {
+  addToList(movieId: string) {
     // TODO: uncomment
     // const movieToSave = { ...this.movie, isOnList: true };
     // this.databaseService
@@ -93,12 +93,16 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     //     error => console.error(error)
     // );
     this.store.dispatch(
-      new AddToList(this.movie.imdbID)
+      new AddToList(movieId)
     );
     this.isAddedToList = true;
   }
 
-  // removeFromList() {
+  removeFromList(movieId: string) {
+    this.store.dispatch(
+      new RemoveFromList(movieId)
+    );
+    this.isAddedToList = false;
   //   this.databaseService
   //     .deleteSelectedMovie(`${ this.url }/movies/${ this.movie.imdbID }`)
   //     .subscribe((res) => {
@@ -107,6 +111,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   //     },
   //       error => console.error(error)
   //     );
-  // }
+  }
 
 }
