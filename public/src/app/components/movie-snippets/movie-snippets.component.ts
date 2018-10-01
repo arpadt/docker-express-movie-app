@@ -24,8 +24,8 @@ export class MovieSnippetsComponent implements AfterViewInit {
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
   // TODO: uncomment
-  // url = environment.hostUrl/api/details/;
-  url = '../../assets/data/api-details.json';
+  url = `${environment.hostUrl}/api/details`;
+  // url = '../../assets/data/api-details.json';
 
   constructor(
     private movieDataService: MovieDataService,
@@ -37,8 +37,8 @@ export class MovieSnippetsComponent implements AfterViewInit {
 
   getMovieDetails(movieId: string) {
     this.movieDataService
-      .getMovieData(this.url)
-      // .getMovieData(`${ this.url }/${ movieId }`)
+      // .getMovieData(this.url)
+      .getMovieData(`${ this.url }/${ movieId }`)
       .subscribe((res: HttpResponse<Movie>) => {
         const response: Movie = res.body;
         this.modalComponent = new ModalItem(ModalComponent, response);

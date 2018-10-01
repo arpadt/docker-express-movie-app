@@ -17,10 +17,6 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
-
   try {
     const movie = await Movie.findById(id);
 
@@ -75,12 +71,8 @@ router.delete('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id = req.params.id;
 
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
-
   try {
-    const movie = await Movie.findByIdAndRemove(id);
+    const movie = await Movie.findOneAndRemove({ imdbID: id });
 
     if (!movie) {
       return res.status(404).send('Movie not found.');
@@ -94,10 +86,6 @@ router.delete('/:id', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
   const id = req.params.id;
-
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
 
   const body = req.body
   try {

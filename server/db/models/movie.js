@@ -33,7 +33,6 @@ const Movie = mongoose.model('Movie', {
   imdbRating: String,
   Director: String,
   Awards: String,
-  isOnList: Boolean
 });
 
 module.exports = { Movie };

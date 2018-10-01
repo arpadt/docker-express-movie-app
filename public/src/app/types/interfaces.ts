@@ -24,7 +24,6 @@ export interface Movie {
   Response?: string;
   Writer?: string;
   imdbVotes?: string;
-  isOnList?: boolean;
 }
 
 export interface Ratings {

@@ -26,8 +26,8 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  getMovieDetails(isOnList = false, movieId: string) {
-    this.movieDetailsRequest.emit({ isOnList, movieId });
+  getMovieDetails(movieId: string) {
+    this.movieDetailsRequest.emit(movieId);
   }
 
 }

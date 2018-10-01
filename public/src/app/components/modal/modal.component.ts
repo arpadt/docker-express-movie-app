@@ -24,7 +24,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   @Input() movie: Movie | any = {};
   isDisplayed = false;
   isAddedToList = false;
-  // url = environment.hostUrl;
+  url = `${ environment.hostUrl }/movies`;
 
   constructor(
     private databaseService: DatabaseService,
@@ -84,33 +84,36 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
   addToList(movieId: string) {
     // TODO: uncomment
-    // const movieToSave = { ...this.movie, isOnList: true };
-    // this.databaseService
-    //   .addMovie(`${this.url}/movies`, movieToSave)
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   },
-    //     error => console.error(error)
-    // );
+    this.databaseService
+      .addMovie(this.url, this.movie)
+      .subscribe((res) => {
+        // some notification here: movie added
+        console.log('Movie added');
+      },
+        error => console.error(error)
+    );
+
     this.store.dispatch(
       new AddToList(movieId)
     );
+
     this.isAddedToList = true;
   }
 
   removeFromList(movieId: string) {
+    this.databaseService
+      .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
+      .subscribe((res) => {
+          const response = res.body;
+          console.log('Movie deleted!', response);
+        },
+          error => console.error(error)
+    );
+
     this.store.dispatch(
       new RemoveFromList(movieId)
     );
-    this.isAddedToList = false;
-  //   this.databaseService
-  //     .deleteSelectedMovie(`${ this.url }/movies/${ this.movie.imdbID }`)
-  //     .subscribe((res) => {
-  //       const response = res.body;
-  //       console.log('Movie deleted!', response);
-  //     },
-  //       error => console.error(error)
-  //     );
-  }
 
+    this.isAddedToList = false;
+  }
 }

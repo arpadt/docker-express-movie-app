@@ -10,7 +10,7 @@ import { environment } from '@environments/environment';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  url = environment.hostUrl;
+  url = `${ environment.hostUrl }/api/search`;
   // TODO: delete
   apiBasicsUrl = `../../assets/data/api-basics.json`;
   movies: Movie[];
@@ -18,16 +18,16 @@ export class HomeComponent implements OnInit {
   constructor(private movieDataService: MovieDataService) { }
 
   ngOnInit() {
-    console.log(this.apiBasicsUrl);
   }
 
   getMovies(title) {
     this.movieDataService
-      .getMovieData(this.apiBasicsUrl)
+      // .getMovieData(this.apiBasicsUrl)
+      .getMovieData(`${this.url}/${title}`)
       .subscribe((res: HttpResponse<MovieResponse>) => {
         const response: MovieResponse = res.body;
         this.movies = response.Search;
-      },
-      error => console.log(error));
+        },
+        error => console.log(error));
   }
 }
