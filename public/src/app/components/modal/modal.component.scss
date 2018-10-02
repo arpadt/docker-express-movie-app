@@ -199,4 +199,21 @@
       text-transform: uppercase;
     }
   }
+
+  &-state-message {
+    opacity: 0;
+    visibility: hidden;
+
+    position: absolute;
+    right: 10%;
+    top: 10%;
+
+    background-color: green;
+    color: white;
+    height: 5rem;
+    transform: translate(-50%, -5%);
+    transition: 0.4s ease-in-out;
+    width: 10rem;
+    z-index: 100;
+  }
 }

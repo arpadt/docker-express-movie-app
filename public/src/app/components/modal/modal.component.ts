@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { DatabaseService } from '@services';
 import { Movie, Modal, MovieIdState } from '@types';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 import { AddToList, RemoveFromList } from '@actions';
@@ -21,6 +21,9 @@ import {
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
   savedMovieIds$: Observable<string[]>;
+  timer$: Observable<any>;
+  showMessage = false;
+  movieAddedMessage;
   @Input() movie: Movie | any = {};
   isDisplayed = false;
   isAddedToList = false;
@@ -98,6 +101,8 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     );
 
     this.isAddedToList = true;
+
+    this.showAddedMessage();
   }
 
   removeFromList(movieId: string) {
@@ -105,7 +110,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
       .subscribe((res) => {
           const response = res.body;
-          console.log('Movie deleted!', response);
+          console.log('Movie deleted!');
         },
           error => console.error(error)
     );
@@ -115,5 +120,14 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     );
 
     this.isAddedToList = false;
+  }
+
+  showAddedMessage() {
+    this.showMessage = true;
+
+    this.timer$ = timer(3000);
+    this.timer$.subscribe(() => {
+      this.showMessage = false;
+    });
   }
 }

@@ -1,3 +1,5 @@
+import { AddToList } from '@actions';
+import { MovieIdState } from '@types';
 import { ModalItem } from '@models';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
@@ -7,6 +9,7 @@ import { DatabaseService, LoadComponentService } from '@services';
 import { Movie } from '@types';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-my-list',
@@ -14,6 +17,7 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit {
+  savedMovieIds$: Observable<string[]>;
   selectedMovieDetails: Movie;
   isModalDisplayed: boolean;
   movieData: Movie[];
@@ -26,16 +30,26 @@ export class MyListComponent implements OnInit {
 
   constructor(
     private databaseService: DatabaseService,
-    private loadComponentService: LoadComponentService
+    private loadComponentService: LoadComponentService,
+    private store: Store<MovieIdState>,
   ) { }
 
   ngOnInit() {
+    this.savedMovieIds$ = this.store.pipe(
+      select('savedMovieIds')
+    );
+
     this.databaseService
       // .getAllMovies(this.dbDetailsUrl)
       .getAllMovies(this.url)
       .subscribe((res: HttpResponse<Movie[]>) => {
         const response: Movie[] = res.body;
         this.movieData = response;
+        this.movieData.forEach((movie) => {
+          this.store.dispatch(
+            new AddToList(movie.imdbID)
+          );
+        });
       });
   }
 
