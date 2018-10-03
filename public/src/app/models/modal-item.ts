@@ -4,6 +4,6 @@ import {Type} from '@angular/core';
 export class ModalItem {
   constructor(
     public component: Type<any>,
-    public movieData: Movie,
+    public data: Movie,
   ) { }
 }

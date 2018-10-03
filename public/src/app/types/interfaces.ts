@@ -45,3 +45,7 @@ export interface Modal {
 export interface MovieIdState {
   savedMovieIds: string[];
 }
+
+export interface Notifier {
+  message: string;
+}

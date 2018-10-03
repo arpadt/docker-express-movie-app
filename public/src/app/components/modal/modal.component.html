@@ -64,7 +64,7 @@
         </div>
       </div>
     </section>
-    <div #movieState [ngClass]="{'is-visible': showMessage}" class="movie-state-message">Movie added!</div>
   </main>
   <div class="modal-overlay" [ngClass]="{'is-visible': isDisplayed}" (click)="closeModal()"></div>
+  <ng-template notifierHost></ng-template>
 </div>

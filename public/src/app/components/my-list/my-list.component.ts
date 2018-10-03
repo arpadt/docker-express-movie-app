@@ -59,7 +59,8 @@ export class MyListComponent implements OnInit {
     this.modalComponent = new ModalItem(ModalComponent, selectedMovie);
     this.loadComponentService.loadComponent(
       this.modalComponent,
-      this.modalHost
+      this.modalHost,
+      'movie'
     );
   }
 }

@@ -16,6 +16,8 @@ import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 
 import { savedMovieIdsReducer } from '@reducers';
+import { NotifierComponent } from './components/notifier/notifier/notifier.component';
+import { NotifierDirective } from './directives/notifier.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { savedMovieIdsReducer } from '@reducers';
     CardComponent,
     ModalComponent,
     ModalDirective,
+    NotifierComponent,
+    NotifierDirective,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { savedMovieIdsReducer } from '@reducers';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ModalComponent
+    ModalComponent,
+    NotifierComponent
   ]
 })
 export class AppModule { }

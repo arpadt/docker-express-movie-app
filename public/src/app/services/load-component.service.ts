@@ -12,13 +12,17 @@ export class LoadComponentService {
     private componentFactoryResolver: ComponentFactoryResolver,
   ) { }
 
-  public loadComponent(componentToLoad, host) {
+  public loadComponent(
+    componentToLoad,
+    host,
+    dataProperty: string
+  ) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentToLoad.component);
 
     const viewContainerRef = host.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<Modal>componentRef.instance).movie = componentToLoad.movieData;
+    (componentRef.instance)[dataProperty] = componentToLoad.data;
   }
 }

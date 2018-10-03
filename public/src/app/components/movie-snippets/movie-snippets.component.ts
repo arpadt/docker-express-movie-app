@@ -44,7 +44,8 @@ export class MovieSnippetsComponent implements AfterViewInit {
         this.modalComponent = new ModalItem(ModalComponent, response);
         this.loadComponentService.loadComponent(
           this.modalComponent,
-          this.modalHost
+          this.modalHost,
+          'movie'
         );
       });
   }

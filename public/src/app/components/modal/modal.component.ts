@@ -1,6 +1,8 @@
+import { NotifierDirective } from '@directives/notifier.directive';
+import { NotifierItem } from '@models';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { DatabaseService } from '@services';
+import { DatabaseService, LoadComponentService} from '@services';
 import { Movie, Modal, MovieIdState } from '@types';
 import { Observable, timer } from 'rxjs';
 
@@ -11,8 +13,11 @@ import {
   Component,
   Input,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
+import { NotifierComponent } from '@components/notifier/notifier/notifier.component';
 
 @Component({
   selector: 'app-modal',
@@ -22,16 +27,21 @@ import {
 export class ModalComponent implements OnInit, OnDestroy, Modal {
   savedMovieIds$: Observable<string[]>;
   timer$: Observable<any>;
-  showMessage = false;
-  movieAddedMessage;
   @Input() movie: Movie | any = {};
+
+  notifierComponent: NotifierItem;
+  @ViewChild(NotifierDirective) notifierHost: NotifierDirective;
+
+  showMessage = false;
   isDisplayed = false;
   isAddedToList = false;
+
   url = `${ environment.hostUrl }/movies`;
 
   constructor(
     private databaseService: DatabaseService,
     private store: Store<MovieIdState>,
+    private loadComponentService: LoadComponentService,
     ) {
     }
 
@@ -102,7 +112,12 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
     this.isAddedToList = true;
 
-    this.showAddedMessage();
+    this.notifierComponent = new NotifierItem(NotifierComponent, 'Movie added!');
+    this.loadComponentService.loadComponent(
+      this.notifierComponent,
+      this.notifierHost,
+      'message'
+    );
   }
 
   removeFromList(movieId: string) {
@@ -122,12 +137,12 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     this.isAddedToList = false;
   }
 
-  showAddedMessage() {
-    this.showMessage = true;
+  // showAddedMessage() {
+  //   this.showMessage = true;
 
-    this.timer$ = timer(3000);
-    this.timer$.subscribe(() => {
-      this.showMessage = false;
-    });
-  }
+  //   this.timer$ = timer(3000);
+  //   this.timer$.subscribe(() => {
+  //     this.showMessage = false;
+  //   });
+  // }
 }
