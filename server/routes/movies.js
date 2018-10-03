@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
 
   try {
     const movie = await newMovie.save();
-    res.send(movie)
+    res.status(201).send(movie)
   } catch (error) {
     res.status(400).send('An error occured.')
   }
@@ -77,8 +77,8 @@ router.delete('/:id', async (req, res) => {
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
-
-    res.send(movie);
+    const allMovies = await Movie.find({});
+    res.status(204).send(allMovies);
   } catch (error) {
     res.status(400).send('Error');
   }
@@ -95,7 +95,7 @@ router.patch('/:id', async (req, res) => {
       return res.status(404).send('Movie not found.');
     }
 
-    res.send(movie);
+    res.status(204).send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
