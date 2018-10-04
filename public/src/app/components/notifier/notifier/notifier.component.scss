@@ -1,12 +1,13 @@
 .notifier {
     opacity: 0;
     visibility: hidden;
+    right: 5%;
 
     position: absolute;
     top: 15%;
 
     height: 6rem;
-    transition: visibility 0s linear 0.33s, opacity 0.33s linear, right 0.33s linear;
+    transition: visibility 0.4s linear, opacity 0.4s linear, right 0.4s linear;
     width: 18rem;
     z-index: 100;
 

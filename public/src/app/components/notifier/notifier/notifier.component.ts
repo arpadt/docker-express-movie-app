@@ -1,4 +1,6 @@
+// import { Observable } from 'rxjs/internal/Observable';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { timer, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifier',
@@ -7,19 +9,23 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class NotifierComponent implements OnInit, OnDestroy {
   isDisplayed = false;
+  timer$ = timer(3000);
+  subscription: Subscription;
 
   constructor() { }
 
   ngOnInit() {
-    if (!this.isDisplayed) {
-      setTimeout(() => {
-        this.isDisplayed = true;
-      });
-    }
+    this.isDisplayed = true;
+
+    this.subscription = this.timer$.subscribe(() => {
+      this.ngOnDestroy();
+    });
   }
 
   ngOnDestroy() {
     this.isDisplayed = false;
+    this.subscription.unsubscribe();
   }
+
 
 }
