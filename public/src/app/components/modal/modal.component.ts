@@ -112,15 +112,11 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
     this.isAddedToList = true;
 
-    this.notifierComponent = new NotifierItem(NotifierComponent, 'Movie added!');
-    this.loadComponentService.loadComponent(
-      this.notifierComponent,
-      this.notifierHost,
-      'message'
-    );
+    this.displayNotifier('Movie added!');
   }
 
   removeFromList(movieId: string) {
+    // TODO: uncomment
     // this.databaseService
     //   .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
     //   .subscribe((res) => {
@@ -135,14 +131,17 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     );
 
     this.isAddedToList = false;
+
+    this.displayNotifier('Movie removed!');
   }
 
-  // showAddedMessage() {
-  //   this.showMessage = true;
+  displayNotifier(message: string) {
+    this.notifierComponent = new NotifierItem(NotifierComponent, message);
 
-  //   this.timer$ = timer(3000);
-  //   this.timer$.subscribe(() => {
-  //     this.showMessage = false;
-  //   });
-  // }
+    this.loadComponentService.loadComponent(
+      this.notifierComponent,
+      this.notifierHost,
+      'message'
+    );
+  }
 }

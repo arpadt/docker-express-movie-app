@@ -9,7 +9,7 @@ import { timer, Subscription } from 'rxjs';
 })
 export class NotifierComponent implements OnInit, OnDestroy {
   isDisplayed = false;
-  timer$ = timer(3000);
+  timer$ = timer(1500);
   subscription: Subscription;
 
   constructor() { }
