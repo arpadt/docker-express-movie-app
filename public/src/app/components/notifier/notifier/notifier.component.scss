@@ -1,18 +1,27 @@
 .notifier {
-    // opacity: 0;
-    // visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
 
-    position: fixed;
-    right: 15%;
+    position: absolute;
     top: 15%;
 
-    background-color: green;
-    border-radius: 1rem;
-    color: white;
-    height: 5rem;
-    text-align: center;
-    // transform: translate(-50%, -5%);
-    // transition: 0.4s ease-in-out;
-    width: 10rem;
+    height: 6rem;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear, right 0.33s linear;
+    width: 18rem;
     z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-tertiary);
+    border-radius: 5px;
+    color: var(--color-grey-light);
+    font-size: 1.6rem;
+
+    &-is-visible {
+      opacity: 1;
+      right: 15%;
+      visibility: visible;
+    }
   }

@@ -26,7 +26,7 @@ export class MyListComponent implements OnInit {
   url = `${environment.hostUrl}/movies`;
   // TODO: delete
   // apiBasicsUrl = `../../assets/data/api-basics.json`;
-  // dbDetailsUrl = `../../assets/data/db-details.json`;
+  dbDetailsUrl = `../../assets/data/db-details.json`;
 
   constructor(
     private databaseService: DatabaseService,
@@ -40,8 +40,8 @@ export class MyListComponent implements OnInit {
     );
 
     this.databaseService
-      // .getAllMovies(this.dbDetailsUrl)
-      .getAllMovies(this.url)
+      .getAllMovies(this.dbDetailsUrl)
+      // .getAllMovies(this.url)
       .subscribe((res: HttpResponse<Movie[]>) => {
         const response: Movie[] = res.body;
         this.movieData = response;
