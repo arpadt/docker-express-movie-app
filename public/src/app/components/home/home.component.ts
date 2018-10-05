@@ -1,6 +1,9 @@
+import { Subject, Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
+import { Component, OnDestroy } from '@angular/core';
+
 import { Movie, MovieResponse } from '@types';
-import { Component, OnInit } from '@angular/core';
 import { MovieDataService } from '@services';
 import { environment } from '@environments/environment';
 
@@ -9,7 +12,9 @@ import { environment } from '@environments/environment';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnDestroy {
+  unsubscribe$ = new Subject();
+
   url = `${ environment.hostUrl }/api/search`;
   // TODO: delete
   apiBasicsUrl = `../../assets/data/api-basics.json`;
@@ -17,12 +22,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private movieDataService: MovieDataService) { }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   getMovies(title) {
     this.movieDataService
       .getMovieData(this.apiBasicsUrl)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
       // .getMovieData(`${this.url}/${title}`)
       .subscribe((res: HttpResponse<MovieResponse>) => {
         const response: MovieResponse = res.body;

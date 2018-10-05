@@ -4,7 +4,7 @@
 </h2>
 <div class="card-container">
   <div *ngFor="let film of movies">
-    <app-card (movieDetailsRequest)="getMovieDetails($event)" [isList]="isList" [movie]="film"></app-card>
+    <app-card (movieDetailsRequest)="getMovieDetails($event)" [movie]="film"></app-card>
   </div>
 </div>
 <ng-template modalHost></ng-template>

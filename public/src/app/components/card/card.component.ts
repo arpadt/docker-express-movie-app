@@ -17,9 +17,7 @@ import {
 })
 export class CardComponent implements OnInit {
   @Input() movie: Movie;
-  @Input() isList: boolean;
   @Output() movieDetailsRequest = new EventEmitter<any>();
-  @Output() removeFromListEvent = new EventEmitter<any>();
 
   constructor(private databaseService: DatabaseService) { }
 

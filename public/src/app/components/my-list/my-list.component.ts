@@ -1,3 +1,7 @@
+import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
 import { AddToList } from '@actions';
 import { MovieIdState } from '@types';
 import { ModalItem } from '@models';
@@ -7,8 +11,6 @@ import { environment } from '@environments/environment';
 import { HttpResponse } from '@angular/common/http';
 import { DatabaseService, LoadComponentService } from '@services';
 import { Movie } from '@types';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
 import { Store, select } from '@ngrx/store';
 
 @Component({
@@ -16,10 +18,10 @@ import { Store, select } from '@ngrx/store';
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.scss']
 })
-export class MyListComponent implements OnInit {
+export class MyListComponent implements OnInit, OnDestroy {
   savedMovieIds$: Observable<string[]>;
-  selectedMovieDetails: Movie;
-  isModalDisplayed: boolean;
+  private unsubscribe$ = new Subject();
+
   movieData: Movie[];
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
@@ -41,7 +43,11 @@ export class MyListComponent implements OnInit {
 
     this.databaseService
       .getAllMovies(this.dbDetailsUrl)
+      // TODO: uncomment
       // .getAllMovies(this.url)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe((res: HttpResponse<Movie[]>) => {
         const response: Movie[] = res.body;
         this.movieData = response;
@@ -53,8 +59,12 @@ export class MyListComponent implements OnInit {
       });
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   getMovieDetailsFromDB(movieId: string) {
-    // this.isModalDisplayed = event.isOnlist;
     const selectedMovie = this.movieData.find(({ imdbID }) => movieId === imdbID);
     this.modalComponent = new ModalItem(ModalComponent, selectedMovie);
     this.loadComponentService.loadComponent(

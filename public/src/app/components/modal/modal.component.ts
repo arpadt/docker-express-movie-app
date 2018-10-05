@@ -1,22 +1,21 @@
-import { NotifierDirective } from '@directives/notifier.directive';
-import { NotifierItem } from '@models';
-import { HttpResponse } from '@angular/common/http';
-import { environment } from '@environments/environment';
-import { DatabaseService, LoadComponentService} from '@services';
-import { Movie, Modal, MovieIdState } from '@types';
-import { Observable, timer } from 'rxjs';
-
-import { Store, select } from '@ngrx/store';
-import { AddToList, RemoveFromList } from '@actions';
-
+import { Observable, timer, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   Component,
   Input,
   OnInit,
   OnDestroy,
   ViewChild,
-  ElementRef
 } from '@angular/core';
+
+import { NotifierDirective } from '@directives/notifier.directive';
+import { NotifierItem } from '@models';
+import { HttpResponse } from '@angular/common/http';
+import { environment } from '@environments/environment';
+import { DatabaseService, LoadComponentService} from '@services';
+import { Movie, Modal, MovieIdState } from '@types';
+import { Store, select } from '@ngrx/store';
+import { AddToList, RemoveFromList } from '@actions';
 import { NotifierComponent } from '@components/notifier/notifier/notifier.component';
 
 @Component({
@@ -26,13 +25,13 @@ import { NotifierComponent } from '@components/notifier/notifier/notifier.compon
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
   savedMovieIds$: Observable<string[]>;
-  timer$: Observable<any>;
+  private unsubscribe$ = new Subject();
+
   @Input() movie: Movie | any = {};
 
   notifierComponent: NotifierItem;
   @ViewChild(NotifierDirective) notifierHost: NotifierDirective;
 
-  showMessage = false;
   isDisplayed = false;
   isAddedToList = false;
 
@@ -51,13 +50,16 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     );
 
     if (!this.isDisplayed) {
-      setTimeout(() => {
-        // for the animation to work
+      timer(0).pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe(() => {
         this.isDisplayed = true;
       });
     }
 
-    this.savedMovieIds$.subscribe((ids => {
+    this.savedMovieIds$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((ids => {
       if (ids.findIndex(id => id === this.movie.imdbID) !== -1) {
         this.isAddedToList = true;
       }
@@ -65,13 +67,19 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   }
 
   ngOnDestroy() {
-    this.isDisplayed = false;
-    setTimeout(() => {
-      this.isAddedToList = false;
-    }, 500);
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   closeModal() {
+    this.isDisplayed = false;
+
+    timer(500).pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(() => {
+      this.isAddedToList = false;
+      });
+
     this.ngOnDestroy();
   }
 
@@ -88,11 +96,9 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     }
 
     const dollars = income.split(';')[1];
-    if (!dollars) {
-      return 'N/A';
-    }
-
-    return `$${ dollars }`;
+    return dollars
+      ? `$${ dollars }`
+      : 'N/A';
   }
 
   addToList(movieId: string) {

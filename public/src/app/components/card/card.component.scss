@@ -3,7 +3,7 @@
   height: calc(1.5 * 27rem) ;
   width: calc(1.5 * 18.2rem);
 
-  margin-top: 2rem;
+  margin: 2rem 0.5rem 0 0.5rem;
   position: relative;
   z-index: 1;
 
@@ -19,7 +19,6 @@
   }
 
   &__no-poster {
-    // background-color: var(--color-primary);
     height: 100%;
 
     display: flex;
