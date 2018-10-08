@@ -112,7 +112,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     // );
 
     this.store.dispatch(
-      new AddToList(movieId)
+      AddToList(movieId)
     );
 
     this.isAddedToList = true;
@@ -132,7 +132,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     // );
 
     this.store.dispatch(
-      new RemoveFromList(movieId)
+      RemoveFromList(movieId)
     );
 
     this.isAddedToList = false;

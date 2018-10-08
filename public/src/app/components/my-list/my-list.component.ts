@@ -53,7 +53,7 @@ export class MyListComponent implements OnInit, OnDestroy {
         this.movieData = response;
         this.movieData.forEach((movie) => {
           this.store.dispatch(
-            new AddToList(movie.imdbID)
+            AddToList(movie.imdbID)
           );
         });
       });

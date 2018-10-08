@@ -1,19 +1,13 @@
-import {
-  ADD_TO_LIST,
-  AddToList,
-  REMOVE_FROM_LIST,
-  RemoveFromList
-} from '@actions';
+import { getType } from 'typesafe-actions';
 
-type MovieId = AddToList & RemoveFromList;
+import { AddToList, RemoveFromList } from '@actions';
 
-export const savedMovieIdsReducer = (
-  state: string[] = [],
-  action: MovieId) => {
+
+export const savedMovieIdsReducer = (state = [], action) => {
   switch (action.type) {
-    case ADD_TO_LIST:
+    case getType(AddToList):
       return [...state, action.payload];
-    case REMOVE_FROM_LIST:
+    case getType(RemoveFromList):
       return state.filter((id) => id !== action.payload);
     default:
       return state;
