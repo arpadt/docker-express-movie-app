@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 
 import { AddToList } from '@actions';
 import { MovieIdState } from '@types';
-import { ModalItem } from '@models';
+import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { environment } from '@environments/environment';

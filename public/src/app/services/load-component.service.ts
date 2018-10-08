@@ -1,7 +1,4 @@
-import { Modal } from '@types';
-import { ModalDirective } from '@directives/modal.directive';
 import { Injectable, ComponentFactoryResolver } from '@angular/core';
-import { ModalItem } from '@models';
 
 @Injectable({
   providedIn: 'root'

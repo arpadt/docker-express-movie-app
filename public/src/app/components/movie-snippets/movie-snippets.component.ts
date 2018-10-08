@@ -8,7 +8,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
-import { ModalItem } from '@models';
+import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { Movie } from '@types';

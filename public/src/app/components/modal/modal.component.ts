@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { NotifierDirective } from '@directives/notifier.directive';
-import { NotifierItem } from '@models';
+import { NotifierItem } from '@models/components';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { DatabaseService, LoadComponentService} from '@services';
@@ -29,7 +29,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
   @Input() movie: Movie | any = {};
 
-  notifierComponent: NotifierItem;
   @ViewChild(NotifierDirective) notifierHost: NotifierDirective;
 
   isDisplayed = false;
@@ -142,10 +141,10 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   }
 
   displayNotifier(message: string) {
-    this.notifierComponent = new NotifierItem(NotifierComponent, message);
+    const notifierComponent = new NotifierItem(NotifierComponent, message);
 
     this.loadComponentService.loadComponent(
-      this.notifierComponent,
+      notifierComponent,
       this.notifierHost,
       'message'
     );
