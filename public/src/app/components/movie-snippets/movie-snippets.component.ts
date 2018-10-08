@@ -13,6 +13,7 @@ import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { Movie } from '@types';
 import { MovieDataService, LoadComponentService } from '@services';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-movie-cards',
@@ -26,8 +27,8 @@ export class MovieSnippetsComponent implements OnDestroy {
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
   // TODO: uncomment
-  // url = `${environment.hostUrl}/api/details`;
-  url = '../../assets/data/api-details.json';
+  url = `${environment.hostUrl}/api/details`;
+  // url = '../../assets/data/api-details.json';
 
   constructor(
     private movieDataService: MovieDataService,
@@ -41,9 +42,9 @@ export class MovieSnippetsComponent implements OnDestroy {
 
   getMovieDetails(movieId: string) {
     this.movieDataService
-      .getMovieData(this.url)
+      // .getMovieData(this.url)
       // TODO: uncomment
-      // .getMovieData(`${ this.url }/${ movieId }`)
+      .getMovieData(`${ this.url }/${ movieId }`)
       .pipe(
         takeUntil(this.unsubscribe$)
       )

@@ -17,7 +17,7 @@ export class HomeComponent implements OnDestroy {
 
   url = `${ environment.hostUrl }/api/search`;
   // TODO: delete
-  apiBasicsUrl = `../../assets/data/api-basics.json`;
+  // apiBasicsUrl = `../../assets/data/api-basics.json`;
   movies: Movie[];
 
   constructor(private movieDataService: MovieDataService) { }
@@ -29,7 +29,7 @@ export class HomeComponent implements OnDestroy {
 
   getMovies(title) {
     this.movieDataService
-      .getMovieData(this.apiBasicsUrl)
+      .getMovieData(`${ this.url }/${ title }`)
       .pipe(
         takeUntil(this.unsubscribe$)
       )

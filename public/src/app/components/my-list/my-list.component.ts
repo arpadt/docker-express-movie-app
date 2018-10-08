@@ -28,7 +28,7 @@ export class MyListComponent implements OnInit, OnDestroy {
   url = `${environment.hostUrl}/movies`;
   // TODO: delete
   // apiBasicsUrl = `../../assets/data/api-basics.json`;
-  dbDetailsUrl = `../../assets/data/db-details.json`;
+  // dbDetailsUrl = `../../assets/data/db-details.json`;
 
   constructor(
     private databaseService: DatabaseService,
@@ -42,9 +42,9 @@ export class MyListComponent implements OnInit, OnDestroy {
     );
 
     this.databaseService
-      .getAllMovies(this.dbDetailsUrl)
+      // .getAllMovies(this.dbDetailsUrl)
       // TODO: uncomment
-      // .getAllMovies(this.url)
+      .getAllMovies(this.url)
       .pipe(
         takeUntil(this.unsubscribe$)
       )

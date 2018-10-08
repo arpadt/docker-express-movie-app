@@ -102,42 +102,42 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
   addToList(movieId: string) {
     // TODO: uncomment
-    // this.databaseService
-    //   .addMovie(this.url, this.movie)
-    //   .subscribe((res) => {
-    //     // some notification here: movie added
-    //     console.log('Movie added');
-    //   },
-    //     error => console.error(error)
-    // );
-
-    this.store.dispatch(
-      AddToList(movieId)
+    this.databaseService
+      .addMovie(this.url, this.movie)
+      .subscribe((res) => {
+        // some notification here: movie added
+        // console.log('Movie added');
+        this.store.dispatch(
+          AddToList(movieId)
+        );
+        this.displayNotifier('Movie added!');
+        this.isAddedToList = true;
+      },
+        error => console.error(error)
     );
 
-    this.isAddedToList = true;
 
-    this.displayNotifier('Movie added!');
+
   }
 
   removeFromList(movieId: string) {
     // TODO: uncomment
-    // this.databaseService
-    //   .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
-    //   .subscribe((res) => {
-    //       const response = res.body;
-    //       console.log('Movie deleted!');
-    //     },
-    //       error => console.error(error)
-    // );
-
-    this.store.dispatch(
-      RemoveFromList(movieId)
+    this.databaseService
+      .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
+      .subscribe((res) => {
+          // const response = res.body;
+          // console.log('Movie deleted!');
+          this.store.dispatch(
+            RemoveFromList(movieId)
+          );
+          this.displayNotifier('Movie removed!');
+          this.isAddedToList = false;
+        },
+          error => console.error(error)
     );
 
-    this.isAddedToList = false;
 
-    this.displayNotifier('Movie removed!');
+
   }
 
   displayNotifier(message: string) {
