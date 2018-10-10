@@ -15,7 +15,12 @@ import { environment } from '@environments/environment';
 import { DatabaseService, LoadComponentService} from '@services';
 import { Movie, Modal, MovieIdState } from '@types';
 import { Store, select } from '@ngrx/store';
-import { AddToList, RemoveFromList } from '@actions';
+import {
+  AddIdToList,
+  RemoveIdFromList,
+  AddMovieToList,
+  RemoveMovieFromList,
+} from '@actions';
 import { NotifierComponent } from '@components/notifier/notifier/notifier.component';
 
 @Component({
@@ -25,7 +30,8 @@ import { NotifierComponent } from '@components/notifier/notifier/notifier.compon
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
   savedMovieIds$: Observable<string[]>;
-  private unsubscribe$ = new Subject();
+  unsubscribe$ = new Subject();
+  deletedMovie$ = new Subject();
 
   @Input() movie: Movie | any = {};
 
@@ -105,19 +111,17 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     this.databaseService
       .addMovie(this.url, this.movie)
       .subscribe((res) => {
-        // some notification here: movie added
-        // console.log('Movie added');
         this.store.dispatch(
-          AddToList(movieId)
+          AddIdToList(movieId)
+        );
+        this.store.dispatch(
+          AddMovieToList(res)
         );
         this.displayNotifier('Movie added!');
         this.isAddedToList = true;
       },
         error => console.error(error)
     );
-
-
-
   }
 
   removeFromList(movieId: string) {
@@ -125,19 +129,18 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     this.databaseService
       .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
       .subscribe((res) => {
-          // const response = res.body;
-          // console.log('Movie deleted!');
-          this.store.dispatch(
-            RemoveFromList(movieId)
-          );
-          this.displayNotifier('Movie removed!');
-          this.isAddedToList = false;
+        const response = res.body;
+        this.store.dispatch(
+          RemoveIdFromList(movieId)
+        );
+        this.store.dispatch(
+          RemoveMovieFromList(response)
+        );
+        this.displayNotifier('Movie removed!');
+        this.isAddedToList = false;
         },
           error => console.error(error)
     );
-
-
-
   }
 
   displayNotifier(message: string) {

@@ -21,5 +21,7 @@ export class LoadComponentService {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (componentRef.instance)[dataProperty] = componentToLoad.data;
+
+    // return componentRef;
   }
 }

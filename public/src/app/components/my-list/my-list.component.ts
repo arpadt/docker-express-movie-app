@@ -1,8 +1,14 @@
 import { takeUntil } from 'rxjs/operators';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  DoCheck
+} from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { AddToList } from '@actions';
+import { AddIdToList } from '@actions';
 import { MovieIdState } from '@types';
 import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
@@ -18,13 +24,15 @@ import { Store, select } from '@ngrx/store';
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.scss']
 })
-export class MyListComponent implements OnInit, OnDestroy {
+export class MyListComponent implements OnInit, OnDestroy, DoCheck {
   savedMovieIds$: Observable<string[]>;
+  savedMovies$: Observable<Movie[]>;
   private unsubscribe$ = new Subject();
 
   movieData: Movie[];
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
+  modalComponentRef: any;
   url = `${environment.hostUrl}/movies`;
   // TODO: delete
   // apiBasicsUrl = `../../assets/data/api-basics.json`;
@@ -41,6 +49,10 @@ export class MyListComponent implements OnInit, OnDestroy {
       select('savedMovieIds')
     );
 
+    this.savedMovies$ = this.store.pipe(
+      select('savedMovies')
+    );
+
     this.databaseService
       // .getAllMovies(this.dbDetailsUrl)
       // TODO: uncomment
@@ -53,10 +65,20 @@ export class MyListComponent implements OnInit, OnDestroy {
         this.movieData = response;
         this.movieData.forEach((movie) => {
           this.store.dispatch(
-            AddToList(movie.imdbID)
+            AddIdToList(movie.imdbID)
           );
         });
       });
+  }
+
+  ngDoCheck() {
+    if (this.movieData) {
+      this.savedMovies$.pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe((movies) => {
+        this.movieData = movies;
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -67,10 +89,11 @@ export class MyListComponent implements OnInit, OnDestroy {
   getMovieDetailsFromDB(movieId: string) {
     const selectedMovie = this.movieData.find(({ imdbID }) => movieId === imdbID);
     this.modalComponent = new ModalItem(ModalComponent, selectedMovie);
-    this.loadComponentService.loadComponent(
+    this.modalComponentRef = this.loadComponentService.loadComponent(
       this.modalComponent,
       this.modalHost,
       'movie'
     );
   }
+
 }
