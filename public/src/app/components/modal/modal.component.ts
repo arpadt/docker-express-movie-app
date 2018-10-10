@@ -16,8 +16,6 @@ import { DatabaseService, LoadComponentService} from '@services';
 import { Movie, Modal, MovieIdState } from '@types';
 import { Store, select } from '@ngrx/store';
 import {
-  AddIdToList,
-  RemoveIdFromList,
   AddMovieToList,
   RemoveMovieFromList,
 } from '@actions';
@@ -29,7 +27,7 @@ import { NotifierComponent } from '@components/notifier/notifier/notifier.compon
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
-  savedMovieIds$: Observable<string[]>;
+  savedMovies$: Observable<Movie[]>;
   unsubscribe$ = new Subject();
   deletedMovie$ = new Subject();
 
@@ -50,8 +48,8 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     }
 
   ngOnInit() {
-    this.savedMovieIds$ = this.store.pipe(
-      select('savedMovieIds')
+    this.savedMovies$ = this.store.pipe(
+      select('savedMovies')
     );
 
     if (!this.isDisplayed) {
@@ -62,13 +60,13 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       });
     }
 
-    this.savedMovieIds$.pipe(
+    this.savedMovies$.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe((ids => {
-      if (ids.findIndex(id => id === this.movie.imdbID) !== -1) {
+    ).subscribe((movies) => {
+      if (movies.find(({ imdbID }) => imdbID === this.movie.imdbID)) {
         this.isAddedToList = true;
       }
-    }));
+    });
   }
 
   ngOnDestroy() {
@@ -112,9 +110,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .addMovie(this.url, this.movie)
       .subscribe((res) => {
         this.store.dispatch(
-          AddIdToList(movieId)
-        );
-        this.store.dispatch(
           AddMovieToList(res)
         );
         this.displayNotifier('Movie added!');
@@ -130,9 +125,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
       .subscribe((res) => {
         const response = res.body;
-        this.store.dispatch(
-          RemoveIdFromList(movieId)
-        );
         this.store.dispatch(
           RemoveMovieFromList(response)
         );

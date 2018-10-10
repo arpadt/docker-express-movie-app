@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { AddIdToList } from '@actions';
+import { AddMovieToList } from '@actions';
 import { MovieIdState } from '@types';
 import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
@@ -25,7 +25,6 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit, OnDestroy, DoCheck {
-  savedMovieIds$: Observable<string[]>;
   savedMovies$: Observable<Movie[]>;
   private unsubscribe$ = new Subject();
 
@@ -45,10 +44,6 @@ export class MyListComponent implements OnInit, OnDestroy, DoCheck {
   ) { }
 
   ngOnInit() {
-    this.savedMovieIds$ = this.store.pipe(
-      select('savedMovieIds')
-    );
-
     this.savedMovies$ = this.store.pipe(
       select('savedMovies')
     );
@@ -65,7 +60,7 @@ export class MyListComponent implements OnInit, OnDestroy, DoCheck {
         this.movieData = response;
         this.movieData.forEach((movie) => {
           this.store.dispatch(
-            AddIdToList(movie.imdbID)
+            AddMovieToList(movie)
           );
         });
       });

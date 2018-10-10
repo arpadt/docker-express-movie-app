@@ -15,7 +15,7 @@ import { CardComponent } from '@components/card/card.component';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 
-import { savedMovieIdsReducer, savedMoviesReducer } from '@reducers';
+import { savedMoviesReducer } from '@reducers';
 import { NotifierComponent } from './components/notifier/notifier/notifier.component';
 import { NotifierDirective } from './directives/notifier.directive';
 
@@ -40,7 +40,6 @@ import { NotifierDirective } from './directives/notifier.directive';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot({
-      savedMovieIds: savedMovieIdsReducer,
       savedMovies: savedMoviesReducer
     }),
   ],
