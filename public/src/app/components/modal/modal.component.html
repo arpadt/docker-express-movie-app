@@ -28,10 +28,10 @@
       <footer class="movie__footer">
         <div class="movie-button">
           <ng-template [ngIf]="isAddedToList" [ngIfElse]="addButton">
-            <button class="btn btn--dark card__button" (click)="removeFromList(movie.imdbID)">Remove</button>
+            <button class="btn btn--dark card__button" (click)="removeFromList()">Remove</button>
           </ng-template>
           <ng-template #addButton>
-            <button class="btn btn--dark card__button" (click)="addToList(movie.imdbID)">
+            <button class="btn btn--dark card__button" (click)="addToList()">
               Add
             </button>
           </ng-template>

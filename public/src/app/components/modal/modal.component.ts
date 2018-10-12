@@ -104,7 +104,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       : 'N/A';
   }
 
-  addToList(movieId: string) {
+  addToList() {
     // TODO: uncomment
     this.databaseService
       .addMovie(this.url, this.movie)
@@ -119,7 +119,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     );
   }
 
-  removeFromList(movieId: string) {
+  removeFromList() {
     // TODO: uncomment
     this.databaseService
       .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)

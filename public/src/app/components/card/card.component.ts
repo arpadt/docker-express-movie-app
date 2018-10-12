@@ -22,7 +22,7 @@ export class CardComponent implements OnInit {
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
-    console.log('from card', this.movie);
+    // console.log('from card', this.movie);
   }
 
   getMovieDetails(movieId: string) {

@@ -1,4 +1,5 @@
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, switchMap, map, filter, exhaustMap, find } from 'rxjs/operators';
+import { from } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -25,10 +26,10 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit, OnDestroy, DoCheck {
-  savedMovies$: Observable<Movie[]>;
+  moviesInStore$: Observable<Movie[]>;
   private unsubscribe$ = new Subject();
 
-  movieData: Movie[];
+  movieData: Movie[] = [];
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
   modalComponentRef: any;
@@ -44,36 +45,39 @@ export class MyListComponent implements OnInit, OnDestroy, DoCheck {
   ) { }
 
   ngOnInit() {
-    this.savedMovies$ = this.store.pipe(
+    this.moviesInStore$ = this.store.pipe(
       select('savedMovies')
     );
+    const response$ = this.databaseService.getAllMovies(this.url);
 
-    this.databaseService
-      // .getAllMovies(this.dbDetailsUrl)
-      // TODO: uncomment
-      .getAllMovies(this.url)
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe((res: HttpResponse<Movie[]>) => {
-        const response: Movie[] = res.body;
-        this.movieData = response;
-        this.movieData.forEach((movie) => {
-          this.store.dispatch(
-            AddMovieToList(movie)
-          );
-        });
-      });
+    const moviesToDisplay$ = response$.pipe(
+      takeUntil(this.unsubscribe$),
+      switchMap((res) => from(res.body)),
+      exhaustMap((movieFromDB: Movie) => {
+        this.store.dispatch(
+          AddMovieToList(movieFromDB)
+        );
+        return this.moviesInStore$.pipe(
+          switchMap((movies) => from(movies)),
+          find((movie) => {
+            return movie.imdbID === movieFromDB.imdbID;
+          }),
+        );
+      }),
+    );
+
+    moviesToDisplay$.subscribe((movie) => {
+      console.log('filtered movie', movie);
+      this.movieData.push(movie);
+    });
   }
 
   ngDoCheck() {
-    if (this.movieData) {
-      this.savedMovies$.pipe(
-        takeUntil(this.unsubscribe$)
-      ).subscribe((movies) => {
-        this.movieData = movies;
-      });
-    }
+    // this.moviesInStore$.pipe(
+    //   takeUntil(this.unsubscribe$),
+    // ).subscribe((movies) => {
+    //   this.movieData = movies;
+    // });
   }
 
   ngOnDestroy() {
