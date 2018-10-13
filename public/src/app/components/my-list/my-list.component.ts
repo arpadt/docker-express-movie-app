@@ -5,7 +5,12 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  DoCheck
+  DoCheck,
+  OnChanges,
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -26,7 +31,7 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./my-list.component.scss']
 })
 export class MyListComponent implements OnInit, OnDestroy, DoCheck {
-  moviesInStore$: Observable<Movie[]>;
+  moviesInStore$: Observable<string[]>;
   private unsubscribe$ = new Subject();
 
   movieData: Movie[] = [];
@@ -45,44 +50,47 @@ export class MyListComponent implements OnInit, OnDestroy, DoCheck {
   ) { }
 
   ngOnInit() {
-    this.moviesInStore$ = this.store.pipe(
-      select('savedMovies')
-    );
-    const response$ = this.databaseService.getAllMovies(this.url);
-
-    const moviesToDisplay$ = response$.pipe(
+    const response$ = this.databaseService
+    .getAllMovies(this.url)
+    .pipe(
       takeUntil(this.unsubscribe$),
       switchMap((res) => from(res.body)),
-      exhaustMap((movieFromDB: Movie) => {
-        this.store.dispatch(
-          AddMovieToList(movieFromDB)
-        );
-        return this.moviesInStore$.pipe(
-          switchMap((movies) => from(movies)),
-          find((movie) => {
-            return movie.imdbID === movieFromDB.imdbID;
-          }),
-        );
-      }),
     );
 
-    moviesToDisplay$.subscribe((movie) => {
-      console.log('filtered movie', movie);
+    const moviesInStore$ = this.store.pipe(
+      takeUntil(this.unsubscribe$),
+      select('savedMovies'),
+      // switchMap(() => response$)
+    );
+
+    response$.subscribe((movie) => {
+      console.log('movie from db', movie);
       this.movieData.push(movie);
+      this.store.dispatch(
+        AddMovieToList(movie.imdbID)
+      );
     });
   }
 
   ngDoCheck() {
+    console.log('do check');
     // this.moviesInStore$.pipe(
     //   takeUntil(this.unsubscribe$),
-    // ).subscribe((movies) => {
-    //   this.movieData = movies;
+    //   switchMap((movieIds) => from(movieIds)),
+    // ).subscribe((movieId) => {
+    //   this.movieData = this.movieData.filter(({ imdbID }) => {
+    //     return
+    //   });
     // });
+    console.log('movies displayed', this.movieData);
+
   }
 
   ngOnDestroy() {
+    console.log('on destroy');
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    this.movieData = [];
   }
 
   getMovieDetailsFromDB(movieId: string) {

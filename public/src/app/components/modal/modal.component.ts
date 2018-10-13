@@ -63,7 +63,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     this.savedMovies$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe((movies) => {
-      if (movies.find(({ imdbID }) => imdbID === this.movie.imdbID)) {
+      if (movies.find((imdbID) => imdbID === this.movie.imdbID)) {
         this.isAddedToList = true;
       }
     });
@@ -110,7 +110,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .addMovie(this.url, this.movie)
       .subscribe((res) => {
         this.store.dispatch(
-          AddMovieToList(res)
+          AddMovieToList(res.imdbID)
         );
         this.displayNotifier('Movie added!');
         this.isAddedToList = true;
@@ -126,7 +126,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .subscribe((res) => {
         const response = res.body;
         this.store.dispatch(
-          RemoveMovieFromList(response)
+          RemoveMovieFromList(response.imdbID)
         );
         this.displayNotifier('Movie removed!');
         this.isAddedToList = false;

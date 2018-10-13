@@ -5,12 +5,12 @@ import {
   RemoveMovieFromList,
 } from '@actions';
 
-export const savedMoviesReducer = (state = [], action) => {
+export const savedMoviesReducer = (state: string[] = [], action) => {
   switch (action.type) {
     case getType(AddMovieToList):
-      return [...state, action.payload];
+      return Array.from(new Set([...state, action.payload]));
     case getType(RemoveMovieFromList):
-      return state.filter(({ _id }) => _id !== action.payload._id);
+      return state.filter((imdbID) => imdbID !== action.payload);
     default:
       return state;
   }
