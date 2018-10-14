@@ -13,7 +13,7 @@ import { NotifierItem } from '@models/components';
 import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { DatabaseService, LoadComponentService} from '@services';
-import { Movie, Modal, MovieIdState } from '@types';
+import { Movie, Modal, MovieState } from '@types';
 import { Store, select } from '@ngrx/store';
 import {
   AddMovieToList,
@@ -27,7 +27,7 @@ import { NotifierComponent } from '@components/notifier/notifier/notifier.compon
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnDestroy, Modal {
-  savedMovies$: Observable<Movie[]>;
+  savedMovies$: Observable<MovieState>;
   unsubscribe$ = new Subject();
   deletedMovie$ = new Subject();
 
@@ -42,13 +42,14 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
 
   constructor(
     private databaseService: DatabaseService,
-    private store: Store<MovieIdState>,
+    private store: Store<MovieState>,
     private loadComponentService: LoadComponentService,
     ) {
     }
 
   ngOnInit() {
     this.savedMovies$ = this.store.pipe(
+      takeUntil(this.unsubscribe$),
       select('savedMovies')
     );
 
@@ -60,13 +61,9 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       });
     }
 
-    this.savedMovies$.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe((movies) => {
-      if (movies.find((imdbID) => imdbID === this.movie.imdbID)) {
-        this.isAddedToList = true;
-      }
-    });
+    if (this.movie._id) {
+      this.isAddedToList = true;
+    }
   }
 
   ngOnDestroy() {
@@ -110,7 +107,10 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .addMovie(this.url, this.movie)
       .subscribe((res) => {
         this.store.dispatch(
-          AddMovieToList(res.imdbID)
+          AddMovieToList({
+            movieId: res.imdbID,
+            isAdded: true
+          })
         );
         this.displayNotifier('Movie added!');
         this.isAddedToList = true;
@@ -126,7 +126,10 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       .subscribe((res) => {
         const response = res.body;
         this.store.dispatch(
-          RemoveMovieFromList(response.imdbID)
+          RemoveMovieFromList({
+            movieId: response.imdbID,
+            isAdded: false
+          })
         );
         this.displayNotifier('Movie removed!');
         this.isAddedToList = false;

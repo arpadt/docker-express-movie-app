@@ -1,3 +1,4 @@
+import { MovieState } from '@types';
 import { getType } from 'typesafe-actions';
 
 import {
@@ -5,12 +6,15 @@ import {
   RemoveMovieFromList,
 } from '@actions';
 
-export const savedMoviesReducer = (state: string[] = [], action) => {
+export const savedMoviesReducer = (state: MovieState = {
+  movieId: '',
+  isAdded: false
+}, action) => {
   switch (action.type) {
     case getType(AddMovieToList):
-      return Array.from(new Set([...state, action.payload]));
+      return { ...state, movieId: action.payload.movieId, isAdded: true};
     case getType(RemoveMovieFromList):
-      return state.filter((imdbID) => imdbID !== action.payload);
+      return { ...state, movieId: action.payload.movieId, isAdded: false };
     default:
       return state;
   }

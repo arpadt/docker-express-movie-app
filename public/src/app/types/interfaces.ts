@@ -42,10 +42,11 @@ export interface Modal {
   movie: Movie;
 }
 
-export interface MovieIdState {
-  savedMovieIds: string[];
-}
-
 export interface Notifier {
   message: string;
+}
+
+export interface MovieState {
+  movieId: string;
+  isAdded: boolean;
 }
