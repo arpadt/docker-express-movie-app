@@ -1,35 +1,26 @@
-import { MovieResponse } from './../interface';
-import { Observable, throwError } from 'rxjs';
+import { ErrorHandlingService } from './error-handling.service';
+import { MovieResponse, Movie } from '@types';
+import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private errorHandlingService: ErrorHandlingService
+  ) { }
 
-  getMovieData(url: string): Observable<HttpResponse<MovieResponse>> {
+  getMovieData(url: string): Observable<HttpResponse<MovieResponse | Movie>> {
     return this.http
       .get<MovieResponse>(url, { observe: 'response' })
       .pipe(
         retry(3),
-        catchError(this.handleError)
+        catchError(this.errorHandlingService.handleError)
       );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // client side or network error
-      console.error('Error: ', error.error.message);
-    } else {
-      // backend error
-      console.error('Error code: ', error.status);
-      console.error('Error body: ', error.error);
-    }
-
-    return throwError('An error occured');
   }
 }

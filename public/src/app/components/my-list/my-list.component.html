@@ -1,0 +1,15 @@
+<div class="content-wrapper">
+  <header class="header-wrapper">
+    <h1 class="heading-primary">My List</h1>
+  </header>
+  <div class="card-container">
+    <!-- <div class="card-wrapper" *ngFor="let film of movieData"> -->
+    <div class="card-wrapper" *ngFor="let film of moviesToDisplay">
+      <app-card
+        (movieDetailsRequest)="getMovieDetailsFromDB($event)"
+        [movie]="film"
+      ></app-card>
+    </div>
+  </div>
+</div>
+<ng-template modalHost></ng-template>

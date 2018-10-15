@@ -1,9 +1,0 @@
-<h2 class="heading-secondary hits">
-  <span *ngIf="movies.length; else noMovies">We have found {{ movies.length }} movies.</span>
-  <ng-template #noMovies>Start searching for movies!</ng-template>
-</h2>
-<div class="card-container">
-  <div *ngFor="let film of movies">
-    <app-card [isList]="isList" [movie]="film"></app-card>
-  </div>
-</div>

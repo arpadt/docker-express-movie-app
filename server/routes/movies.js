@@ -17,12 +17,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
-
   try {
-    const movie = await Movie.findById(id);
+    const movie = await Movie.find({ imdbID: id });
 
     if (!movie) {
       return res.status(404).send('Movie not found.');
@@ -36,14 +32,28 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const newMovie = new Movie({
-    title: req.body.title,
-    genre: req.body.genre,
-    isLiked: req.body.isLiked
+    Title: req.body.Title,
+    Language: req.body.Language,
+    Genre: req.body.Genre,
+    Runtime: req.body.Runtime,
+    Year: req.body.Year,
+    Rated: req.body.Rated,
+    Actors: req.body.Actors,
+    Plot: req.body.Plot,
+    imdbID: req.body.imdbID,
+    Director: req.body.Director,
+    BoxOffice: req.body.BoxOffice,
+    Website: req.body.Website,
+    Type: req.body.Type,
+    Poster: req.body.Poster,
+    Production: req.body.Production,
+    Awards: req.body.Awards,
+    imdbRating: req.body.imdbRating
   });
 
   try {
     const movie = await newMovie.save();
-    res.send(movie)
+    res.status(201).send(movie)
   } catch (error) {
     res.status(400).send('An error occured.')
   }
@@ -61,18 +71,13 @@ router.delete('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id = req.params.id;
 
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
-
   try {
-    const movie = await Movie.findByIdAndRemove(id);
+    const movie = await Movie.findOneAndRemove({ imdbID: id });
 
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
-
-    res.send(movie);
+    res.status(200).send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
@@ -80,10 +85,6 @@ router.delete('/:id', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
   const id = req.params.id;
-
-  if (!ObjectId.isValid(id)) {
-    return res.status(404).send('Invalid id!');
-  }
 
   const body = req.body
   try {
@@ -93,7 +94,7 @@ router.patch('/:id', async (req, res) => {
       return res.status(404).send('Movie not found.');
     }
 
-    res.send(movie);
+    res.status(204).send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }

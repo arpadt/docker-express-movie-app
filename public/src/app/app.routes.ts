@@ -1,25 +1,19 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { MyListComponent } from './my-list/my-list.component';
-import { ModalComponent } from './modal/modal.component';
+import { HomeComponent } from '@components/home/home.component';
+import { MyListComponent } from '@components/my-list/my-list.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'my-list',
+    path: 'mymovies',
     component: MyListComponent,
   },
   {
-    path: 'modal',
-    component: ModalComponent,
-  },
+    path: '**',
+    component: HomeComponent,
+  }
 ];

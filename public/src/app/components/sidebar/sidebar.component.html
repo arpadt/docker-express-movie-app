@@ -1,0 +1,37 @@
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <img class="logo__item" src="../../assets/img/logo.png" alt="Logo">
+  </div>
+  <nav class="nav-container">
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav__item">
+        <a
+          routerLink="/"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="sidebar-nav__link">
+          <svg class="sidebar-nav__icon">
+            <use xlink:href="../../assets/img/symbol-defs.svg#icon-home"></use>
+          </svg>
+          <span class="sidebar-nav__text">Home</span>
+        </a>
+      </li>
+      <li class="sidebar-nav__item">
+        <a
+          routerLink="/mymovies"
+          routerLinkActive="is-active"
+          class="sidebar-nav__link"
+          [routerLinkActiveOptions]="{exact:true}"
+          >
+          <svg class="sidebar-nav__icon">
+            <use xlink:href="../../assets/img/symbol-defs.svg#icon-list2"></use>
+          </svg>
+          <span class="sidebar-nav__text">My List</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="slogan">
+  All about <span class="slogan__highlight">movies</span>.
+</div>

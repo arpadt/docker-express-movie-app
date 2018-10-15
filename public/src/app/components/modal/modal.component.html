@@ -1,0 +1,70 @@
+<div class="modal-container">
+  <main class="modal" [ngClass]="{'is-visible': isDisplayed}">
+    <section class="movie">
+      <h2 class="heading-secondary movie__title">
+        {{ movie.Title }}
+      </h2>
+      <div class="movie__meta">
+        <span class="movie__meta-common">
+          {{ getFirstEntry(movie.Language) }} |
+          {{ getFirstEntry(movie.Genre) }} |
+          {{ movie.Runtime }}
+        </span>
+        <span class="movie__meta-year">{{ movie.Year }}</span>
+        <span class="movie__meta-rated">{{ movie.Rated }}</span>
+      </div>
+      <div class="movie__data">
+        <h3 class="heading-tertiary movie__data-title">Plot</h3>
+        <p class="movie__data-text">{{ movie.Plot }}</p>
+      </div>
+      <div class="movie__data">
+        <h3 class="heading-tertiary movie__data-title">Actors</h3>
+        <p class="movie__data-text">{{ movie.Actors }}</p>
+      </div>
+      <div class="movie__data">
+        <h3 class="heading-tertiary movie__data-title">Director</h3>
+        <p class="movie__data-text">{{ movie.Director }}</p>
+      </div>
+      <footer class="movie__footer">
+        <div class="movie-button">
+          <ng-template [ngIf]="isAddedToList" [ngIfElse]="addButton">
+            <button class="btn btn--dark card__button" (click)="removeFromList()">Remove</button>
+          </ng-template>
+          <ng-template #addButton>
+            <button class="btn btn--dark card__button" (click)="addToList()">
+              Add
+            </button>
+          </ng-template>
+        </div>
+        <div class="movie__rating">
+          <span class="movie__rating-imdb">Imdb: </span>
+          <span class="movie__rating-value">{{ movie.imdbRating }}</span>
+        </div>
+      </footer>
+    </section>
+    <section class="modal__poster">
+      <a #modalClose class="modal-close" (click)="closeModal()">
+        <svg class="modal-close__icon">
+          <use xlink:href="../../assets/img/symbol-defs.svg#icon-cancel-circle"></use>
+        </svg>
+      </a>
+      <figure class="movie-img">
+        <img [src]="movie.Poster || ''" alt="Movie poster" class="movie-img__item">
+      </figure>
+      <div class="movie-additional">
+        <div class="movie-additional__titles">
+          <span class="movie-additional__title">Box Office</span>
+          <span class="movie-additional__title">Website</span>
+          <span class="movie-additional__title">Production</span>
+        </div>
+        <div class="movie-additional__data">
+          <span class="movie-additional__text">{{ movie.BoxOffice || 'N/A' }}</span>
+          <span class="movie-additional__text">{{ movie.Website || 'N/A' }}</span>
+          <span class="movie-additional__text">{{ movie.Production || 'N/A' }}</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="modal-overlay" [ngClass]="{'is-visible': isDisplayed}" (click)="closeModal()"></div>
+  <ng-template notifierHost></ng-template>
+</div>

@@ -1,0 +1,68 @@
+.logo {
+  margin-top: 3.5rem;
+  text-align: center;
+
+  &__item {
+    width: 4.5rem;
+  }
+}
+
+.nav-container {
+  margin-top: 15rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  list-style: none;
+
+  &__item {
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+
+    transition: 0.4s all ease-out;
+  }
+
+  &__item:hover {
+    background-color: var(--color-primary-light-1);
+  }
+
+  &__link {
+    width: 100%;
+  }
+
+  &__link:link,
+  &__link:visited {
+    color: var(--color-secondary-light-2);
+    font-family: var(--font-secondary), sans-serif;
+    font-size: 1.4rem;
+    padding: 1.5rem 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    fill: currentColor;
+    height: 1.75rem;
+    width: 1.75rem;
+
+    margin-right: 2rem;
+  }
+}
+
+.slogan {
+  color: var(--color-secondary-light-2);
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  &__highlight {
+    text-transform: uppercase;
+  }
+}
