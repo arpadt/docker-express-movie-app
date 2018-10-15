@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-    const movie = await Movie.findById(id);
+    const movie = await Movie.find({ imdbID: id });
 
     if (!movie) {
       return res.status(404).send('Movie not found.');

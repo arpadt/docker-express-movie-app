@@ -1,3 +1,5 @@
+import { ObjectId } from 'bson';
+
 export interface Movie {
   Title: string;
   Year: string;
@@ -24,6 +26,7 @@ export interface Movie {
   Response?: string;
   Writer?: string;
   imdbVotes?: string;
+  _id?: ObjectId;
 }
 
 export interface Ratings {

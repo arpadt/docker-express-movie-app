@@ -1,4 +1,3 @@
-// import { Observable } from 'rxjs/internal/Observable';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 

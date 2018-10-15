@@ -1,4 +1,4 @@
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
@@ -16,8 +16,6 @@ export class HomeComponent implements OnDestroy {
   unsubscribe$ = new Subject();
 
   url = `${ environment.hostUrl }/api/search`;
-  // TODO: delete
-  // apiBasicsUrl = `../../assets/data/api-basics.json`;
   movies: Movie[];
 
   constructor(private movieDataService: MovieDataService) { }
@@ -33,7 +31,6 @@ export class HomeComponent implements OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      // .getMovieData(`${this.url}/${title}`)
       .subscribe((res: HttpResponse<MovieResponse>) => {
         const response: MovieResponse = res.body;
         this.movies = response.Search;

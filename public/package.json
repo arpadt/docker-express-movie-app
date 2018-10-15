@@ -42,6 +42,7 @@
     "@nativescript/schematics": "~0.2.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
+    "@types/mongoose": "^5.2.19",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",

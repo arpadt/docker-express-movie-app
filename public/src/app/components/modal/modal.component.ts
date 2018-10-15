@@ -10,7 +10,6 @@ import {
 
 import { NotifierDirective } from '@directives/notifier.directive';
 import { NotifierItem } from '@models/components';
-import { HttpResponse } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { DatabaseService, LoadComponentService} from '@services';
 import { Movie, Modal, MovieState } from '@types';
@@ -64,6 +63,7 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     if (this.movie._id) {
       this.isAddedToList = true;
     }
+    console.log('movie from home', this.movie);
   }
 
   ngOnDestroy() {
@@ -102,7 +102,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   }
 
   addToList() {
-    // TODO: uncomment
     this.databaseService
       .addMovie(this.url, this.movie)
       .subscribe((res) => {
@@ -120,7 +119,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
   }
 
   removeFromList() {
-    // TODO: uncomment
     this.databaseService
       .deleteSelectedMovie(`${ this.url }/${ this.movie.imdbID }`)
       .subscribe((res) => {

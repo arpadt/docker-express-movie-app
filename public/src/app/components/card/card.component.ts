@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewEncapsulation
 } from '@angular/core';
@@ -15,15 +14,11 @@ import {
   styleUrls: ['./card.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() movie: Movie;
   @Output() movieDetailsRequest = new EventEmitter<any>();
 
   constructor(private databaseService: DatabaseService) { }
-
-  ngOnInit() {
-    // console.log('from card', this.movie);
-  }
 
   getMovieDetails(movieId: string) {
     this.movieDetailsRequest.emit(movieId);

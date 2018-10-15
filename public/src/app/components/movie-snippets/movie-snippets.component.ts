@@ -1,18 +1,17 @@
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { takeUntil, map } from 'rxjs/operators';
+import { Subject, combineLatest } from 'rxjs';
 import {
   Component,
   Input,
   ViewChild,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 
 import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { Movie } from '@types';
-import { MovieDataService, LoadComponentService } from '@services';
+import { MovieDataService, LoadComponentService, DatabaseService } from '@services';
 import { environment } from '@environments/environment';
 
 @Component({
@@ -26,14 +25,15 @@ export class MovieSnippetsComponent implements OnDestroy {
   @Input() movies: Movie[];
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
-  // TODO: uncomment
-  url = `${environment.hostUrl}/api/details`;
-  // url = '../../assets/data/api-details.json';
+
+  apiURL = `${ environment.hostUrl }/api/details`;
+  dbURL = `${ environment.hostUrl }/movies`;
 
   constructor(
     private movieDataService: MovieDataService,
-    private loadComponentService: LoadComponentService
-   ) {}
+    private loadComponentService: LoadComponentService,
+    private databaseService: DatabaseService,
+  ) { }
 
   ngOnDestroy() {
     this.unsubscribe$.next();
@@ -41,22 +41,45 @@ export class MovieSnippetsComponent implements OnDestroy {
   }
 
   getMovieDetails(movieId: string) {
-    this.movieDataService
-      // .getMovieData(this.url)
-      // TODO: uncomment
-      .getMovieData(`${ this.url }/${ movieId }`)
+    const movieFromAPI$ = this.movieDataService
+      .getMovieData(`${ this.apiURL }/${ movieId }`)
       .pipe(
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe((res: HttpResponse<Movie>) => {
-        const response: Movie = res.body;
-        this.modalComponent = new ModalItem(ModalComponent, response);
-        this.loadComponentService.loadComponent(
-          this.modalComponent,
-          this.modalHost,
-          'movie'
-        );
-      });
-  }
+        takeUntil(this.unsubscribe$),
+      map(response => {
+        console.log('from api', response);
+        return response.body;
+      }),
+    );
 
+    const movieFromDB$ = this.databaseService
+      .getSelectedMovie(`${ this.dbURL }/${ movieId }`)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+      map(response => {
+        console.log('from db', response);
+        return response.body[0];
+      }),
+    );
+
+    const combinedResponses$ = combineLatest(
+      movieFromAPI$,
+      movieFromDB$,
+    ).pipe(
+      takeUntil(this.unsubscribe$),
+      map(([movieFromAPI, movieFromDB]) => {
+        return movieFromDB && movieFromDB._id
+          ? movieFromDB
+          : movieFromAPI;
+      })
+    );
+
+    combinedResponses$.subscribe((movie) => {
+      this.modalComponent = new ModalItem(ModalComponent, movie as Movie);
+      this.loadComponentService.loadComponent(
+        this.modalComponent,
+        this.modalHost,
+        'movie'
+      );
+    });
+  }
 }
