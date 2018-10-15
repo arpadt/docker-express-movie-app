@@ -63,7 +63,6 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     if (this.movie._id) {
       this.isAddedToList = true;
     }
-    console.log('movie from home', this.movie);
   }
 
   ngOnDestroy() {
@@ -116,6 +115,8 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
       },
         error => console.error(error)
     );
+
+    this.closeModal();
   }
 
   removeFromList() {
@@ -134,6 +135,8 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
         },
           error => console.error(error)
     );
+
+    this.closeModal();
   }
 
   displayNotifier(message: string) {
