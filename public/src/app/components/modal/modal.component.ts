@@ -89,16 +89,16 @@ export class ModalComponent implements OnInit, OnDestroy, Modal {
     return items.split(',')[0];
   }
 
-  addCurrencyToBoxOffice(income: string = '') {
-    if (!income) {
-      return 'N/A';
-    }
+  // addCurrencyToBoxOffice(income: string = '') {
+  //   if (!income) {
+  //     return 'N/A';
+  //   }
 
-    const dollars = income.split(';')[1];
-    return dollars
-      ? `$${ dollars }`
-      : 'N/A';
-  }
+  //   const dollars = income.split(';')[1];
+  //   return dollars
+  //     ? `$${ dollars }`
+  //     : 'N/A';
+  // }
 
   addToList() {
     this.databaseService

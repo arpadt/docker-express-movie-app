@@ -58,7 +58,7 @@
           <span class="movie-additional__title">Production</span>
         </div>
         <div class="movie-additional__data">
-          <span class="movie-additional__text">{{ addCurrencyToBoxOffice(movie.BoxOffice) }}</span>
+          <span class="movie-additional__text">{{ movie.BoxOffice || 'N/A' }}</span>
           <span class="movie-additional__text">{{ movie.Website || 'N/A' }}</span>
           <span class="movie-additional__text">{{ movie.Production || 'N/A' }}</span>
         </div>

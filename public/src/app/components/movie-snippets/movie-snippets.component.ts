@@ -46,7 +46,6 @@ export class MovieSnippetsComponent implements OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
       map(response => {
-        console.log('from api', response);
         return response.body;
       }),
     );
@@ -56,7 +55,6 @@ export class MovieSnippetsComponent implements OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
       map(response => {
-        console.log('from db', response);
         return response.body[0];
       }),
     );
