@@ -1,0 +1,24 @@
+<form
+  class="search"
+  #movieSearch="ngForm"
+  (ngSubmit)="onSubmit(movieTitle.value); movieSearch.reset()"
+>
+  <input
+    type="text"
+    class="search__input"
+    placeholder="Search movies"
+    name="movieTitle"
+    [(ngModel)]="model.title"
+    #movieTitle
+    required
+    >
+  <button
+    class="search__button"
+    type="submit"
+    [disabled]="!movieSearch.form.valid"
+    >
+    <svg class="search__icon">
+      <use xlink:href="../../assets/img/symbol-defs.svg#icon-magnifying-glass"></use>
+    </svg>
+  </button>
+</form>

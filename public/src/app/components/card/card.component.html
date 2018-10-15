@@ -1,0 +1,31 @@
+<div class="card">
+  <ng-template [ngIf]="movie.Poster!=='N/A'" [ngIfElse]="noPoster">
+    <figure class="card__poster">
+      <img [src]="movie.Poster || ''" alt="Poster" class="card__poster-item">
+    </figure>
+  </ng-template>
+  <ng-template #noPoster>
+    <div class="card__no-poster">
+      <svg class="card__no-poster-icon">
+        <use xlink:href="../../assets/img/symbol-defs.svg#icon-video-camera"></use>
+      </svg>
+    </div>
+  </ng-template>
+  <div class="card__data-wrapper">
+    <div class="card__data">
+      <p class="card__title">
+        {{ movie.Title }}
+      </p>
+      <div class="card__meta">
+        <div class="card__meta-data card__meta-data--year">{{ movie.Year }}</div>
+        <div class="card__meta-data card__meta-data--type">{{ movie.Type }}</div>
+      </div>
+    </div>
+    <div class="card__buttons">
+      <button
+        class="btn btn--ghost card__button"
+        (click)="getMovieDetails(movie.imdbID)"
+      >More</button>
+    </div>
+  </div>
+</div>

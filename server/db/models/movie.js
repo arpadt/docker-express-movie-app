@@ -1,16 +1,38 @@
 const mongoose = require('mongoose');
 
 const Movie = mongoose.model('Movie', {
-  title: {
+  Title: {
     type: String,
     required: true
   },
-  genre: {
-    type: String
+  Language: String,
+  Genre: String,
+  Runtime: String,
+  Rated: String,
+  Actors: String,
+  Year: {
+    type: String,
+    required: true
   },
-  isLiked: {
-    type: Boolean
-  }
+  imdbID: {
+    type: String,
+    required: true
+  },
+  Type: {
+    type: String,
+    required: true
+  },
+  Poster: {
+    type: String,
+    required: true
+  },
+  Plot: String,
+  BoxOffice: String,
+  Website: String,
+  Production: String,
+  imdbRating: String,
+  Director: String,
+  Awards: String,
 });
 
 module.exports = { Movie };

@@ -2,3 +2,5 @@ node_modules
 docker-compose.yml
 docker-compose.test.yml
 server/config/config.json
+demo.html
+dist
