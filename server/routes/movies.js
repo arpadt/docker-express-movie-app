@@ -5,16 +5,16 @@ const { Movie } = require('../db/models/movie');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+const getAllMoviesFromDB = async (req, res) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.get('/:id', async (req, res) => {
+const getMovieByIdFromDB = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -28,9 +28,9 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.post('/', async (req, res) => {
+const addMovietoDB = async (req, res) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -57,18 +57,18 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400).send('An error occured.')
   }
-});
+};
 
-router.delete('/', async (req, res) => {
+const deleteAllMoviesFromDB = async (req, res) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.delete('/:id', async (req, res) => {
+const deleteSelectedMovieFromDB = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -81,9 +81,9 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.patch('/:id', async (req, res) => {
+const updateMovieInDB = async (req, res) => {
   const id = req.params.id;
 
   const body = req.body
@@ -98,6 +98,13 @@ router.patch('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
+
+router.get('/', getAllMoviesFromDB);
+router.post('/', addMovietoDB);
+router.delete('/', deleteAllMoviesFromDB);
+router.get('/:id', getMovieByIdFromDB);
+router.delete('/:id', deleteSelectedMovieFromDB);
+router.patch('/:id', updateMovieInDB);
 
 module.exports = { router };
