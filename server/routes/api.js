@@ -3,7 +3,7 @@ const rp = require('request-promise-native');
 
 const router = express.Router();
 
-router.get('/search/:title', async (req, res) => {
+const fetchMovieByTitle = async (req, res) => {
   const title = req.params.title;
 
   if (!title) {
@@ -22,9 +22,9 @@ router.get('/search/:title', async (req, res) => {
   } catch (e) {
     res.status(404).send(e);
   }
-});
+};
 
-router.get('/details/:id', async (req, res) => {
+const fetchMovieDetailsById = async (req, res) => {
   const movieId = req.params.id;
 
   const options = {
@@ -39,6 +39,9 @@ router.get('/details/:id', async (req, res) => {
   } catch (e) {
     res.status(404).send(e);
   }
-});
+};
+
+router.get('/search/:title', fetchMovieByTitle);
+router.get('/details/:id', fetchMovieDetailsById);
 
 module.exports = { router };

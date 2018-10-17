@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use(apiCheck);
-
 app.use(express.static(path.join(__dirname, '/../dist/public')));
 
 app.use('/', landingPageRoute);
