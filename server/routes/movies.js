@@ -1,11 +1,6 @@
-const express = require('express');
-const { Types: { ObjectId } } = require('mongoose');
-
 const { Movie } = require('../db/models/movie');
 
-const router = express.Router();
-
-const getAllMoviesFromDB = async (req, res) => {
+const getMoviesFromDB = async (req, res) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
@@ -30,7 +25,7 @@ const getMovieByIdFromDB = async (req, res) => {
   }
 };
 
-const addMovietoDB = async (req, res) => {
+const addMovieToDB = async (req, res) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -59,7 +54,7 @@ const addMovietoDB = async (req, res) => {
   }
 };
 
-const deleteAllMoviesFromDB = async (req, res) => {
+const removeMoviesFromDB = async (req, res) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
@@ -68,12 +63,11 @@ const deleteAllMoviesFromDB = async (req, res) => {
   }
 };
 
-const deleteSelectedMovieFromDB = async (req, res) => {
+const removeSelectedMovieFromDB = async (req, res) => {
   const id = req.params.id;
 
   try {
     const movie = await Movie.findOneAndRemove({ imdbID: id });
-
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
@@ -85,26 +79,24 @@ const deleteSelectedMovieFromDB = async (req, res) => {
 
 const updateMovieInDB = async (req, res) => {
   const id = req.params.id;
-
   const body = req.body
+
   try {
     const movie = await Movie.findByIdAndUpdate(id, body, { new: true });
-
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
-
     res.status(204).send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
 };
 
-router.get('/', getAllMoviesFromDB);
-router.post('/', addMovietoDB);
-router.delete('/', deleteAllMoviesFromDB);
-router.get('/:id', getMovieByIdFromDB);
-router.delete('/:id', deleteSelectedMovieFromDB);
-router.patch('/:id', updateMovieInDB);
-
-module.exports = { router };
+module.exports = {
+  getMoviesFromDB,
+  getMovieByIdFromDB,
+  addMovieToDB,
+  removeMoviesFromDB,
+  removeSelectedMovieFromDB,
+  updateMovieInDB,
+}

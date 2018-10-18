@@ -1,7 +1,4 @@
-const express = require('express');
 const rp = require('request-promise-native');
-
-const router = express.Router();
 
 const fetchMovieByTitle = async (req, res) => {
   const title = req.params.title;
@@ -41,7 +38,7 @@ const fetchMovieDetailsById = async (req, res) => {
   }
 };
 
-router.get('/search/:title', fetchMovieByTitle);
-router.get('/details/:id', fetchMovieDetailsById);
-
-module.exports = { router };
+module.exports = {
+  fetchMovieByTitle,
+  fetchMovieDetailsById,
+}

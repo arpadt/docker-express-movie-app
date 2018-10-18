@@ -3,32 +3,37 @@ require('./config/config');
 const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
-const morgan = require('morgan');
+const logger = require('morgan');
+const errorHandler = require('errorhandler');
 
 require('./db/connect');
-const { router: moviesRoutes } = require('./routes/movies');
-const { router: landingPageRoute } = require('./routes/base');
-const { router: apiRoutes } = require('./routes/api');
+const routes = require('./routes');
 const apiCheck = require('./middleware/api-check');
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(morgan('dev'));
+app.use(logger('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(errorHandler());
+}
 
 app.use(apiCheck);
 app.use(express.static(path.join(__dirname, '/../dist/public')));
 
-app.use('/', landingPageRoute);
-app.use('/movies', moviesRoutes);
-app.use('/api', apiRoutes);
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
+app.get('/', routes.base.getLandingPage);
 
-app.use((error, req, res, next) => {
-  res.status(500).send(`${ error }`);
-});
+app.get('/movies', routes.movies.getMoviesFromDB);
+app.get('/movies/:id', routes.movies.getMovieByIdFromDB);
+app.post('/movies', routes.movies.addMovieToDB);
+app.delete('/movies', routes.movies.removeMoviesFromDB);
+app.delete('/movies', routes.movies.removeSelectedMovieFromDB);
+app.patch('/movies/:id', routes.movies.updateMovieInDB);
+
+app.get('/api/search/:title', routes.api.fetchMovieByTitle);
+app.get('/api/details/:id', routes.api.fetchMovieDetailsById);
+
+app.get('*', routes.base.redirectToLandingPage);
 
 const PORT = process.env.PORT || 8080;
 
