@@ -18,7 +18,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(errorHandler());
 }
 
-app.use(apiCheck);
 app.use(express.static(path.join(__dirname, '/../dist/public')));
 
 app.get('/', routes.base.getLandingPage);
@@ -30,8 +29,8 @@ app.delete('/movies', routes.movies.removeMoviesFromDB);
 app.delete('/movies', routes.movies.removeSelectedMovieFromDB);
 app.patch('/movies/:id', routes.movies.updateMovieInDB);
 
-app.get('/api/search/:title', routes.api.fetchMovieByTitle);
-app.get('/api/details/:id', routes.api.fetchMovieDetailsById);
+app.get('/api/search/:title', apiCheck, routes.api.fetchMovieByTitle);
+app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);
 
 app.get('*', routes.base.redirectToLandingPage);
 

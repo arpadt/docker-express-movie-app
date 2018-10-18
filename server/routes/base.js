@@ -1,8 +1,8 @@
 module.exports = {
-  getLandingPage = (req, res) => {
+  getLandingPage(req, res) {
     res.send('Landing page works.')
   },
-  redirectToLandingPage = (req, res) => {
+  redirectToLandingPage(req, res) {
     res.redirect('/');
   },
 }
