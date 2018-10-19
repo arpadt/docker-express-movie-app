@@ -1,20 +1,15 @@
-const express = require('express');
-const { Types: { ObjectId } } = require('mongoose');
-
 const { Movie } = require('../db/models/movie');
 
-const router = express.Router();
-
-router.get('/', async (req, res) => {
+const getMoviesFromDB = async (req, res) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.get('/:id', async (req, res) => {
+const getMovieByIdFromDB = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -28,9 +23,9 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.post('/', async (req, res) => {
+const addMovieToDB = async (req, res) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -57,23 +52,22 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400).send('An error occured.')
   }
-});
+};
 
-router.delete('/', async (req, res) => {
+const removeMoviesFromDB = async (req, res) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.delete('/:id', async (req, res) => {
+const removeSelectedMovieFromDB = async (req, res) => {
   const id = req.params.id;
 
   try {
     const movie = await Movie.findOneAndRemove({ imdbID: id });
-
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
@@ -81,23 +75,28 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-router.patch('/:id', async (req, res) => {
+const updateMovieInDB = async (req, res) => {
   const id = req.params.id;
-
   const body = req.body
+
   try {
     const movie = await Movie.findByIdAndUpdate(id, body, { new: true });
-
     if (!movie) {
       return res.status(404).send('Movie not found.');
     }
-
     res.status(204).send(movie);
   } catch (error) {
     res.status(400).send('Error');
   }
-});
+};
 
-module.exports = { router };
+module.exports = {
+  getMoviesFromDB,
+  getMovieByIdFromDB,
+  addMovieToDB,
+  removeMoviesFromDB,
+  removeSelectedMovieFromDB,
+  updateMovieInDB,
+}
