@@ -2,12 +2,13 @@
   "name": "express-mongo-docker",
   "version": "1.0.0",
   "description": "Express app with MongoDB and Docker",
-  "main": "server/server.js",
+  "main": "lib/server",
+  "types": "lib/server",
   "scripts": {
-    "lint": "npx eslint ./**/*.js",
-    "start": "node server/server.js",
-    "start:dev": "node-dev server/server.js",
-    "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit"
+    "start": "npm run build:live",
+    "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
+    "build": "tsc -p .",
+    "build:live": "ts-node-dev server.ts"
   },
   "author": "Arpad Toth",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
+    "@types/node": "^10.12.0",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "cross-env": "^5.2.0",
@@ -29,6 +31,9 @@
     "eslint-config-google": "^0.9.1",
     "mocha": "^5.2.0",
     "node-dev": "^3.1.3",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.30",
+    "typescript": "^3.1.3"
   }
 }

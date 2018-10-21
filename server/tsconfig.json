@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6","dom"],
+    "outDir": "lib",
+    "declaration": true,
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@routes": ["routes"],
+      "@middleware": ["moddleware"],
+      "@db/*": ["db/*"],
+      "@config/*": ["config/*"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}
