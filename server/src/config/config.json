@@ -1,0 +1,10 @@
+{
+  "development": {
+    "PORT": 3000,
+    "MONGODB": "mongodb://192.168.99.100:27017/MovieApp"
+  },
+  "test": {
+    "PORT": 3001,
+    "MONGODB": "mongodb://192.168.99.100:27017/MovieAppTest"
+  }
+}
