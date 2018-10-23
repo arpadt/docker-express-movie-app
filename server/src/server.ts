@@ -9,7 +9,7 @@ import mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const routes = require('./routes');
+import * as routes from '@routes';
 const { apiCheck, validation } = require('./middleware');
 
 const app = express();

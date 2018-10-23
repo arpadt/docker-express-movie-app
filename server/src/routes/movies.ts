@@ -1,6 +1,6 @@
-const { Movie } = require('../db/models/movie');
+import { Movie } from '@db/models/movie';
 
-const getMoviesFromDB = async (req, res) => {
+const getMoviesFromDB = async (req: any, res: any) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
@@ -9,7 +9,7 @@ const getMoviesFromDB = async (req, res) => {
   }
 };
 
-const getMovieByIdFromDB = async (req, res) => {
+const getMovieByIdFromDB = async (req: any, res: any) => {
   const id = req.params.id;
 
   try {
@@ -25,7 +25,7 @@ const getMovieByIdFromDB = async (req, res) => {
   }
 };
 
-const addMovieToDB = async (req, res) => {
+const addMovieToDB = async (req: any, res: any) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -54,7 +54,7 @@ const addMovieToDB = async (req, res) => {
   }
 };
 
-const removeMoviesFromDB = async (req, res) => {
+const removeMoviesFromDB = async (req: any, res: any) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
@@ -63,7 +63,7 @@ const removeMoviesFromDB = async (req, res) => {
   }
 };
 
-const removeSelectedMovieFromDB = async (req, res) => {
+const removeSelectedMovieFromDB = async (req: any, res: any) => {
   const id = req.params.id;
 
   try {
@@ -77,7 +77,7 @@ const removeSelectedMovieFromDB = async (req, res) => {
   }
 };
 
-const updateMovieInDB = async (req, res) => {
+const updateMovieInDB = async (req: any, res: any) => {
   const id = req.params.id;
   const body = req.body
 
@@ -92,7 +92,7 @@ const updateMovieInDB = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   getMoviesFromDB,
   getMovieByIdFromDB,
   addMovieToDB,

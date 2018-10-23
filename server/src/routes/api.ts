@@ -1,6 +1,6 @@
-const rp = require('request-promise-native');
+import rp from 'request-promise-native';
 
-const fetchMovieByTitle = async (req, res) => {
+const fetchMovieByTitle = async (req: any, res: any) => {
   const title = req.params.title;
 
   if (!title) {
@@ -21,7 +21,7 @@ const fetchMovieByTitle = async (req, res) => {
   }
 };
 
-const fetchMovieDetailsById = async (req, res) => {
+const fetchMovieDetailsById = async (req: any, res: any) => {
   const movieId = req.params.id;
 
   const options = {
@@ -38,7 +38,7 @@ const fetchMovieDetailsById = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   fetchMovieByTitle,
   fetchMovieDetailsById,
 }

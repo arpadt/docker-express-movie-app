@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const Movie = mongoose.model('Movie', {
+const Schema = mongoose.Schema;
+const movieSchema = new Schema({
   Title: {
     type: String,
     required: true
@@ -35,4 +36,7 @@ const Movie = mongoose.model('Movie', {
   Awards: String,
 });
 
-module.exports = { Movie };
+
+const Movie = mongoose.model('Movie', movieSchema);
+
+export { Movie };
