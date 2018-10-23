@@ -10,7 +10,7 @@ import mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 import * as routes from '@routes';
-const { apiCheck, validation } = require('./middleware');
+import { apiCheck, validation } from '@middleware';
 
 const app = express();
 
@@ -36,8 +36,8 @@ const main = async () => {
     app.delete('/movies', routes.movies.removeSelectedMovieFromDB);
     app.patch('/movies/:id', routes.movies.updateMovieInDB);
 
-    app.get('/api/search/:title', apiCheck, validation.validateTitle(), routes.api.fetchMovieByTitle);
-    app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);
+    app.get('/api/search/:title', apiCheck as any, validation.validateTitle(), routes.api.fetchMovieByTitle);
+    app.get('/api/details/:id', apiCheck as any, routes.api.fetchMovieDetailsById);
 
     app.get('*', routes.base.redirectToLandingPage);
 
