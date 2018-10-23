@@ -12,7 +12,7 @@
     "baseUrl": "src",
     "paths": {
       "@routes": ["routes"],
-      "@middleware": ["moddleware"],
+      "@middleware": ["middleware"],
       "@db/*": ["db/*"],
       "@config/*": ["config/*"]
     },

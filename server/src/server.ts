@@ -1,12 +1,12 @@
 require('./config/config');
 
-const bodyParser = require('body-parser');
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
-const errorHandler = require('errorhandler');
+import * as bodyParser from 'body-parser';
+import express from 'express';
+import * as path from 'path';
+import logger from 'morgan';
+import errorHandler from 'errorhandler';
+import mongoose = require('mongoose');
 
-const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const routes = require('./routes');
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const main = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB, { useNewUrlParser: true });
+    await mongoose.connect(process.env.MONGODB as string, { useNewUrlParser: true });
     console.log('Connected to database.');
 
     app.use(express.static(path.join(__dirname, '/../dist/public')));
@@ -55,4 +55,4 @@ const main = async () => {
 
 main();
 
-module.exports = { app };
+export { app };
