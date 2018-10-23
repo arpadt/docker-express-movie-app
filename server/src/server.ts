@@ -7,10 +7,10 @@ import logger from 'morgan';
 import errorHandler from 'errorhandler';
 import mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
-
 import * as routes from '@routes';
 import { apiCheck, validation } from '@middleware';
+
+mongoose.Promise = global.Promise;
 
 const app = express();
 
