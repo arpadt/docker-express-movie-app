@@ -1,6 +1,6 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const { Types: { ObjectId } } = require('mongoose');
+import { ObjectId } from 'bson';
+import * as chai from 'chai';
+import chaiHttp = require('chai-http');
 
 const { app } = require('../server');
 const { Movie } = require('../db/models/movie');
@@ -104,7 +104,7 @@ describe('#movies', () => {
   describe('DELETE /movies', () => {
     it('deletes all movies', async () => {
       const response = await request(app)
-        .delete('/movies');
+        .del('/movies');
 
       const movies = await Movie.find({});
 
@@ -115,7 +115,7 @@ describe('#movies', () => {
 
     it('returns error if id is not valid', async () => {
       const response = await request(app)
-        .delete('/movies/123');
+        .del('/movies/123');
 
       expect(response.status).to.equal(404);
       expect(response.text).to.equal('Invalid id!');
@@ -125,7 +125,7 @@ describe('#movies', () => {
       const newId = new ObjectId();
 
       const response = await request(app)
-        .delete(`/movies/${ newId }`);
+        .del(`/movies/${ newId }`);
 
       expect(response.status).to.equal(404);
       expect(response.text).to.equal('Movie not found.');
@@ -133,7 +133,7 @@ describe('#movies', () => {
 
     it('deletes the relevant movie', async () => {
       const response = await request(app)
-        .delete(`/movies/${ id1 }`);
+        .del(`/movies/${ id1 }`);
 
       const movies = await Movie.find({});
       const [movie] = movies;
