@@ -5,10 +5,10 @@
   "main": "lib/server",
   "types": "lib/server",
   "scripts": {
-    "start": "npm run build:live",
+    "start": "cross-env MONGODB=mongodb://192.168.99.100:27017/MovieApp npm run build:live",
     "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
     "build": "tsc -p .",
-    "build:live": "ts-node-dev server.ts"
+    "build:live": "ts-node-dev -r tsconfig-paths/register src/server.ts"
   },
   "author": "Arpad Toth",
   "license": "ISC",
@@ -44,6 +44,7 @@
     "nodemon": "^1.18.3",
     "ts-node": "^7.0.1",
     "ts-node-dev": "^1.0.0-pre.30",
+    "tsconfig-paths": "^3.6.0",
     "typescript": "^3.1.3"
   }
 }

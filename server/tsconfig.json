@@ -2,19 +2,24 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": ["es6","dom"],
-    "outDir": "lib",
+    "lib": [
+      "es2017",
+      "es2016",
+      "es6",
+      "dom"
+    ],
+    "outDir": "./lib",
+    "rootDir": "./src",
     "declaration": true,
-    "rootDir": "src",
     "strict": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@routes": ["routes"],
-      "@middleware": ["middleware"],
-      "@db/*": ["db/*"],
-      "@config/*": ["config/*"]
+      "@routes": ["./src/routes"],
+      "@middleware": ["./src/middleware"],
+      "@db/*": ["./src/db/*"],
+      "@config/*": ["./src/config/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true

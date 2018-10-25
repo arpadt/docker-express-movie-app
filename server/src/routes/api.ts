@@ -1,6 +1,6 @@
 import rp from 'request-promise-native';
 
-const fetchMovieByTitle = async (req: any, res: any) => {
+export const fetchMovieByTitle = async (req: any, res: any) => {
   const title = req.params.title;
 
   if (!title) {
@@ -21,7 +21,7 @@ const fetchMovieByTitle = async (req: any, res: any) => {
   }
 };
 
-const fetchMovieDetailsById = async (req: any, res: any) => {
+export const fetchMovieDetailsById = async (req: any, res: any) => {
   const movieId = req.params.id;
 
   const options = {
@@ -37,8 +37,3 @@ const fetchMovieDetailsById = async (req: any, res: any) => {
     res.status(404).send(e);
   }
 };
-
-export {
-  fetchMovieByTitle,
-  fetchMovieDetailsById,
-}

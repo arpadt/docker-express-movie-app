@@ -1,5 +1,3 @@
-require('./config/config');
-
 import * as bodyParser from 'body-parser';
 import express from 'express';
 import * as path from 'path';
@@ -41,7 +39,7 @@ const main = async () => {
 
     app.get('*', routes.base.redirectToLandingPage);
 
-    const PORT = process.env.PORT || 8080;
+    const PORT = process.env.PORT || 3000;
 
     if (process.env.NODE_ENV !== 'test') {
       app.listen(PORT, () => {
