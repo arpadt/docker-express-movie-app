@@ -18,8 +18,7 @@
     "paths": {
       "@routes": ["./src/routes"],
       "@middleware": ["./src/middleware"],
-      "@db/*": ["./src/db/*"],
-      "@config/*": ["./src/config/*"]
+      "@db/*": ["./src/db/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true
