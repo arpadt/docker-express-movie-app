@@ -1,5 +1,5 @@
 node_modules
-dcoker-compose.yml
+docker-compose.yml
 docker-compose.test.yml
 demo.html
 dist
