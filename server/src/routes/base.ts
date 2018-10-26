@@ -1,7 +1,9 @@
-export const getLandingPage = (req: any, res: any) => {
+import { Request, Response } from 'express';
+
+export const getLandingPage = (req: Request, res: Response) => {
   res.send('Landing page works.')
 };
 
-export const redirectToLandingPage = (req: any, res: any) => {
+export const redirectToLandingPage = (req: Request, res: Response) => {
   res.redirect('/');
 };

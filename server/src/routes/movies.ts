@@ -1,6 +1,7 @@
 import { Movie } from '@db/models/movie';
+import { Request, Response } from 'express';
 
-export const getMoviesFromDB = async (req: any, res: any) => {
+export const getMoviesFromDB = async (req: Request, res: Response) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
@@ -9,7 +10,7 @@ export const getMoviesFromDB = async (req: any, res: any) => {
   }
 };
 
-export const getMovieByIdFromDB = async (req: any, res: any) => {
+export const getMovieByIdFromDB = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
@@ -25,7 +26,7 @@ export const getMovieByIdFromDB = async (req: any, res: any) => {
   }
 };
 
-export const addMovieToDB = async (req: any, res: any) => {
+export const addMovieToDB = async (req: Request, res: Response) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -54,7 +55,7 @@ export const addMovieToDB = async (req: any, res: any) => {
   }
 };
 
-export const removeMoviesFromDB = async (req: any, res: any) => {
+export const removeMoviesFromDB = async (req: Request, res: Response) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
@@ -63,7 +64,7 @@ export const removeMoviesFromDB = async (req: any, res: any) => {
   }
 };
 
-export const removeSelectedMovieFromDB = async (req: any, res: any) => {
+export const removeSelectedMovieFromDB = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
@@ -77,7 +78,7 @@ export const removeSelectedMovieFromDB = async (req: any, res: any) => {
   }
 };
 
-export const updateMovieInDB = async (req: any, res: any) => {
+export const updateMovieInDB = async (req: Request, res: Response) => {
   const id = req.params.id;
   const body = req.body
 
