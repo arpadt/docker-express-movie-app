@@ -6,7 +6,7 @@ import errorHandler from 'errorhandler';
 import mongoose = require('mongoose');
 
 import * as routes from '@routes';
-import { apiCheck, validation } from '@middleware';
+import { apiCheck, validateTitle } from '@middleware';
 
 mongoose.Promise = global.Promise;
 
@@ -34,8 +34,8 @@ const main = async () => {
     app.delete('/movies', routes.movies.removeSelectedMovieFromDB);
     app.patch('/movies/:id', routes.movies.updateMovieInDB);
 
-    app.get('/api/search/:title', apiCheck as any, validation.validateTitle(), routes.api.fetchMovieByTitle);
-    app.get('/api/details/:id', apiCheck as any, routes.api.fetchMovieDetailsById);
+    app.get('/api/search/:title', apiCheck, validateTitle, routes.api.fetchMovieByTitle);
+    app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);
 
     app.get('*', routes.base.redirectToLandingPage);
 
