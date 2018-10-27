@@ -5,10 +5,12 @@
   "main": "lib/server",
   "types": "lib/server",
   "scripts": {
-    "start": "cross-env MONGODB=mongodb://192.168.99.100:27017/MovieApp npm run build:live",
+    "start": "node server.js",
+    "start:dev": "cross-env MONGODB=mongodb://192.168.99.100:27017/MovieApp npm run build:dev",
     "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
+    "prebuild": "rm -rf lib",
     "build": "tsc -p .",
-    "build:live": "ts-node-dev -r tsconfig-paths/register src/server.ts"
+    "build:dev": "ts-node-dev -r tsconfig-paths/register src/server.ts"
   },
   "author": "Arpad Toth",
   "license": "ISC",
