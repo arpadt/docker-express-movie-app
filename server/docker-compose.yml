@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mongod-movie-app-container:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - movie-network
+
+  movie-api:
+    build: .
+    ports:
+      - "80:${PORT}"
+    env_file: .env
+    networks:
+      - movie-network
+
+volumes:
+  mongo-data:
+
+networks:
+  movie-network:
+
+
+

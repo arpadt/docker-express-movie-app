@@ -14,12 +14,6 @@
     "strict": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@routes": ["./src/routes"],
-      "@middleware": ["./src/middleware"],
-      "@db/*": ["./src/db/*"]
-    },
     "esModuleInterop": true,
     "resolveJsonModule": true
   },

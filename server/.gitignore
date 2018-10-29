@@ -1,6 +1,0 @@
-node_modules
-docker-compose.yml
-docker-compose.test.yml
-demo.html
-dist
-lib

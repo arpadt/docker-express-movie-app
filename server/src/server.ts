@@ -5,8 +5,8 @@ import logger from 'morgan';
 import errorHandler from 'errorhandler';
 import mongoose = require('mongoose');
 
-import * as routes from '@routes';
-import { apiCheck, validateTitle } from '@middleware';
+import * as routes from './routes';
+import { apiCheck, validateTitle } from './middleware';
 
 mongoose.Promise = global.Promise;
 
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const main = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB as string, { useNewUrlParser: true });
+    await mongoose.connect(process.env.MONGO_URI as string, { useNewUrlParser: true });
     console.log('Connected to database.');
 
     app.use(express.static(path.join(__dirname, '/../dist/public')));

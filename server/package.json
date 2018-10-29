@@ -6,7 +6,7 @@
   "types": "lib/server",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "cross-env MONGODB=mongodb://192.168.99.100:27017/MovieApp npm run build:dev",
+    "start:dev": "cross-env MONGO_URI=mongodb://192.168.99.100:27017/MovieApp npm run build:dev",
     "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
     "prebuild": "rm -rf lib",
     "build": "tsc -p .",

@@ -1,4 +1,4 @@
-import { Movie } from '@db/models/movie';
+import { Movie } from '../db/models/movie';
 import { Request, Response } from 'express';
 
 export const getMoviesFromDB = async (req: Request, res: Response) => {
