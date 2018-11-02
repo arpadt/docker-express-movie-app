@@ -1,0 +1,6 @@
+npm-debug.log
+README.md
+.env
+public
+server/src
+server/node_modules

@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo-movie-app-container
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - movie-network
+  api:
+    build:
+      context: .
+      args:
+        - mongodb_container
+        - app_env
+    image: node-express-movie-api
+    container_name: node-movie-api-container
+    ports:
+      - "80:3000"
+    env_file: .env
+    networks:
+      - movie-network
+    depends_on:
+      - db
+
+volumes:
+  mongo-data:
+
+networks:
+  movie-network:
+
+
+
