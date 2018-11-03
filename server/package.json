@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Express app with MongoDB and Docker",
   "main": "lib/server",
-  "types": "lib/server",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "start:dev": "npm run build:dev",
     "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
     "prebuild": "rm -rf lib",

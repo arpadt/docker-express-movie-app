@@ -23,7 +23,7 @@ const main = async () => {
     await mongoose.connect(process.env.MONGO_URI as string, { useNewUrlParser: true });
     console.log('Connected to database.');
 
-    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.static(path.join(__dirname, '/../dist')));
 
     app.get('/', routes.base.getLandingPage);
 

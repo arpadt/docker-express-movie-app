@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    image: nginx-movie-app
+    container_name: proxy-movie-app-container
+    ports:
+      - "80:80"
+    networks:
+      - movie-network
+    depends_on:
+      - api
   db:
     image: mongo:latest
     container_name: mongo-movie-app-container
@@ -16,8 +28,8 @@ services:
         - app_env
     image: node-express-movie-api
     container_name: node-movie-api-container
-    ports:
-      - "80:3000"
+    # ports:
+    #   - "3000:3000"
     env_file: .env
     networks:
       - movie-network
