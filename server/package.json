@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "start:dev": "npm run build:dev",
-    "test": "cross-env NODE_ENV=test mocha server/**/*.test.js --exit",
+    "test": "cross-env NODE_ENV=test mocha lib/**/*.test.js --exit",
     "prebuild": "rm -rf lib",
     "build": "tsc -p .",
     "build:dev": "ts-node-dev -r tsconfig-paths/register src/server.ts"

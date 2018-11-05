@@ -17,7 +17,7 @@ RUN npm install -E
 
 COPY ./server/lib/. ./server
 
-RUN mkdir dist
-COPY ./dist ./dist
+# RUN mkdir dist
+# COPY ./dist ./dist
 
 CMD ["npm", "start"]
