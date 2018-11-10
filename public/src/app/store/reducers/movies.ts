@@ -6,10 +6,10 @@ import {
   RemoveMovieFromList,
 } from '@actions';
 
-export const savedMoviesReducer = (state: MovieState = {
+export function savedMoviesReducer(state: MovieState = {
   movieId: '',
   isAdded: false
-}, action) => {
+}, action) {
   switch (action.type) {
     case getType(AddMovieToList):
       return { ...state, movieId: action.payload.movieId, isAdded: true};
@@ -18,4 +18,4 @@ export const savedMoviesReducer = (state: MovieState = {
     default:
       return state;
   }
-};
+}

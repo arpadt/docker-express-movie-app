@@ -1,13 +1,14 @@
-const rp = require('request-promise-native');
+import rp, { Options } from 'request-promise-native';
+import { Request, Response } from 'express';
 
-const fetchMovieByTitle = async (req, res) => {
+export const fetchMovieByTitle = async (req: Request, res: Response) => {
   const title = req.params.title;
 
   if (!title) {
     return res.status(400).send('Invalid request.');
   }
 
-  const options = {
+  const options: Options = {
     uri: `https://www.omdbapi.com/?s=${ title }&apikey=${ process.env.API_KEY }`,
     method: 'GET',
     json: true
@@ -21,10 +22,10 @@ const fetchMovieByTitle = async (req, res) => {
   }
 };
 
-const fetchMovieDetailsById = async (req, res) => {
+export const fetchMovieDetailsById = async (req: Request, res: Response) => {
   const movieId = req.params.id;
 
-  const options = {
+  const options: Options = {
     uri: `https://www.omdbapi.com/?i=${ movieId }&apikey=${ process.env.API_KEY }`,
     method: 'GET',
     json: true
@@ -37,8 +38,3 @@ const fetchMovieDetailsById = async (req, res) => {
     res.status(404).send(e);
   }
 };
-
-module.exports = {
-  fetchMovieByTitle,
-  fetchMovieDetailsById,
-}

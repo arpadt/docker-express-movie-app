@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es2017",
+      "es2016",
+      "es6",
+      "dom"
+    ],
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "declaration": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}

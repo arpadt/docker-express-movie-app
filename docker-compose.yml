@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo-movie-app-container
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - movie-network
+  node-api:
+    build:
+      context: .
+      args:
+        - mongodb_container
+        - app_env
+    image: node-express-movie-api
+    container_name: node-movie-api-container
+    env_file: .env
+    networks:
+      - movie-network
+    depends_on:
+      - db
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    image: client-side-movie-app
+    container_name: client-movie-app-container
+    ports:
+      - "80:80"
+    networks:
+      - movie-network
+    depends_on:
+      - node-api
+
+volumes:
+  mongo-data:
+
+networks:
+  movie-network:
+
+
+

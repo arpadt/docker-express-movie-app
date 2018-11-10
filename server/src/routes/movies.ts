@@ -1,15 +1,16 @@
-const { Movie } = require('../db/models/movie');
+import { Movie } from '../db/models/movie';
+import { Request, Response } from 'express';
 
-const getMoviesFromDB = async (req, res) => {
+export const getMoviesFromDB = async (req: Request, res: Response) => {
   try {
     const movies = await Movie.find({});
     res.send(movies);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
-const getMovieByIdFromDB = async (req, res) => {
+export const getMovieByIdFromDB = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
@@ -21,11 +22,11 @@ const getMovieByIdFromDB = async (req, res) => {
 
     res.send(movie);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
-const addMovieToDB = async (req, res) => {
+export const addMovieToDB = async (req: Request, res: Response) => {
   const newMovie = new Movie({
     Title: req.body.Title,
     Language: req.body.Language,
@@ -48,22 +49,22 @@ const addMovieToDB = async (req, res) => {
 
   try {
     const movie = await newMovie.save();
-    res.status(201).send(movie)
+    res.status(201).send(movie);
   } catch (error) {
-    res.status(400).send('An error occured.')
+    res.status(400).send(error);
   }
 };
 
-const removeMoviesFromDB = async (req, res) => {
+export const removeMoviesFromDB = async (req: Request, res: Response) => {
   try {
     await Movie.remove({});
     res.send('Deleted all movies.');
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
-const removeSelectedMovieFromDB = async (req, res) => {
+export const removeSelectedMovieFromDB = async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
@@ -73,30 +74,6 @@ const removeSelectedMovieFromDB = async (req, res) => {
     }
     res.status(200).send(movie);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
-
-const updateMovieInDB = async (req, res) => {
-  const id = req.params.id;
-  const body = req.body
-
-  try {
-    const movie = await Movie.findByIdAndUpdate(id, body, { new: true });
-    if (!movie) {
-      return res.status(404).send('Movie not found.');
-    }
-    res.status(204).send(movie);
-  } catch (error) {
-    res.status(400).send('Error');
-  }
-};
-
-module.exports = {
-  getMoviesFromDB,
-  getMovieByIdFromDB,
-  addMovieToDB,
-  removeMoviesFromDB,
-  removeSelectedMovieFromDB,
-  updateMovieInDB,
-}

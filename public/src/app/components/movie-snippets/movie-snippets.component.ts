@@ -26,7 +26,7 @@ export class MovieSnippetsComponent implements OnDestroy {
   @ViewChild(ModalDirective) modalHost: ModalDirective;
   modalComponent: ModalItem;
 
-  apiURL = `${ environment.hostUrl }/api/details`;
+  apiURL = `${ environment.hostUrl }/details`;
   dbURL = `${ environment.hostUrl }/movies`;
 
   constructor(
