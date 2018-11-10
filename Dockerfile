@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 
 RUN mkdir server
 COPY ./server/package.json .
-RUN npm install -E
+RUN npm install --production
 
 COPY ./server/lib/. ./server
 

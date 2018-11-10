@@ -1,7 +1,6 @@
 import * as bodyParser from 'body-parser';
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import logger from 'morgan';
-import errorHandler from 'errorhandler';
 import mongoose = require('mongoose');
 
 import * as routes from './routes';
@@ -13,9 +12,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(logger('dev'));
-if (process.env.NODE_ENV === 'development') {
-  app.use(errorHandler());
-}
 
 const main = async () => {
   try {
@@ -34,6 +30,10 @@ const main = async () => {
     app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);
 
     app.get('*', routes.base.redirectToLandingPage);
+
+    app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+      res.status(500).send(err);
+    });
 
     const PORT = process.env.PORT || 3000;
 
