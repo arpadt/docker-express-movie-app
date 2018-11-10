@@ -11,12 +11,14 @@ export const getMoviesFromDB = async (req: Request, res: Response) => {
 };
 
 export const getMovieByIdFromDB = async (req: Request, res: Response) => {
-  const id = req.params.id;
-
+  const id: string = req.params.id;
+  // if (!(/^tt\d+/.test(id))) {
+  //   return res.status(404).send('Invalid id!');
+  // }
   try {
     const movie = await Movie.find({ imdbID: id });
 
-    if (!movie) {
+    if (!movie.length) {
       return res.status(404).send('Movie not found.');
     }
 

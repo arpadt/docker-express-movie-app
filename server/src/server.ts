@@ -4,7 +4,7 @@ import logger from 'morgan';
 import mongoose = require('mongoose');
 
 import * as routes from './routes';
-import { apiCheck, validateTitle } from './middleware';
+import { apiCheck, validateTitle, validateImdbID } from './middleware';
 
 mongoose.Promise = global.Promise;
 
@@ -21,10 +21,10 @@ const main = async () => {
     app.get('/', routes.base.getLandingPage);
 
     app.get('/api/movies', routes.movies.getMoviesFromDB);
-    app.get('/api/movies/:id', routes.movies.getMovieByIdFromDB);
+    app.get('/api/movies/:id', validateImdbID, routes.movies.getMovieByIdFromDB);
     app.post('/api/movies', routes.movies.addMovieToDB);
     app.delete('/api/movies', routes.movies.removeMoviesFromDB);
-    app.delete('/api/movies/:id', routes.movies.removeSelectedMovieFromDB);
+    app.delete('/api/movies/:id', validateImdbID, routes.movies.removeSelectedMovieFromDB);
 
     app.get('/api/search/:title', apiCheck, validateTitle(), routes.api.fetchMovieByTitle);
     app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);

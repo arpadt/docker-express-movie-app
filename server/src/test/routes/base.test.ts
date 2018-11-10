@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import { app } from '../server';
+import { app } from '../../server';
 
 const { expect, request } = chai.use(chaiHttp);
 

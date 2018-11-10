@@ -1,7 +1,8 @@
 import apiCheck from './api-check';
-import validateTitle from './validation';
+import { validateTitle, validateImdbID } from './validation';
 
 export {
   apiCheck,
   validateTitle,
+  validateImdbID,
 }
