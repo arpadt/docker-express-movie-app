@@ -9,7 +9,7 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'mymovies',
+    path: 'movies',
     component: MyListComponent,
   },
   {

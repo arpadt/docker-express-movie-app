@@ -8,7 +8,7 @@ services:
       - mongo-data:/data/db
     networks:
       - movie-network
-  api:
+  node-api:
     build:
       context: .
       args:
@@ -31,6 +31,8 @@ services:
       - "80:80"
     networks:
       - movie-network
+    depends_on:
+      - node-api
 
 volumes:
   mongo-data:

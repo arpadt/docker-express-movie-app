@@ -3,7 +3,7 @@
     <h1 class="heading-primary">My List</h1>
   </header>
   <div class="card-container">
-    <!-- <div class="card-wrapper" *ngFor="let film of movieData"> -->
+    <h2 class="heading-secondary">There are currently no movies on your list.</h2>
     <div class="card-wrapper" *ngFor="let film of moviesToDisplay">
       <app-card
         (movieDetailsRequest)="getMovieDetailsFromDB($event)"

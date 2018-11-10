@@ -6,7 +6,7 @@ export const getMoviesFromDB = async (req: Request, res: Response) => {
     const movies = await Movie.find({});
     res.send(movies);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
@@ -22,7 +22,7 @@ export const getMovieByIdFromDB = async (req: Request, res: Response) => {
 
     res.send(movie);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
@@ -49,9 +49,9 @@ export const addMovieToDB = async (req: Request, res: Response) => {
 
   try {
     const movie = await newMovie.save();
-    res.status(201).send(movie)
+    res.status(201).send(movie);
   } catch (error) {
-    res.status(400).send('An error occured.')
+    res.status(400).send(error);
   }
 };
 
@@ -60,7 +60,7 @@ export const removeMoviesFromDB = async (req: Request, res: Response) => {
     await Movie.remove({});
     res.send('Deleted all movies.');
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
 
@@ -74,22 +74,6 @@ export const removeSelectedMovieFromDB = async (req: Request, res: Response) => 
     }
     res.status(200).send(movie);
   } catch (error) {
-    res.status(400).send('Error');
+    res.status(400).send(error);
   }
 };
-
-export const updateMovieInDB = async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const body = req.body
-
-  try {
-    const movie = await Movie.findByIdAndUpdate(id, body, { new: true });
-    if (!movie) {
-      return res.status(404).send('Movie not found.');
-    }
-    res.status(204).send(movie);
-  } catch (error) {
-    res.status(400).send('Error');
-  }
-};
-

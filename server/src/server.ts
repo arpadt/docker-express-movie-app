@@ -1,6 +1,5 @@
 import * as bodyParser from 'body-parser';
 import express from 'express';
-import * as path from 'path';
 import logger from 'morgan';
 import errorHandler from 'errorhandler';
 import mongoose = require('mongoose');
@@ -23,18 +22,15 @@ const main = async () => {
     await mongoose.connect(process.env.MONGO_URI as string, { useNewUrlParser: true });
     console.log('Connected to database.');
 
-    app.use(express.static(path.join(__dirname, '/../dist')));
-
     app.get('/', routes.base.getLandingPage);
 
-    app.get('/movies', routes.movies.getMoviesFromDB);
-    app.get('/movies/:id', routes.movies.getMovieByIdFromDB);
-    app.post('/movies', routes.movies.addMovieToDB);
-    app.delete('/movies', routes.movies.removeMoviesFromDB);
-    app.delete('/movies', routes.movies.removeSelectedMovieFromDB);
-    app.patch('/movies/:id', routes.movies.updateMovieInDB);
+    app.get('/api/movies', routes.movies.getMoviesFromDB);
+    app.get('/api/movies/:id', routes.movies.getMovieByIdFromDB);
+    app.post('/api/movies', routes.movies.addMovieToDB);
+    app.delete('/api/movies', routes.movies.removeMoviesFromDB);
+    app.delete('/api/movies/:id', routes.movies.removeSelectedMovieFromDB);
 
-    app.get('/api/search/:title', apiCheck, validateTitle, routes.api.fetchMovieByTitle);
+    app.get('/api/search/:title', apiCheck, validateTitle(), routes.api.fetchMovieByTitle);
     app.get('/api/details/:id', apiCheck, routes.api.fetchMovieDetailsById);
 
     app.get('*', routes.base.redirectToLandingPage);

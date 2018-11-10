@@ -2,3 +2,4 @@ server/node_modules
 .env
 dist
 server/lib
+mongo.docker-compose.yml

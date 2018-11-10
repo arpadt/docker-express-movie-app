@@ -5,11 +5,11 @@
   "main": "lib/server",
   "scripts": {
     "start": "node server/server.js",
-    "start:dev": "npm run build:dev",
+    "start:dev": "cross-env MONGO_URI=mongodb://192.168.99.100:27017/db-development npm run build:dev",
     "test": "cross-env NODE_ENV=test mocha lib/**/*.test.js --exit",
     "prebuild": "rm -rf lib",
     "build": "tsc -p .",
-    "build:dev": "ts-node-dev -r tsconfig-paths/register src/server.ts"
+    "build:dev": "ts-node-dev src/server.ts"
   },
   "author": "Arpad Toth",
   "license": "ISC",

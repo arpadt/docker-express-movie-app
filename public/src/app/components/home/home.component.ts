@@ -15,7 +15,7 @@ import { environment } from '@environments/environment';
 export class HomeComponent implements OnDestroy {
   unsubscribe$ = new Subject();
 
-  url = `${ environment.hostUrl }/api/search`;
+  url = `${ environment.hostUrl }/search`;
   movies: Movie[];
 
   constructor(private movieDataService: MovieDataService) { }
