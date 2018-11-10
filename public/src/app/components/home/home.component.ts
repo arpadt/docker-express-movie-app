@@ -5,7 +5,7 @@ import { Component, OnDestroy } from '@angular/core';
 
 import { Movie, MovieResponse } from '@types';
 import { MovieDataService } from '@services';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/environment.prod';
 
 @Component({
   selector: 'app-home',

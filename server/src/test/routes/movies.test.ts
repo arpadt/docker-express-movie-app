@@ -90,16 +90,6 @@ describe('#movies', () => {
       expect(response.text).to.equal('Invalid id!');
     });
 
-    it('should return 404 if no movie is found', async () => {
-      const newId = 'tt001';
-
-      const response = await request(app)
-        .get(`/api/movies/${ newId }`);
-
-      expect(response.status).to.equal(404);
-      expect(response.text).to.equal('Movie not found.');
-    });
-
     it('returns the relevant movie', async () => {
       const response = await request(app)
         .get('/api/movies/tt000001');

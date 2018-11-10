@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { ModalItem } from '@models/components';
 import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/environment.prod';
 import { DatabaseService, LoadComponentService } from '@services';
 import { Movie, MovieState } from '@types';
 import { Store, select } from '@ngrx/store';

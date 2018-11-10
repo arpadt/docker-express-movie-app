@@ -12,7 +12,7 @@ import { ModalComponent } from '@components/modal/modal.component';
 import { ModalDirective } from '@directives/modal.directive';
 import { Movie } from '@types';
 import { MovieDataService, LoadComponentService, DatabaseService } from '@services';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/environment.prod';
 
 @Component({
   selector: 'app-movie-cards',

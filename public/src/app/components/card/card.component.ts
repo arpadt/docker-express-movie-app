@@ -1,4 +1,3 @@
-import { DatabaseService } from '@services';
 import { Movie } from '@types';
 import {
   Component,
@@ -18,7 +17,7 @@ export class CardComponent {
   @Input() movie: Movie;
   @Output() movieDetailsRequest = new EventEmitter<any>();
 
-  constructor(private databaseService: DatabaseService) { }
+  constructor() { }
 
   getMovieDetails(movieId: string) {
     this.movieDetailsRequest.emit(movieId);

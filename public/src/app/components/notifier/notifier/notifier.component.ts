@@ -10,6 +10,7 @@ export class NotifierComponent implements OnInit, OnDestroy {
   isDisplayed = false;
   timer$ = timer(1500);
   subscription: Subscription;
+  message = '';
 
   constructor() { }
 

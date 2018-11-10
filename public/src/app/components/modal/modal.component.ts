@@ -10,7 +10,7 @@ import {
 
 import { NotifierDirective } from '@directives/notifier.directive';
 import { NotifierItem } from '@models/components';
-import { environment } from '@environments/environment';
+import { environment } from '@environments/environment.prod';
 import { DatabaseService, LoadComponentService} from '@services';
 import { Movie, Modal, MovieState } from '@types';
 import { Store, select } from '@ngrx/store';
