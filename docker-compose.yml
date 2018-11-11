@@ -7,7 +7,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - movie-network
+      - api-network
   node-api:
     build:
       context: .
@@ -19,6 +19,7 @@ services:
     env_file: .env
     networks:
       - movie-network
+      - api-network
     depends_on:
       - db
   client:
@@ -39,6 +40,7 @@ volumes:
 
 networks:
   movie-network:
+  api-network:
 
 
 
