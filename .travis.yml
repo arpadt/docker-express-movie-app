@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "10"
+dist: trusty
+# sudo: required
+services:
+  # - docker
+  - mongodb
+env:
+  - NODE_ENV=test
+  - MONGO_URI=mongodb://127.0.0.1:27017/db-test
+cache:
+  directories:
+    - node_modules
+#     - public/node_modules
+install:
+  - npm install
+script:
+  # - nohup npm start &
+  # - sleep 3
+  - npm test
