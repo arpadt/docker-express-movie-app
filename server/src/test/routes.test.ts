@@ -1,35 +1,34 @@
-import { ObjectId } from 'bson';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-const { app } = require('../../server');
-const { Movie } = require('../../db/models/movie');
-import movies from '../seed';
+const app = require('../server');
+const { Movie } = require('../db/models/movie');
+import movies from './seed';
 
 const { expect, request } = chai.use(chaiHttp);
-
-// const id1 = new ObjectId();
-// const id2 = new ObjectId();
+const PORT = 3001;
 
 describe('#movies', () => {
-  // const movies = [
-  //   {
-  //     _id: id1,
-  //     title: 'The SpongeBob SquarePants Movie',
-  //     genre: 'animation',
-  //     isLiked: true
-  //   },
-  //   {
-  //     _id: id2,
-  //     title: 'The Notebook',
-  //     genre: 'drama',
-  //     isLiked: false
-  //   }
-  // ];
+  before(async () => {
+    await app.listen(PORT, () => {
+      console.log(`Test server is starting on ${ PORT }.`);
+    });
+    console.log('Test server is running.');
+  });
 
   beforeEach(async () => {
     await Movie.remove({});
     await Movie.insertMany(movies);
+  });
+
+  describe('GET /', () => {
+    it('returns a basic response string', async () => {
+      const response = await request(app)
+        .get('/');
+
+      expect(response.status).to.equal(200);
+      expect(response.text).to.equal('Landing page works.');
+    });
   });
 
   describe('GET /movies', () => {
