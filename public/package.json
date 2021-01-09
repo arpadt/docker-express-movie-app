@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "android": "tns run android --bundle",
-    "ios": "tns run ios --bundle"
+    "ios": "tns run ios --bundle",
+    "preinstall": "npx npm-force-resolutions"
   },
   "private": true,
   "dependencies": {
@@ -36,9 +37,9 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.7.0",
-    "@angular/cli": "~6.1.0",
-    "@angular/compiler-cli": "6.1.0",
+    "@angular-devkit/build-angular": "^0.1100.6",
+    "@angular/cli": "^11.0.6",
+    "@angular/compiler-cli": "^11.0.7",
     "@nativescript/schematics": "~0.2.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
@@ -47,17 +48,23 @@
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~1.7.1",
+    "karma": "^5.2.3",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "nativescript-dev-sass": "~1.6.0",
     "nativescript-dev-typescript": "~0.7.0",
-    "nativescript-dev-webpack": "^0.15.0",
-    "protractor": "~5.3.0",
+    "nativescript-dev-webpack": "^1.5.1",
+    "protractor": "^7.0.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "2.9.2"
+  },
+  "resolutions": {
+    "object-path": "^0.11.5",
+    "yargs-parser": "^18.1.2",
+    "serialize-javascript": "^3.1.0",
+    "atob": "^2.1.0"
   }
 }
