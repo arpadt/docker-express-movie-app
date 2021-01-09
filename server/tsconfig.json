@@ -15,7 +15,8 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*"
