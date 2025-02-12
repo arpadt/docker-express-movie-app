@@ -40,7 +40,7 @@
     "errorhandler": "^1.5.1",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.9.1",
-    "mocha": "^10.0.0",
+    "mocha": "^10.8.2",
     "node-dev": "^7.0.0",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.10.1",
